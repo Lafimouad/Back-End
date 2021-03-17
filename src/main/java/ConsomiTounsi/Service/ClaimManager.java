@@ -1,11 +1,21 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Claim;
+import ConsomiTounsi.repository.ClaimRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class ClaimManager implements ClaimManagerInterface{
+	
+	@Autowired 
+	ClaimRepository Cr;
+	
+	
     @Override
     public List<Claim> retrieveAllClaim() {
         return null;
@@ -28,7 +38,7 @@ public class ClaimManager implements ClaimManagerInterface{
 
     @Override
     public Claim updateClaim(Claim C) {
-        return null;
+        return Cr.save(C);
     }
 
     @Override
