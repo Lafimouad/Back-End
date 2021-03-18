@@ -15,7 +15,8 @@ public class EventManager implements EventManagerInterface{
 	
 	 @Autowired
 	    EventRepository Er; 
-	  
+	 
+	
     @Override
     public List<Event> retrieveAllEvent() {
         return null;
