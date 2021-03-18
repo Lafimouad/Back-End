@@ -1,11 +1,21 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Store;
+import ConsomiTounsi.repository.StoreRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+@Service
 public class StoreManager implements StoreManagerInterface{
+	
+	 @Autowired
+	    StoreRepository Str; 
+	 
     @Override
     public List<Store> retrieveAllStore() {
         return null;

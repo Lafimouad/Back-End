@@ -1,11 +1,21 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Pool;
+import ConsomiTounsi.repository.PoolRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+@Service
 public class PoolManager implements PoolManagerInterface{
+	
+	 @Autowired
+	    PoolRepository Poolr; 
+	 
     @Override
     public List<Pool> retrieveAllPool() {
         return null;
