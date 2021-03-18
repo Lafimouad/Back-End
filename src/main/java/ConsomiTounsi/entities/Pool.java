@@ -29,5 +29,9 @@ public class Pool implements Serializable {
 
 	private double amount_pool;
 
+	@ManyToOne
+	User user;
+
+	@OneToMany List<Event> event ; /*composition*/
 
 }
