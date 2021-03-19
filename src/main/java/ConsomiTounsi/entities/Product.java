@@ -120,5 +120,8 @@ public class Product implements Serializable {
 	private Set<Order> order;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Shelf> association2;
+	private Set<Shelf> R_product;
+	
+	@ManyToOne
+	Stock stock;
 }
