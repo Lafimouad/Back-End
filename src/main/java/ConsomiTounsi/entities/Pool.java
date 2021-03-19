@@ -3,6 +3,7 @@ package ConsomiTounsi.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Pool implements Serializable {
@@ -28,6 +29,13 @@ public class Pool implements Serializable {
 	}
 
 	private double amount_pool;
+
+	@ManyToOne
+	User user;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="pool")
+	private Set<Event> event;
+
 
 
 }

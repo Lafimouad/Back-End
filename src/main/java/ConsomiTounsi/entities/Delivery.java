@@ -60,4 +60,7 @@ public class Delivery implements Serializable {
 	public void setCost_delivery(double cost_delivery) {
 		this.cost_delivery = cost_delivery;
 	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="delivery")
+	private Set<Order> order;
 }

@@ -109,4 +109,19 @@ public class Product implements Serializable {
 	public void setWeight_product(double weight_product) {
 		this.weight_product = weight_product;
 	}
+
+	@ManyToOne
+	Supplier supplier;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
+	private Set<Feedback> feedback;
+
+	@ManyToMany(mappedBy="Cart", cascade = CascadeType.ALL)
+	private Set<Order> order;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Shelf> R_product;
+	
+	@ManyToOne
+	Stock stock;
 }

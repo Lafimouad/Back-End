@@ -95,4 +95,10 @@ public class Advertisement implements Serializable {
 	public void setChannel_advertisement(String channel_advertisement) {
 		this.channel_advertisement = channel_advertisement;
 	}
+	@ManyToOne
+	Admin admin;
+
+	@ManyToOne
+	Message message;
+
 }

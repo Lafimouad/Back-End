@@ -47,4 +47,7 @@ public class Comment implements Serializable {
 	public void setMostPertinat_comment(boolean mostPertinat_comment) {
 		this.mostPertinat_comment = mostPertinat_comment;
 	}
+	@ManyToOne
+	Subject subject;
+
 }

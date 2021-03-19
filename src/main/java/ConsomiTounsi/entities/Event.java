@@ -46,4 +46,9 @@ public class Event implements Serializable {
 	public void setTarget_event(String target_event) {
 		this.target_event = target_event;
 	}
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="event")
+	private Set<Donation> donation;
+	
+	@ManyToOne
+	Pool pool;
 }

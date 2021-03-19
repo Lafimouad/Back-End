@@ -17,4 +17,6 @@ public class Donation implements Serializable {
 	public void setId_donation(int id_donation) {
 		this.id_donation = id_donation;
 	}
+	@ManyToOne
+	Event event;
 }

@@ -37,4 +37,7 @@ public class Supplier implements Serializable {
 	public void setPhoneNumber_supplier(String phoneNumber_supplier) {
 		this.phoneNumber_supplier = phoneNumber_supplier;
 	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="supplier")
+	private Set<Product> product;
 }

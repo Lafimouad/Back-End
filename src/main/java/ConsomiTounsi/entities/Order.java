@@ -70,4 +70,10 @@ public class Order implements Serializable {
 	public void setWeight_order(float weight_order) {
 		this.weight_order = weight_order;
 	}
+
+	@ManyToOne
+	Delivery delivery;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Product> Cart;
 }
