@@ -1,43 +1,43 @@
 package ConsomiTounsi.Service;
-
-import ConsomiTounsi.entities.Claim;
+import ConsomiTounsi.entities.Client;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ClientManager implements ClaimManagerInterface{
+public class ClientManager implements ClientManagerInterface{
+
     @Override
-    public List<Claim> retrieveAllClaim() {
+    public List<Client> retrieveAllClient() {
         return null;
     }
 
     @Override
-    public Claim addClaim(Claim C) {
+    public Client addClient(Client Cl) {
         return null;
     }
 
     @Override
-    public void deleteClaim(Long id) {
+    public void deleteClient(Long id) {
 
     }
 
     @Override
-    public void deleteClaim(String id) {
+    public void deleteClient(String id) {
 
     }
 
     @Override
-    public Claim updateClaim(Claim C) {
+    public Client updateClaim(Client Cl) {
         return null;
     }
 
     @Override
-    public Optional<Claim> FindClaim(Long id) {
+    public Optional<Client> FindClient(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<Claim> FindClaim(String id) {
+    public Optional<Client> FindClient(String id) {
         return Optional.empty();
     }
 }
