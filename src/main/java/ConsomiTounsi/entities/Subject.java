@@ -3,6 +3,7 @@ package ConsomiTounsi.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Subject implements Serializable {
@@ -57,6 +58,7 @@ public class Subject implements Serializable {
 	}
 	@ManyToOne
 	User user;
-
-	@OneToMany List<Comment> comment ;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="subject")
+	private Set<Comment> comment;
 }

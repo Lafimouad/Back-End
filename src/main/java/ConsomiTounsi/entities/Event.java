@@ -48,4 +48,7 @@ public class Event implements Serializable {
 	}
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="event")
 	private Set<Donation> donation;
+	
+	@ManyToOne
+	Pool pool;
 }
