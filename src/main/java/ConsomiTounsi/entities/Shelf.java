@@ -32,7 +32,10 @@ public class Shelf implements Serializable {
 
 	@ManyToOne
 	Store store;
+<<<<<<< Updated upstream
 
 	@ManyToMany(mappedBy="R_product", cascade = CascadeType.ALL)
 	private Set<Product> product;
+=======
+>>>>>>> Stashed changes
 }
