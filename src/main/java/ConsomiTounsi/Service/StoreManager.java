@@ -1,10 +1,12 @@
 package ConsomiTounsi.Service;
 
+
 import ConsomiTounsi.entities.Store;
 import ConsomiTounsi.repository.StoreRepository;
 
 import java.util.List;
 import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,4 +51,7 @@ public class StoreManager implements StoreManagerInterface{
     public Optional<Store> FindStore(String id) {
         return Optional.empty();
     }
+   
+    
+
 }
