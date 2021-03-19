@@ -75,4 +75,16 @@ public class User implements Serializable {
 	public void setAddress_user(String address_user) {
 		this.address_user = address_user;
 	}
+
+	@ManyToOne
+	Store store;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Subject> subject;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Claim> claim;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Pool> pool;
 }

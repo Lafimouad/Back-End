@@ -27,4 +27,7 @@ public class Feedback implements Serializable {
 	public void setDescription_feedback(String description_feedback) {
 		this.description_feedback = description_feedback;
 	}
+	@ManyToOne
+	Product product;
+
 }

@@ -62,4 +62,7 @@ public class Claim implements Serializable {
 	public void setSubject_claim(String subject_claim) {
 		this.subject_claim = subject_claim;
 	}
+
+	@ManyToOne
+	User user;
 }
