@@ -15,7 +15,6 @@ public class StoreManager implements StoreManagerInterface{
 	
 	 @Autowired
 	    StoreRepository Str; 
-	 
     @Override
     public List<Store> retrieveAllStore() {
         return null;

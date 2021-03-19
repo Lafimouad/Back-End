@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public class ShelfManager implements ShelfManagerInterface{
 	
 	 @Autowired
-	    ShelfRepository Shr; 
+	    ShelfRepository Shr;
 	 
     @Override
     public List<Shelf> retrieveAllShelf() {
