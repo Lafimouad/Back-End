@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-public class Stock extends User implements Serializable {
+@Entity
+public class Stock implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
