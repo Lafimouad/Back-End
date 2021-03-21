@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public class OrderManager implements OrderManagerInterface{
-    @Autowired
-    OrderRepository Or;
     @Override
     public List<Order> retrieveAllOrder() {
         return null;

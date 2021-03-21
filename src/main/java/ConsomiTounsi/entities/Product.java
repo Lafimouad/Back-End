@@ -9,7 +9,7 @@ public class Product implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_product;
+	private Long id_product;
 	
 	private int quantity_product;
 	private String code_product;
@@ -22,11 +22,11 @@ public class Product implements Serializable {
 	private String description_product;
 	private double weight_product;
 
-	public int getId_product() {
+	public Long getId_product() {
 		return id_product;
 	}
 
-	public void setId_product(int id_product) {
+	public void setId_product(Long id_product) {
 		this.id_product = id_product;
 	}
 

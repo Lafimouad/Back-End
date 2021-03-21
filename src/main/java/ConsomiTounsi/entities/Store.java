@@ -54,16 +54,12 @@ public class Store implements Serializable {
 	public void setGain_store(double gain_store) {
 		this.gain_store = gain_store;
 	}
-<<<<<<< Updated upstream
+
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
 	private Set<Shelf> shelf;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
 	private Set<User> user;
-=======
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
-	private Set<Shelf> shelf;
->>>>>>> Stashed changes
+
 }
