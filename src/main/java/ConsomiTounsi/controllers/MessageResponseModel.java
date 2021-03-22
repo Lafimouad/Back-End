@@ -1,6 +1,6 @@
 package ConsomiTounsi.controllers;
 
-public class TestResponseModel {
+public class MessageResponseModel {
     String message;
 
     public String getMessage() {
@@ -11,7 +11,7 @@ public class TestResponseModel {
         this.message = message;
     }
 
-    public TestResponseModel(String message) {
+    public MessageResponseModel(String message) {
         this.message = message;
     }
 }

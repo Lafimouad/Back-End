@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     @GetMapping
     ResponseEntity<?> helloApp(){
-        return new ResponseEntity<>(new TestResponseModel("Ab3ath quran ye Walid"), HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponseModel("Ab3ath quran ye Walid"), HttpStatus.OK);
     }
 }

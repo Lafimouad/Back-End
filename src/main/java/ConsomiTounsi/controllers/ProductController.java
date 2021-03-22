@@ -15,10 +15,10 @@ public class ProductController {
     @Autowired
     ProductManager pm;
     @PostMapping
-    ResponseEntity<?> createNewProduct(@RequestBody Product p){
+    ResponseEntity<?> createNewProduct( @RequestBody Product p){
 
        pm.addProduct(p);
-        return new ResponseEntity<>(new TestResponseModel("Product Tesna3"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new MessageResponseModel("Product Tesna3"), HttpStatus.CREATED);
     }
     @GetMapping
     ResponseEntity<?> getAllProduct(){
@@ -35,7 +35,7 @@ public class ProductController {
     @DeleteMapping ("/{id}")
     ResponseEntity<?> deleteProductById(@PathVariable Long id){
         pm.deleteProduct(id);
-        return new ResponseEntity<>(new TestResponseModel("Product Deleted"),HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponseModel("Product Deleted"),HttpStatus.OK);
 
     }
 
@@ -43,7 +43,7 @@ public class ProductController {
     ResponseEntity<?> updateProduct(@RequestBody Product p){
 
         pm.updateProduct(p);
-        return new ResponseEntity<>(new TestResponseModel("Product 3mal update"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new MessageResponseModel("Product 3mal update"), HttpStatus.CREATED);
     }
 
 }
