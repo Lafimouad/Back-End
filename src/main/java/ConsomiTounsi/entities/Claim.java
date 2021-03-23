@@ -11,58 +11,74 @@ public class Claim implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_claim;
+	@Column(name="id_claim")
+	private int id;
 	
-	private String decision_claim;
+	@Column(name="desicion_claim")
+	private String decision;
+	
 	
 	@Temporal (TemporalType.DATE)
-	private Date date_claim;
+	@Column(name="date_claim")
+	private Date date;
 	
-	@Temporal (TemporalType.DATE)
-	private Date datefinal_claim;
+	private String status;
+
+	private String description;
 	
-	private String subject_claim;
+	@Column(name="subject_claim")
+	private String subject;
 
-	public int getId_claim() {
-		return id_claim;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_claim(int id_claim) {
-		this.id_claim = id_claim;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getDecision_claim() {
-		return decision_claim;
+	public String getDecision() {
+		return decision;
 	}
 
-	public void setDecision_claim(String decision_claim) {
-		this.decision_claim = decision_claim;
+	public void setDecision(String decision) {
+		this.decision = decision;
 	}
 
-	public Date getDate_claim() {
-		return date_claim;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setDate_claim(Date date_claim) {
-		this.date_claim = date_claim;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public Date getDatefinal_claim() {
-		return datefinal_claim;
+	public String description() {
+		return description;
 	}
 
-	public void setDatefinal_claim(Date datefinal_claim) {
-		this.datefinal_claim = datefinal_claim;
+	public void setDatefinal_claim(String description) {
+		this.description = description;
 	}
 
 	public String getSubject_claim() {
-		return subject_claim;
+		return subject;
 	}
 
-	public void setSubject_claim(String subject_claim) {
-		this.subject_claim = subject_claim;
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@ManyToOne
 	User user;
+	
 }
+
