@@ -52,4 +52,14 @@ public class AdminManager implements AdminManagerInterface{
     public List<Admin> FindAdminByRole(Role role){
     	return Ar.findByRoleAdmin(role);
     }
+
+	@Override
+	public long getNbAdminByRole(Role role) {
+		return Ar.getNbAdminByRole(role);
+	}
+
+	@Override
+	public long getNbAdmin() {
+		return Ar.getNbAdmin();
+	}
 }

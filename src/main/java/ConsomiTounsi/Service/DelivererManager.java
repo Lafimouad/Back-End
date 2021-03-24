@@ -51,4 +51,19 @@ public class DelivererManager implements DelivererManagerInterface{
 		return  dr.findById(Long.parseLong(id)).orElse(new Deliverer());
 	}
 
+	@Override
+	public long getNbAvailableDeliveres() {
+		return dr.getNbAvailableDeliveres();
+	}
+
+	@Override
+	public long getNbDeliverer() {
+		return dr.getNbDeliverer();
+	}
+
+	@Override
+	public Deliverer getDelivererOfTheMonth() {
+		return dr.getDelivererOfTheMonth();
+	}
+
 }

@@ -53,13 +53,11 @@ public class AdminController {
 	}
 	
 	@DeleteMapping("remove-id")
-	@Modifying
 	public void removeAdminByID(@RequestParam("id")long id){
 		adminS.deleteAdminById(id);
 	}
 	
 	@PutMapping("/update")
-	@Modifying
 	public Admin updateAdmin(@RequestBody Admin a){
 		return adminS.updateAdmin(a);
 	}

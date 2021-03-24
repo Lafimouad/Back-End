@@ -1,5 +1,6 @@
 package ConsomiTounsi.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
@@ -22,6 +23,7 @@ public class Deliverer extends User implements Serializable {
 
 	private boolean delivererOfTheMonthDeliverer;
 	
+	@Column(columnDefinition = "boolean default true")
 	private boolean availableDeliverer;
 	
 	private double distanceDeliverer;

@@ -21,4 +21,7 @@ public interface UserManagerInterface {
     
 	User findUserByUsername(String username);
 	List<User> findUserByLastNameAndFirstName(String firstname , String lastname);
+	List<User> findUserByFirstName(String firstname); 
+	List<User> findUserByLastName(String lastname);
+	
 }

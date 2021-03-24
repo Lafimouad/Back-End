@@ -49,4 +49,9 @@ public class ClientManager implements ClientManagerInterface{
 		return  cr.findById(Long.parseLong(id)).orElse(new Client());
 	}
 
+	@Override
+	public long getNombreClient() {
+		return cr.getNombreClient();
+	}
+
 }

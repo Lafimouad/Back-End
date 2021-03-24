@@ -27,4 +27,14 @@ public class UserController {
 	public List<User> getUserByFirstAndLastName(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname){
 		return userS.findUserByLastNameAndFirstName(firstname, lastname);
 	}
+	
+	@GetMapping("/firstname")
+	public List<User> getUserByFirstName(@RequestParam("firstname") String firstname){
+		return userS.findUserByFirstName(firstname);
+	}
+	@GetMapping("/lastname")
+	public List<User> getUserByLastName(@RequestParam("lastname") String lastname){
+		return userS.findUserByLastName(lastname);
+	}
+	
 }

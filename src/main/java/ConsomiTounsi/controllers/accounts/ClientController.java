@@ -51,13 +51,11 @@ public class ClientController {
 	}
 	
 	@DeleteMapping("remove-id")
-	@Modifying
 	public void removeClientByID(@RequestParam("id")long id){
 		clientS.deleteClientById(id);
 	}
 	
 	@PutMapping("/update")
-	@Modifying
 	public Client updateClient(@RequestBody Client a){
 		return clientS.updateClient(a);
 	}

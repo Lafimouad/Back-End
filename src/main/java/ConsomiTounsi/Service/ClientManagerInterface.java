@@ -15,5 +15,6 @@ public interface ClientManagerInterface {
     Client updateClient(Client Cl);
     Client FindClientById(Long id);
     Client FindClientById(String id);
+    long getNombreClient(); 
     
 }

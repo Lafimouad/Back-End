@@ -57,7 +57,16 @@ public class UserManager implements UserManagerInterface{
 
 	@Override
 	public List<User> findUserByLastNameAndFirstName(String firstname, String lastname) {
-		return null;
+		return ur.RetiveUserByFirstAndLastNameJPQL(firstname, lastname);
+	}
+	@Override
+	public List<User> findUserByFirstName(String firstname) {
+		return ur.findByFirstNameUser(firstname);
+	}
+	@Override
+	public List<User> findUserByLastName(String lastname) {
+		return ur.findByLastNameUser(lastname);
 	}
 
+	
 }

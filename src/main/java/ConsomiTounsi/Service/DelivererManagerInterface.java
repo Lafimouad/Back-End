@@ -15,5 +15,8 @@ public interface DelivererManagerInterface {
     Deliverer updateDeliverer(Deliverer D);
     Deliverer FindDelivererById(Long id);
     Deliverer FindDelivererById(String id);
-    
+    long getNbAvailableDeliveres();
+	long getNbDeliverer();
+	Deliverer getDelivererOfTheMonth();
+  
 }

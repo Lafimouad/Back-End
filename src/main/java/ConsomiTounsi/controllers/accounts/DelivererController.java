@@ -53,13 +53,11 @@ public class DelivererController {
 	}
 	
 	@DeleteMapping("remove-id")
-	@Modifying
 	public void removeClientByID(@RequestParam("id")long id){
 		delivererS.deleteDelivererById(id);
 	}
 	
 	@PutMapping("/update")
-	@Modifying
 	public Deliverer updateDeliverer(@RequestBody Deliverer a){
 		return delivererS.updateDeliverer(a);
 	}
