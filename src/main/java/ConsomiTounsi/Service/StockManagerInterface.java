@@ -7,7 +7,7 @@ import ConsomiTounsi.entities.Stock;
 
 public interface StockManagerInterface {
 	List<Stock> retrieveAllStock();
-    Stock addOrder(Stock S);
+    Stock addStock(Stock S);
     void deleteStock(Long id);
     void deleteStock(String id);
     Stock updateStock(Stock O);
