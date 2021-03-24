@@ -39,4 +39,5 @@ public class Message implements Serializable {
 	public void setDate_message(Date date_message) {
 		this.date_message = date_message;
 	}
+
 }

@@ -29,4 +29,13 @@ public class Shelf implements Serializable {
 	public void setType_shelf(typeShelf type_shelf) {
 		this.type_shelf = type_shelf;
 	}
+
+	@ManyToOne
+	Store store;
+<<<<<<< Updated upstream
+
+	@ManyToMany(mappedBy="R_product", cascade = CascadeType.ALL)
+	private Set<Product> product;
+=======
+>>>>>>> Stashed changes
 }

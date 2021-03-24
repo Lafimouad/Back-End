@@ -125,5 +125,16 @@ public class User implements Serializable {
 		this.lastNameUser = lastNameUser;
 	}
 
+	@ManyToOne
+	Store store;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Subject> subject;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Claim> claim;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Pool> pool;
 
 }

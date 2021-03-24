@@ -3,6 +3,8 @@ package ConsomiTounsi.Service;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.repository.ClientRepository;
 
+import ConsomiTounsi.entities.Client;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ public class ClientManager implements ClientManagerInterface{
 	@Override
 	public List<Client> retrieveAllClient() {
         return (List<Client>) cr.findAll();
+
 	}
 
 	@Override
@@ -53,5 +56,6 @@ public class ClientManager implements ClientManagerInterface{
 	public long getNombreClient() {
 		return cr.getNombreClient();
 	}
+
 
 }

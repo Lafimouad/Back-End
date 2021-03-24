@@ -1,10 +1,9 @@
 package ConsomiTounsi.Service;
+import java.util.Optional;
+import java.util.List;
 
 
 import ConsomiTounsi.entities.Order;
-
-import java.util.List;
-import java.util.Optional;
 
 public interface OrderManagerInterface {
     List<Order> retrieveAllOrder();
