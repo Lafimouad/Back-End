@@ -1,5 +1,6 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.Shelf;
 import ConsomiTounsi.repository.ShelfRepository;
 
@@ -18,36 +19,38 @@ public class ShelfManager implements ShelfManagerInterface{
 	 
     @Override
     public List<Shelf> retrieveAllShelf() {
-        return null;
+        return (List<Shelf>) Shr.findAll();
     }
 
     @Override
     public Shelf addShelf(Shelf Sh) {
-        return null;
+        return Shr.save(Sh);
     }
 
     @Override
     public void deleteShelf(Long id) {
+    	Shr.deleteById(id);
 
     }
 
     @Override
     public void deleteShelf(String id) {
+    	Shr.deleteById(Long.parseLong(id));
 
     }
 
     @Override
     public Shelf updateShelf(Shelf Sh) {
-        return null;
+        return Shr.save(Sh);
     }
 
     @Override
     public Optional<Shelf> FindShelf(Long id) {
-        return Optional.empty();
+        return   Shr.findById(id);
     }
 
     @Override
     public Optional<Shelf> FindShelf(String id) {
-        return Optional.empty();
+        return  Shr.findById(Long.parseLong(id));
     }
 }

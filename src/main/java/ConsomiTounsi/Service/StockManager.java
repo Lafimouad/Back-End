@@ -1,52 +1,53 @@
 package ConsomiTounsi.Service;
 
 import java.util.List;
+
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import ConsomiTounsi.entities.Stock;
+import ConsomiTounsi.repository.StockRepository;
 
 public class StockManager implements StockManagerInterface {
+	
+	@Autowired
+	StockRepository Stor;
 
 	@Override
 	public List<Stock> retrieveAllStock() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return (List<Stock>) Stor.findAll();	}
 
 	@Override
-	public Stock addOrder(Stock S) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Stock addStock(Stock S) {
+		 return Stor.save(S);	}
 
 	@Override
 	public void deleteStock(Long id) {
-		// TODO Auto-generated method stub
-		
+		Stor.deleteById(id);		
 	}
 
 	@Override
 	public void deleteStock(String id) {
-		// TODO Auto-generated method stub
+    	Stor.deleteById(Long.parseLong(id));
 		
 	}
 
 	@Override
 	public Stock updateStock(Stock O) {
-		// TODO Auto-generated method stub
-		return null;
+        return Stor.save(O);
+
 	}
 
 	@Override
 	public Optional<Stock> FindStock(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+        return   Stor.findById(id);
+
 	}
 
 	@Override
 	public Optional<Stock> FindStock(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return  Stor.findById(Long.parseLong(id));
 	}
 
 }
