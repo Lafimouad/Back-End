@@ -1,53 +1,61 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.repository.ClientRepository;
 
 import ConsomiTounsi.entities.Client;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class ClientManager implements ClientManagerInterface{
 
+	@Autowired
+	ClientRepository cr;
+	
 	@Override
 	public List<Client> retrieveAllClient() {
-		// TODO Auto-generated method stub
-		return null;
+        return (List<Client>) cr.findAll();
+
 	}
 
 	@Override
 	public Client addClient(Client Cl) {
-		// TODO Auto-generated method stub
-		return null;
+		return cr.save(Cl);
 	}
 
 	@Override
-	public void deleteClient(Long id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteClientById(Long id) {
+        cr.deleteById(id);
 	}
 
 	@Override
-	public void deleteClient(String id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteClientById(String id) {
+        cr.deleteById(Long.parseLong(id));		
 	}
 
 	@Override
-	public Client updateClaim(Client Cl) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client updateClient(Client Cl) {
+		return cr.save(Cl);
 	}
 
 	@Override
-	public Optional<Client> FindClient(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client FindClientById(Long id) {
+		return  cr.findById(id).orElse(new Client());
 	}
 
 	@Override
-	public Optional<Client> FindClient(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client FindClientById(String id) {
+		return  cr.findById(Long.parseLong(id)).orElse(new Client());
 	}
-   
+
+	@Override
+	public long getNombreClient() {
+		return cr.getNombreClient();
+	}
+
+
 }

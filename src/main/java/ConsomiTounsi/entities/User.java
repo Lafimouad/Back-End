@@ -9,71 +9,120 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable {
 	
+
+	public User(long idUser, String firstNameUser, String lastNameUser, String usernameUser, String passwordUser,
+			String phoneNumberUser, String emailAddressUser, Date dateBirthUser, String addressUser) {
+		super();
+		this.idUser = idUser;
+		this.firstNameUser = firstNameUser;
+		this.lastNameUser = lastNameUser;
+		this.usernameUser = usernameUser;
+		this.passwordUser = passwordUser;
+		this.phoneNumberUser = phoneNumberUser;
+		this.emailAddressUser = emailAddressUser;
+		this.dateBirthUser = dateBirthUser;
+		this.addressUser = addressUser;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_user;
-	private String username_user;
-	private String password_user;
-	private String phoneNumber_user;
-	private String emailAddress_user;
+	@Column(updatable = false, nullable = false)
+	private long idUser;
+	
+	private String firstNameUser; 
+	
+	private String lastNameUser;
+	
+	@Column(unique=true)
+	private String usernameUser;
+	
+	private String passwordUser;
+	
+	private String phoneNumberUser;
+	
+	@Column(unique=true)
+	private String emailAddressUser;
+	
 	@Temporal (TemporalType.DATE)
-	private Date dateBirth_user;
-	private String address_user;
+	private Date dateBirthUser;
+	
+	private String addressUser;
 
-	public int getId_user() {
-		return id_user;
+	public long getIdUser() {
+		return idUser;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
-	public String getUsername_user() {
-		return username_user;
+	public String getUsernameUser() {
+		return usernameUser;
 	}
 
-	public void setUsername_user(String username_user) {
-		this.username_user = username_user;
+	public void setUsernameUser(String usernameUser) {
+		this.usernameUser = usernameUser;
 	}
 
-	public String getPassword_user() {
-		return password_user;
+	public String getPasswordUser() {
+		return passwordUser;
 	}
 
-	public void setPassword_user(String password_user) {
-		this.password_user = password_user;
+	public void setPasswordUser(String passwordUser) {
+		this.passwordUser = passwordUser;
 	}
 
-	public String getPhoneNumber_user() {
-		return phoneNumber_user;
+	public String getPhoneNumberUser() {
+		return phoneNumberUser;
 	}
 
-	public void setPhoneNumber_user(String phoneNumber_user) {
-		this.phoneNumber_user = phoneNumber_user;
+	public void setPhoneNumberUser(String phoneNumberUser) {
+		this.phoneNumberUser = phoneNumberUser;
 	}
 
-	public String getEmailAddress_user() {
-		return emailAddress_user;
+	public Date getDateBirthUser() {
+		return dateBirthUser;
 	}
 
-	public void setEmailAddress_user(String emailAddress_user) {
-		this.emailAddress_user = emailAddress_user;
+	public void setDateBirthUser(Date dateBirthUser) {
+		this.dateBirthUser = dateBirthUser;
 	}
 
-	public Date getDateBirth_user() {
-		return dateBirth_user;
+	public String getAddressUser() {
+		return addressUser;
 	}
 
-	public void setDateBirth_user(Date dateBirth_user) {
-		this.dateBirth_user = dateBirth_user;
+	public void setAddressUser(String addressUser) {
+		this.addressUser = addressUser;
 	}
 
-	public String getAddress_user() {
-		return address_user;
+	public String getEmailAddressUser() {
+		return emailAddressUser;
 	}
 
-	public void setAddress_user(String address_user) {
-		this.address_user = address_user;
+	public void setEmailAddressUser(String emailAddressUser) {
+		this.emailAddressUser = emailAddressUser;
+	}
+
+	public String getFirstNameUser() {
+		return firstNameUser;
+	}
+
+	public void setFirstNameUser(String firstNameUser) {
+		this.firstNameUser = firstNameUser;
+	}
+
+	public String getLastNameUser() {
+		return lastNameUser;
+	}
+
+	public void setLastNameUser(String lastNameUser) {
+		this.lastNameUser = lastNameUser;
 	}
 
 	@ManyToOne
@@ -87,4 +136,5 @@ public class User implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Pool> pool;
+
 }

@@ -33,6 +33,7 @@ public class Shelf implements Serializable {
 	@ManyToOne
 	Store store;
 
+
 	@ManyToMany(mappedBy="R_product", cascade = CascadeType.ALL)
 	private Set<Product> product;
 

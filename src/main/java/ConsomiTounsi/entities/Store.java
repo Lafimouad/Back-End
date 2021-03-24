@@ -61,5 +61,5 @@ public class Store implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
 	private Set<User> user;
 	
-	
+
 }
