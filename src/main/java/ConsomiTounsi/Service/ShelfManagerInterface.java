@@ -1,7 +1,10 @@
 package ConsomiTounsi.Service;
 
 
+import ConsomiTounsi.entities.Admin;
+import ConsomiTounsi.entities.Role;
 import ConsomiTounsi.entities.Shelf;
+import ConsomiTounsi.entities.typeShelf;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +17,5 @@ public interface ShelfManagerInterface {
     Shelf updateShelf(Shelf Sh);
     Optional<Shelf> FindShelf(Long id);
     Optional<Shelf> FindShelf(String id);
+    List<Shelf> FindShelfByType(typeShelf type);
 }
