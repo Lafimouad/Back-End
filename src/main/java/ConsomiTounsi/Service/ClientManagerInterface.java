@@ -2,16 +2,18 @@ package ConsomiTounsi.Service;
 
 
 import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.entities.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ClientManagerInterface {
+	
     List<Client> retrieveAllClient();
     Client addClient(Client Cl);
-    void deleteClient(Long id);
-    void deleteClient(String id);
-    Client updateClaim(Client Cl);
-    Optional<Client> FindClient(Long id);
-    Optional<Client> FindClient(String id);
+    void deleteClientById(Long id);
+    void deleteClientById(String id);
+    Client updateClient(Client Cl);
+    Client FindClientById(Long id);
+    Client FindClientById(String id);
+    
 }

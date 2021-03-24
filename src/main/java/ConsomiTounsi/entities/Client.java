@@ -9,5 +9,10 @@ import java.io.Serializable;
 
 public class Client extends User implements Serializable {
 
+	public Client() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 }

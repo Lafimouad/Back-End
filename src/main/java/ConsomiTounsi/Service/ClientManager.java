@@ -1,43 +1,50 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Claim;
+import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.repository.ClientRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public class ClientManager implements ClaimManagerInterface{
-    @Override
-    public List<Claim> retrieveAllClaim() {
-        return null;
-    }
+import org.springframework.beans.factory.annotation.Autowired;
 
-    @Override
-    public Claim addClaim(Claim C) {
-        return null;
-    }
+public class ClientManager implements ClientManagerInterface{
 
-    @Override
-    public void deleteClaim(Long id) {
+	@Autowired
+	ClientRepository cr;
+	
+	@Override
+	public List<Client> retrieveAllClient() {
+        return (List<Client>) cr.findAll();
+	}
 
-    }
+	@Override
+	public Client addClient(Client Cl) {
+		return cr.save(Cl);
+	}
 
-    @Override
-    public void deleteClaim(String id) {
+	@Override
+	public void deleteClientById(Long id) {
+        cr.deleteById(id);
+	}
 
-    }
+	@Override
+	public void deleteClientById(String id) {
+        cr.deleteById(Long.parseLong(id));		
+	}
 
-    @Override
-    public Claim updateClaim(Claim C) {
-        return null;
-    }
+	@Override
+	public Client updateClient(Client Cl) {
+		return cr.save(Cl);
+	}
 
-    @Override
-    public Optional<Claim> FindClaim(Long id) {
-        return Optional.empty();
-    }
+	@Override
+	public Client FindClientById(Long id) {
+		return  cr.findById(id).orElse(new Client());
+	}
 
-    @Override
-    public Optional<Claim> FindClaim(String id) {
-        return Optional.empty();
-    }
+	@Override
+	public Client FindClientById(String id) {
+		return  cr.findById(Long.parseLong(id)).orElse(new Client());
+	}
+
 }

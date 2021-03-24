@@ -2,16 +2,18 @@ package ConsomiTounsi.Service;
 
 
 import ConsomiTounsi.entities.Deliverer;
+import ConsomiTounsi.entities.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface DelivererManagerInterface {
+	
     List<Deliverer> retrieveAllDeliverer();
     Deliverer addDeliverer(Deliverer D);
-    void deleteDeliverer(Long id);
-    void deleteDeliverer(String id);
+    void deleteDelivererById(Long id);
+    void deleteDelivererById(String id);
     Deliverer updateDeliverer(Deliverer D);
-    Optional<Deliverer> FindDeliverer(Long id);
-    Optional<Deliverer> FindDeliverer(String id);
+    Deliverer FindDelivererById(Long id);
+    Deliverer FindDelivererById(String id);
+    
 }

@@ -1,41 +1,52 @@
 package ConsomiTounsi.Service;
 
 import java.util.List;
-import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ConsomiTounsi.entities.Admin;
+import ConsomiTounsi.entities.Deliverer;
+import ConsomiTounsi.repository.DelivererRepository;
 
 public class DelivererManager implements DelivererManagerInterface{
-    @Override
-    public List<ConsomiTounsi.entities.Deliverer> retrieveAllDeliverer() {
-        return null;
-    }
 
-    @Override
-    public ConsomiTounsi.entities.Deliverer addDeliverer(ConsomiTounsi.entities.Deliverer D) {
-        return null;
-    }
+	@Autowired
+	DelivererRepository dr;
+	
+	@Override
+	public List<Deliverer> retrieveAllDeliverer() {
+        return (List<Deliverer>) dr.findAll();
+	}
 
-    @Override
-    public void deleteDeliverer(Long id) {
+	@Override
+	public Deliverer addDeliverer(Deliverer D) {
+		return dr.save(D);
+	}
 
-    }
+	@Override
+	public void deleteDelivererById(Long id) {
+        dr.deleteById(id);
+		
+	}
 
-    @Override
-    public void deleteDeliverer(String id) {
+	@Override
+	public void deleteDelivererById(String id) {
+		dr.deleteById(Long.parseLong(id));		
+	}
 
-    }
+	@Override
+	public Deliverer updateDeliverer(Deliverer D) {
+		return dr.save(D);
+	}
 
-    @Override
-    public ConsomiTounsi.entities.Deliverer updateDeliverer(ConsomiTounsi.entities.Deliverer D) {
-        return null;
-    }
+	@Override
+	public Deliverer FindDelivererById(Long id) {
+		return  dr.findById(id).orElse(new Deliverer());
+	}
 
-    @Override
-    public Optional<ConsomiTounsi.entities.Deliverer> FindDeliverer(Long id) {
-        return Optional.empty();
-    }
+	@Override
+	public Deliverer FindDelivererById(String id) {
+		return  dr.findById(Long.parseLong(id)).orElse(new Deliverer());
+	}
 
-    @Override
-    public Optional<ConsomiTounsi.entities.Deliverer> FindDeliverer(String id) {
-        return Optional.empty();
-    }
 }

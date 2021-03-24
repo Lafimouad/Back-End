@@ -7,14 +7,23 @@ import java.util.Set;
 @Entity
 public class Admin extends User implements Serializable {
 
+	public Admin(Role roleAdmin) {
+		super();
+		this.roleAdmin = roleAdmin;
+	}
+
+	public Admin() {
+		super();	}
+
 	@Enumerated(EnumType.STRING)
-	private Role role_admin;
+	private Role roleAdmin;
 
-	public Role getRole_admin() {
-		return role_admin;
+	public Role getRoleAdmin() {
+		return roleAdmin;
 	}
 
-	public void setRole_admin(Role role_admin) {
-		this.role_admin = role_admin;
+	public void setRoleAdmin(Role roleAdmin) {
+		this.roleAdmin = roleAdmin;
 	}
+	
 }
