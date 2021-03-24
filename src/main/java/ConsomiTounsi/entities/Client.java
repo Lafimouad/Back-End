@@ -14,9 +14,7 @@ public class Client extends User implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-
     @ManyToOne
     Message message;
-
 
 }
