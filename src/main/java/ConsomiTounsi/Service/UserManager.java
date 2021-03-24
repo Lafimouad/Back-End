@@ -1,12 +1,15 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.User;
+
 import ConsomiTounsi.repository.UserRepository;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserManager implements UserManagerInterface{
 	
 	@Autowired
@@ -16,7 +19,7 @@ public class UserManager implements UserManagerInterface{
     public List<User> retrieveAllUser() {
         return (List<User>) ur.findAll();
     }
-
+/*
 	@Override
 	public User addUser(User U) {
 		return ur.save(U);
@@ -46,7 +49,7 @@ public class UserManager implements UserManagerInterface{
 	public User FindUserById(String id) {
 		return ur.findById(Long.parseLong(id)).orElse(new User());
 	}
-
+*/
 	@Override
 	public User findUserByUsername(String username) {
 		return ur.findByUsernameUser(username);
@@ -54,7 +57,7 @@ public class UserManager implements UserManagerInterface{
 
 	@Override
 	public List<User> findUserByLastNameAndFirstName(String firstname, String lastname) {
-		return ur.findByLastNameUserAndFirstNameUser(firstname, lastname);
+		return null;
 	}
 
 }

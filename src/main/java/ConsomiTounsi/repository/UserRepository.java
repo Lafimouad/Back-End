@@ -6,11 +6,12 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Repository;
 
-@NoRepositoryBean
+@Repository
 public interface UserRepository extends CrudRepository<User,Long> {
 	
 	User findByUsernameUser(String username);
-	List<User> findByLastNameUserAndFirstNameUser(String firstname , String lastname);
+	
 	
 }

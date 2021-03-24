@@ -2,12 +2,14 @@ package ConsomiTounsi.Service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
-import ConsomiTounsi.entities.Admin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import ConsomiTounsi.entities.Deliverer;
 import ConsomiTounsi.repository.DelivererRepository;
 
+@Service
 public class DelivererManager implements DelivererManagerInterface{
 
 	@Autowired
