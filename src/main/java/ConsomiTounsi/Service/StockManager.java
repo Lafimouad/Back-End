@@ -1,11 +1,13 @@
 package ConsomiTounsi.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.Stock;
 import ConsomiTounsi.repository.StockRepository;
 
@@ -37,6 +39,12 @@ public class StockManager implements StockManagerInterface {
 	public Stock updateStock(Stock O) {
         return Stor.save(O);
 
+	}
+
+	@Override
+	public void AddStock(String Stkname, float quant, String productSt) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
