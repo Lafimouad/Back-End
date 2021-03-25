@@ -54,6 +54,12 @@ public class StockManager implements StockManagerInterface {
 	}
 
 	@Override
+	public int UpdateStockQuantityByStockname(String Sn, float quantite) {
+		return Stor.UpdateStockQuantityByStockname(Sn, quantite);
+
+	}
+
+	@Override
 	public Optional<Stock> FindStock(String id) {
 		return  Stor.findById(Long.parseLong(id));
 	}

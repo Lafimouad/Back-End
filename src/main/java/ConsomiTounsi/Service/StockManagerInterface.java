@@ -22,6 +22,8 @@ public interface StockManagerInterface {
     
     @Transactional
 	void AddStock(String Stkname, float quant, String productSt);
+    @Transactional
+	int UpdateStockQuantityByStockname(String Sn,float quantite);
     
     /*
      	public MvtStock save(MvtStock entity);
