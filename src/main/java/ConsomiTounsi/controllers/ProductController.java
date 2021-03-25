@@ -10,40 +10,42 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
 public class ProductController {
     @Autowired
     ProductManager pm;
-    @PostMapping
+    @PostMapping("/product")
     ResponseEntity<?> createNewProduct( @RequestBody Product p){
 
        pm.addProduct(p);
-        return new ResponseEntity<>(new MessageResponseModel("Product Tesna3"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new MessageResponseModel("Product Added"), HttpStatus.CREATED);
     }
-    @GetMapping
+    @GetMapping("/product")
     ResponseEntity<?> getAllProduct(){
         List<Product> p=pm.retrieveAllProducts();
         GetAllProductResponse products = new GetAllProductResponse(p);
         return new ResponseEntity<>(products,HttpStatus.OK);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/product/{id}")
     ResponseEntity<?> getProductById(@PathVariable Long id){
         return new ResponseEntity<>(pm.FindProduct(id),HttpStatus.OK);
 
     }
-
-    @DeleteMapping ("/{id}")
+    @GetMapping("/getproductsbyorder/{id}")
+    ResponseEntity<?> getProductByOrder(@PathVariable Long id){
+        return new ResponseEntity<>(pm.FindByOrder(id),HttpStatus.OK);
+    }
+    @DeleteMapping ("/product/{id}")
     ResponseEntity<?> deleteProductById(@PathVariable Long id){
         pm.deleteProduct(id);
         return new ResponseEntity<>(new MessageResponseModel("Product Deleted"),HttpStatus.OK);
 
     }
 
-    @PutMapping
+    @PutMapping("/product")
     ResponseEntity<?> updateProduct(@RequestBody Product p){
 
         pm.updateProduct(p);
-        return new ResponseEntity<>(new MessageResponseModel("Product 3mal update"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new MessageResponseModel("Product Updated"), HttpStatus.CREATED);
     }
 
 }
