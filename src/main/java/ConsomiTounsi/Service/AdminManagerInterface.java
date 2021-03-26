@@ -10,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 public interface AdminManagerInterface {
 
     List<Admin> retrieveAllAdmin();
-    Admin addAdmin(Admin A);
     void deleteAdminById(Long id);
     void deleteAdminById(String id);
     Admin updateAdmin(Admin A);
@@ -19,4 +18,6 @@ public interface AdminManagerInterface {
     List<Admin> FindAdminByRole(Role role);
     long getNbAdminByRole(Role role);
     long getNbAdmin();
+
+    Admin SignUpAdmin(Admin user);
 }

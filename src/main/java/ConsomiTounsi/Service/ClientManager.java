@@ -1,13 +1,14 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.entities.UserRole;
 import ConsomiTounsi.repository.ClientRepository;
-
-import ConsomiTounsi.entities.Client;
 
 import java.util.List;
 
+import ConsomiTounsi.configuration.config.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,11 +24,6 @@ public class ClientManager implements ClientManagerInterface{
 	}
 
 	@Override
-	public Client addClient(Client Cl) {
-		return cr.save(Cl);
-	}
-
-	@Override
 	public void deleteClientById(Long id) {
         cr.deleteById(id);
 	}
@@ -39,6 +35,8 @@ public class ClientManager implements ClientManagerInterface{
 
 	@Override
 	public Client updateClient(Client Cl) {
+		String encodedPassword = bCryptPasswordEncoder.encode(Cl.getPasswordUser());
+		Cl.setPasswordUser(encodedPassword);
 		return cr.save(Cl);
 	}
 
@@ -57,5 +55,28 @@ public class ClientManager implements ClientManagerInterface{
 		return cr.getNombreClient();
 	}
 
+	//registration
+
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	public ClientManager(ClientRepository cr, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.cr = cr;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+
+	@Autowired
+	EmailValidator emailValidator;
+
+	@Override
+	public Client SignUpClient(Client user) {
+		boolean isValidEmail = emailValidator.test(user.getEmailAddressUser());
+		if (!isValidEmail) {
+			throw new IllegalStateException("Email not valid");
+		}
+		String encodedPassword = bCryptPasswordEncoder.encode(user.getPasswordUser());
+		user.setPasswordUser(encodedPassword);
+		user.setRoleUser(UserRole.CLIENT);
+		return cr.save(user);
+	}
 
 }

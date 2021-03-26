@@ -35,12 +35,7 @@ public class ClientController {
     "dateBirthUser": null,
     "addressUser": null}
 	 */
-	
-	@PostMapping("/add")
-	public Client addClient(@RequestBody Client a){
-		Client client = clientS.addClient(a);
-		return client ;	}
-	
+
 	@GetMapping("/retrieve-all")
 	public List<Client> getListClients(){
 	return clientS.retrieveAllClient(); }

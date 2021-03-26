@@ -10,10 +10,12 @@ public class Admin extends User implements Serializable {
 	public Admin(Role roleAdmin) {
 		super();
 		this.roleAdmin = roleAdmin;
+		this.setRoleUser(UserRole.ADMIN);
 	}
 
 	public Admin() {
-		super();	}
+		super();
+		this.setRoleUser(UserRole.ADMIN);	}
 
 	@Enumerated(EnumType.STRING)
 	private Role roleAdmin;

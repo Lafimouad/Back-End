@@ -37,12 +37,7 @@ public class AdminController {
     "addressUser": null,
     "roleAdmin": "PRODUCTS_MANAGER"}
     */
-	
-	@PostMapping("/add")
-	public Admin addAdmin(@RequestBody Admin a){
-		Admin admin = adminS.addAdmin(a);
-		return admin ;	}
-	
+
 	@GetMapping("/retrieve-all")
 	public List<Admin> getListAdmins(){
 	return adminS.retrieveAllAdmin(); }

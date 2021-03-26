@@ -2,8 +2,11 @@ package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Role;
+import ConsomiTounsi.entities.UserRole;
 import ConsomiTounsi.repository.AdminRepository;
+import ConsomiTounsi.configuration.config.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +21,6 @@ public class AdminManager implements AdminManagerInterface{
 
     public List<Admin>  retrieveAllAdmin() {
         return (List<Admin>) Ar.findAll();
-    } 
-
-    @Override
-    public Admin addAdmin(Admin A) {
-        return Ar.save(A);
     }
 
     @Override
@@ -37,7 +35,9 @@ public class AdminManager implements AdminManagerInterface{
 
     @Override
     public Admin updateAdmin(Admin A) {
-        return Ar.save(A) ;   }
+        String encodedPassword = bCryptPasswordEncoder.encode(A.getPasswordUser());
+        A.setPasswordUser(encodedPassword);
+        return Ar.save(A);}
 
     @Override
     public Admin FindAdminById(Long id) {
@@ -62,4 +62,29 @@ public class AdminManager implements AdminManagerInterface{
 	public long getNbAdmin() {
 		return Ar.getNbAdmin();
 	}
+
+	//registration
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public AdminManager(AdminRepository ar, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        Ar = ar;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
+    @Autowired
+    EmailValidator emailValidator;
+
+    @Override
+    public Admin SignUpAdmin(Admin user){
+        boolean isValidEmail = emailValidator.test(user.getEmailAddressUser());
+        if (!isValidEmail) {
+            throw new IllegalStateException("Email not valid");
+        }
+        String encodedPassword = bCryptPasswordEncoder.encode(user.getPasswordUser());
+        user.setPasswordUser(encodedPassword);
+        user.setRoleUser(UserRole.ADMIN);
+        return Ar.save(user);
+    }
+
 }

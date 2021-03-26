@@ -9,12 +9,12 @@ import java.util.List;
 public interface ClientManagerInterface {
 	
     List<Client> retrieveAllClient();
-    Client addClient(Client Cl);
     void deleteClientById(Long id);
     void deleteClientById(String id);
     Client updateClient(Client Cl);
     Client FindClientById(Long id);
     Client FindClientById(String id);
-    long getNombreClient(); 
-    
+    long getNombreClient();
+
+    Client SignUpClient(Client user);
 }
