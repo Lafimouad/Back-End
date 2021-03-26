@@ -28,26 +28,45 @@ public class Stock implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_stock;
+	private Long id_stock;
 	
 	private String Stockname;
 	
 	private boolean status_stock;
 	
-	private float quantite;
+	private float Product_quantity;
 	
 	private  String nameProduct;
 
 	
-	public Stock(String stockname, float quantite, String nameProduct) {
+	public Stock(String stockname, float product_quantity, String nameProduct) {
 		super();
 		Stockname = stockname;
-		this.quantite = quantite;
+		Product_quantity = product_quantity;
 		this.nameProduct = nameProduct;
 	}
 
 
+	public Stock(Long id_stock, String stockname, boolean status_stock, float product_quantity, String nameProduct,
+			Set<Product> product) {
+		super();
+		this.id_stock = id_stock;
+		Stockname = stockname;
+		this.status_stock = status_stock;
+		Product_quantity = product_quantity;
+		this.nameProduct = nameProduct;
+		this.product = product;
+	}
 
+
+	public Long getId_stock() {
+		return id_stock;
+	}
+
+
+	public void setId_stock(Long id_stock) {
+		this.id_stock = id_stock;
+	}
 
 	public String getStockname() {
 		return Stockname;
@@ -61,40 +80,9 @@ public class Stock implements Serializable {
 	}
 
 
-
-
-	public String getNameProduct() {
-		return nameProduct;
-	}
-
-
-
-
-	public void setNameProduct(String nameProduct) {
-		this.nameProduct = nameProduct;
-	}
-
-
-
-
-	public int getId_stock() {
-		return id_stock;
-	}
-
-
-
-
-	public void setId_stock(int id_stock) {
-		this.id_stock = id_stock;
-	}
-
-
-
-
 	public boolean isStatus_stock() {
 		return status_stock;
 	}
-
 
 
 
@@ -104,27 +92,33 @@ public class Stock implements Serializable {
 
 
 
+	public float getProduct_quantity() {
+		return Product_quantity;
+	}
 
-	public float getQuantite() {
-		return quantite;
+
+
+	public void setProduct_quantity(float product_quantity) {
+		Product_quantity = product_quantity;
 	}
 
 
 
 
-	public void setQuantite(float quantite) {
-		this.quantite = quantite;
+	public String getNameProduct() {
+		return nameProduct;
 	}
 
 
 
+	public void setNameProduct(String nameProduct) {
+		this.nameProduct = nameProduct;
+	}
 
 
 	public Set<Product> getProduct() {
 		return product;
 	}
-
-
 
 
 	public void setProduct(Set<Product> product) {
@@ -133,11 +127,6 @@ public class Stock implements Serializable {
 
 
 
-
-	
-	
-
-	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
 	private Set<Product> product;
 }

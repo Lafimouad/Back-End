@@ -13,14 +13,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
 	
-	@Query(value="select * from stock where stock_id_stock=?1",nativeQuery = true)
+	@Query(value="select * from Product where stock_id_stock=?1",nativeQuery = true)
     List<Product> FindByStock(Long id);
-    
 	
-	@Modifying
-	@Query("UPDATE Product p SET u.quantite=:quantite WHERE p.stock_id_stock=:ids")
-	int UpdateProductQuantitydependingonStock(@Param("ids") int id,@Param("quantite") float quantite);
-
 
 
 }

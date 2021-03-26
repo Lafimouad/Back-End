@@ -57,11 +57,7 @@ import java.util.Optional;
    		return this.Pr.FindByStock(id);
    	}
 
-	@Override
-	public int UpdateProductQuantitydependingonStock(int id, float quantite) {
-		return Pr.UpdateProductQuantitydependingonStock(id, quantite);
-	}
-    
+	
     
 
 

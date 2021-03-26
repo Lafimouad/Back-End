@@ -11,7 +11,6 @@ public class Product implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private int id_product;
 	
-	private int quantity_product;
 	private String code_product;
 	private int rating_product;
 	private String name_product;
@@ -30,13 +29,7 @@ public class Product implements Serializable {
 		this.id_product = id_product;
 	}
 
-	public int getQuantity_product() {
-		return quantity_product;
-	}
-
-	public void setQuantity_product(int quantity_product) {
-		this.quantity_product = quantity_product;
-	}
+	
 
 	public String getCode_product() {
 		return code_product;

@@ -15,8 +15,10 @@ public interface ProductManagerInterface {
     Product updateProduct(Product P);
     Optional<Product> FindProduct(Long id);
     Optional<Product> FindProduct(String id);
-    List<Product> FindByStock(Long id);
+   
     
     @Transactional
-    int UpdateProductQuantitydependingonStock(int id, float quantite);
+    List<Product> FindByStock(Long id);
+    
+    
 }

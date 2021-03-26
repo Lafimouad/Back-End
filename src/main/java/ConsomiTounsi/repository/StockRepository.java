@@ -1,6 +1,7 @@
 package ConsomiTounsi.repository;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import ConsomiTounsi.entities.Admin;
+import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.Stock;
 
 @Transactional
@@ -22,7 +24,6 @@ public interface StockRepository extends CrudRepository<Stock ,Long> {
 	@Query("UPDATE Stock s SET u.quantite=:quantite WHERE s.Stockname=:Sn")
 	int UpdateStockQuantityByStockname(@Param("Sn") String Sn,@Param("quantite") float quantite);
 
-	@Modifying
-	@Query("UPDATE Stock s SET u.quantite=:quantite WHERE s.id_stock=:ids")
-	int UpdateStockQuantitydependingonProduct(@Param("ids") int id,@Param("quantite") float quantite);
+	
+    
 }
