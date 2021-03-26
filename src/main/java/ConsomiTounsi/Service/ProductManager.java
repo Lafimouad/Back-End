@@ -12,6 +12,8 @@ import java.util.Optional;
     public class ProductManager implements ProductManagerInterface{
    
 
+	
+
 	@Autowired
     ProductRepository Pr;
     @Override
@@ -54,6 +56,13 @@ import java.util.Optional;
    	public List<Product> FindByStock(Long id) {
    		return this.Pr.FindByStock(id);
    	}
+
+	@Override
+	public int UpdateProductQuantitydependingonStock(int id, float quantite) {
+		return Pr.UpdateProductQuantitydependingonStock(id, quantite);
+	}
+    
+    
 
 
 }

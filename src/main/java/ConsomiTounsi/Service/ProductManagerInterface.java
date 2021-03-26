@@ -5,6 +5,8 @@ import ConsomiTounsi.entities.Product;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.transaction.annotation.Transactional;
+
 public interface ProductManagerInterface {
     List<Product> retrieveAllProducts();
     Product addProduct(Product P);
@@ -14,5 +16,7 @@ public interface ProductManagerInterface {
     Optional<Product> FindProduct(Long id);
     Optional<Product> FindProduct(String id);
     List<Product> FindByStock(Long id);
-
+    
+    @Transactional
+    int UpdateProductQuantitydependingonStock(int id, float quantite);
 }

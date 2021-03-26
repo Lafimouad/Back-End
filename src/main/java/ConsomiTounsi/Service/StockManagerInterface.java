@@ -19,6 +19,7 @@ public interface StockManagerInterface {
     Stock updateStock(Stock O);
     Optional<Stock> FindStock(Long id);
     Optional<Stock> FindStock(String id);
+    void updatequantiteoftheproduct(String Sn, float quantite,int id);
 
     
     @Transactional
@@ -26,8 +27,7 @@ public interface StockManagerInterface {
     @Transactional
 	int UpdateStockQuantityByStockname(String Sn,float quantite);
     
-    @Transactional
-    int updateStockAutomaticly(int id, float quantite);
+   
 
     
     

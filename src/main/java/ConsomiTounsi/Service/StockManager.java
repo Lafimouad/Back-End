@@ -6,15 +6,21 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.Stock;
+import ConsomiTounsi.repository.ProductRepository;
 import ConsomiTounsi.repository.StockRepository;
 
+@Service
 public class StockManager implements StockManagerInterface {
 	
 	@Autowired
 	StockRepository Stor;
+	
+	@Autowired
+	ProductRepository Pr;
 
 	@Override
 	public List<Stock> retrieveAllStock() {
@@ -65,9 +71,14 @@ public class StockManager implements StockManagerInterface {
 	}
 
 	@Override
-	public int updateStockAutomaticly(int id, float quantite) {
-        return Stor.UpdateStockQuantitydependingonProduct(id, quantite);	
+	public void updatequantiteoftheproduct(String Sn, float quantite,int id) {
+		Stor.UpdateStockQuantityByStockname(Sn, quantite);
+		Pr.UpdateProductQuantitydependingonStock(id, quantite);
+		
 	}
+	
+	
+
 	
 	
 
