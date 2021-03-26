@@ -10,7 +10,9 @@ import java.util.Optional;
 
 @Service
     public class ProductManager implements ProductManagerInterface{
-    @Autowired
+   
+
+	@Autowired
     ProductRepository Pr;
     @Override
     public List<Product> retrieveAllProducts() {
@@ -47,6 +49,11 @@ import java.util.Optional;
     public Optional<Product> FindProduct(String id) {
       return  Pr.findById(Long.parseLong(id));
     }
+    
+    @Override
+   	public List<Product> FindByStock(Long id) {
+   		return this.Pr.FindByStock(id);
+   	}
 
 
 }
