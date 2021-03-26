@@ -1,5 +1,5 @@
 package ConsomiTounsi.entities;
 
 public enum UserRole {
-    CLIENT , ADMIN , DELIVERER
+    CLIENT , ADMIN , DELIVERER , MANAGER
 }

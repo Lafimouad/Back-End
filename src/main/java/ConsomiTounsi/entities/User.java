@@ -1,16 +1,13 @@
 package ConsomiTounsi.entities;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User implements Serializable {
+public class User implements Serializable
+{
 
 	public User(String firstNameUser, String lastNameUser, String usernameUser, String passwordUser, String phoneNumberUser, String emailAddressUser, Date dateBirthUser, String addressUser, UserRole roleUser) {
 		this.firstNameUser = firstNameUser;
@@ -39,7 +36,7 @@ public class User implements Serializable {
 	
 	@Column(nullable=false , length=20)
 	private String lastNameUser;
-	
+
 	@Column(unique=true , nullable=false , length=30)
 	private String usernameUser;
 	
@@ -169,4 +166,5 @@ public class User implements Serializable {
 	public boolean isLocked() {
 		return locked;
 	}
+
 }

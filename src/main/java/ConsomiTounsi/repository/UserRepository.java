@@ -19,10 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends JpaRepository<User,Long> {
 
 	Optional<User>  findByUsernameUser(String username);
-	Optional<User> findByEmailAddressUser(String email);
 
-	public List<User> findByFirstNameUser(String firstname); 
-	public List<User> findByLastNameUser(String lastname);
+	List<User> findByFirstNameUser(String firstname);
+	List<User> findByLastNameUser(String lastname);
 	
 	@Query("SELECT u FROM User u WHERE u.firstNameUser= :fn AND u.lastNameUser = :ln" )
 	List<User> RetiveUserByFirstAndLastNameJPQL(@Param("fn") String fn , @Param("ln") String ln);

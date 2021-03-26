@@ -13,7 +13,7 @@ import ConsomiTounsi.entities.Deliverer;
 import ConsomiTounsi.entities.Role;
 
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/admin/dashboard")
 public class UsersController {
 
 	@Autowired

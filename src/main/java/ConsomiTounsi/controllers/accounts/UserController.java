@@ -12,7 +12,7 @@ import ConsomiTounsi.Service.UserManagerInterface;
 import ConsomiTounsi.entities.User;
 
 @RestController
-@RequestMapping("/accounts/user")
+@RequestMapping("/admin/accounts/user")
 public class UserController {
 
 	@Autowired

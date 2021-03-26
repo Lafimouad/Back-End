@@ -17,7 +17,7 @@ import ConsomiTounsi.Service.ClientManagerInterface;
 import ConsomiTounsi.entities.Client;
 
 @RestController
-@RequestMapping("/accounts/client")
+@RequestMapping("/admin/accounts//client")
 public class ClientController {
 
 	@Autowired

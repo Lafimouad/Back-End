@@ -17,7 +17,7 @@ import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.entities.Deliverer;
 
 @RestController
-@RequestMapping("/accounts/deliverer")
+@RequestMapping("/admin/accounts/deliverer")
 public class DelivererController {
 
 	@Autowired
