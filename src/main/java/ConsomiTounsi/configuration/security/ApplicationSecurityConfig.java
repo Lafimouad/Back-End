@@ -28,8 +28,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/admin/**").hasAnyRole("ADMIN" , "MANAGER")
                 .antMatchers("/client/**").hasAnyRole("ADMIN" , "CLIENT" , "MANAGER")
                 .antMatchers("/deliverer/**").hasAnyRole("DELIVERER" , "ADMIN" , "MANAGER")
-                .antMatchers("/").permitAll()
-                .and().formLogin();
+                .antMatchers("/**").permitAll()
+                .and().httpBasic();
+                //.formLogin();
     }
 
     //configure authentication

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
+
 @RestController
 public class HomeController {
 
@@ -28,7 +30,7 @@ public class HomeController {
 	public User register(@RequestBody User user) {return us.SingUpManager(user);}
 
 	@PostMapping("register/client")
-	public Client register(@RequestBody Client user){
+	public Client register(@RequestBody Client user) {
 		return cs.SignUpClient(user);
 	}
 

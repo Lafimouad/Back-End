@@ -23,7 +23,6 @@ public class ClientController {
 	@Autowired
 	ClientManagerInterface clientS;
 	
-	
 	/*
 	{"idUser": 6,
     "firstNameUser": "hedi",

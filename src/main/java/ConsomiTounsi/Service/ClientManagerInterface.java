@@ -2,7 +2,6 @@ package ConsomiTounsi.Service;
 
 
 import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.User;
 
 import java.util.List;
 

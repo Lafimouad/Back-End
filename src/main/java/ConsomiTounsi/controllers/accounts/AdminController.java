@@ -57,7 +57,7 @@ public class AdminController {
 		return adminS.updateAdmin(a);
 	}
 	
-	@GetMapping("/retrive-role")
+	@GetMapping("/retrieve-role")
 	public List<Admin> getAdminsbyRole(@RequestParam("role") Role role ){ 
 		return adminS.FindAdminByRole(role);}
 
