@@ -22,4 +22,7 @@ public interface StockRepository extends CrudRepository<Stock ,Long> {
 	@Query("UPDATE Stock s SET u.quantite=:quantite WHERE s.Stockname=:Sn")
 	int UpdateStockQuantityByStockname(@Param("Sn") String Sn,@Param("quantite") float quantite);
 
+	@Modifying
+	@Query("UPDATE Stock s SET u.quantite=:quantite WHERE s.id_stock=:ids")
+	int UpdateStockQuantitydependingonProduct(@Param("ids") int id,@Param("quantite") float quantite);
 }
