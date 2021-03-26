@@ -64,4 +64,11 @@ public class StockManager implements StockManagerInterface {
 		return  Stor.findById(Long.parseLong(id));
 	}
 
+	@Override
+	public int updateStockAutomaticly(int id, float quantite) {
+        return Stor.UpdateStockQuantitydependingonProduct(id, quantite);	
+	}
+	
+	
+
 }
