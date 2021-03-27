@@ -16,6 +16,8 @@ import ConsomiTounsi.repository.StockRepository;
 @Service
 public class StockManager implements StockManagerInterface {
 	
+	
+
 	@Autowired
 	StockRepository Stor;
 	
@@ -68,6 +70,11 @@ public class StockManager implements StockManagerInterface {
 	@Override
 	public Optional<Stock> FindStock(String id) {
 		return  Stor.findById(Long.parseLong(id));
+	}
+	
+	@Override
+	public List<Stock> FindStockByNameproduct(String namep) {
+		return Stor.FindStockByNameproduct(namep);
 	}
 
 	

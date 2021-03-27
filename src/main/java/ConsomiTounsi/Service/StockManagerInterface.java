@@ -25,7 +25,8 @@ public interface StockManagerInterface {
 	void AddStock(String Stkname, float quant, String productSt);
     @Transactional
 	int UpdateStockQuantityByStockname(String Sn,float quantite);
-    
+    @Transactional
+    List<Stock> FindStockByNameproduct(String namep);
    
 
     

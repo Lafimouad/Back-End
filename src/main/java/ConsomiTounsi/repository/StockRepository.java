@@ -23,6 +23,9 @@ public interface StockRepository extends CrudRepository<Stock ,Long> {
 	@Modifying
 	@Query("UPDATE Stock s SET u.quantite=:quantite WHERE s.Stockname=:Sn")
 	int UpdateStockQuantityByStockname(@Param("Sn") String Sn,@Param("quantite") float quantite);
+	
+	@Query(value="select * from Stock where nameProduct=?1",nativeQuery = true)
+    List<Stock> FindStockByNameproduct(String namep);
 
 	
     
