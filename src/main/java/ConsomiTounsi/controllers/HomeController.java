@@ -36,7 +36,7 @@ public class HomeController {
 
 	@PostMapping("register/admin")
 	public Admin register(@RequestBody Admin user){
-		return as.SignUpAdmin(user);
+		return as.AddAdmin(user);
 	}
 
 	@GetMapping("/")

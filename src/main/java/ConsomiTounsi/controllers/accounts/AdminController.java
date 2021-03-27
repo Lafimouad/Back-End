@@ -3,10 +3,8 @@ package ConsomiTounsi.controllers.accounts;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +15,7 @@ import ConsomiTounsi.Service.AdminManagerInterface;
 import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Role;
 
-//http://localhost:8081/SpringMVC/servlet/accounts/admin.............................
+//http://localhost:8081/SpringMVC/accounts/admin.............................
 @RestController
 @RequestMapping("/admin/accounts/admin")
 public class AdminController {

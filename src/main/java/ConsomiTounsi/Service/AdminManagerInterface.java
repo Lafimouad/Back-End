@@ -19,5 +19,5 @@ public interface AdminManagerInterface {
     long getNbAdminByRole(Role role);
     long getNbAdmin();
 
-    Admin SignUpAdmin(Admin user);
+    Admin AddAdmin(Admin user);
 }

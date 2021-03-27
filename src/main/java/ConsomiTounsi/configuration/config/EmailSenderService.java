@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -20,14 +19,14 @@ public class EmailSenderService {
         this.mailSender = mailSender;
     }
 
-    public void sendEmail(String to , String body ) {
+    public void sendEmail(String to , String body , String subject ) {
         try {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper message = new MimeMessageHelper(mimeMessage, "utf-8");
                 message.setFrom("tn.consomi.tounsi@gmail.com");
                 message.setTo(to);
                 message.setText(body, true);
-                message.setSubject("Consomi Tounsi Registration");
+                message.setSubject(subject);
         mailSender.send(mimeMessage);
     } catch (MessagingException e) {
         throw new IllegalStateException("failed to send email");

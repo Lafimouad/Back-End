@@ -56,6 +56,16 @@ public class User implements Serializable
 	@Enumerated(EnumType.STRING)
 	private UserRole roleUser;
 
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	private double salary;
+
 	private boolean enabled = true;
 	private boolean locked = false;
 

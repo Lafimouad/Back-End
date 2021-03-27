@@ -5,6 +5,8 @@ import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.UserRole;
 import ConsomiTounsi.repository.ClientRepository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import ConsomiTounsi.configuration.config.EmailValidator;
@@ -147,11 +149,16 @@ public class ClientManager implements ClientManagerInterface{
 		if (!isValidEmail) {
 			throw new IllegalStateException("Email not valid");
 		}
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		user.setSubscriptionDate(now);
+		user.setSubMonth(now.getMonth().toString());
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPasswordUser());
 		user.setPasswordUser(encodedPassword);
 		user.setRoleUser(UserRole.CLIENT);
 		String name=user.getFirstNameUser();
-		emailSenderService.sendEmail(user.getEmailAddressUser(),body(name) );
+		String subject = "Consomi Tounsi Registration";
+		emailSenderService.sendEmail(user.getEmailAddressUser(),body(name) ,subject );
 		return cr.save(user);
 	}
 
