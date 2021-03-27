@@ -1,7 +1,10 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Product;
+import ConsomiTounsi.entities.Stock;
 import ConsomiTounsi.repository.ProductRepository;
+import ConsomiTounsi.repository.StockRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +19,24 @@ import java.util.Optional;
 
 	@Autowired
     ProductRepository Pr;
+	
+	@Autowired
+    StockRepository S;
+	
     @Override
     public List<Product> retrieveAllProducts() {
         return (List<Product>) Pr.findAll();
     }
 
     @Override
-    public Product addProduct(Product P) {
-        return Pr.save(P);
+    public Product addProduct(Product P) { 
+    	Stock s = 
+    	float quan= s.getProduct_quantity();
+        Product  optionalproduct = Pr.save(P);
+        
+        return optionalproduct;
+        
+        
     }
 
     @Override
