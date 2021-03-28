@@ -49,12 +49,12 @@ public class ClaimManager implements ClaimManagerInterface{
     }
 
     @Override
-    public Optional<Claim> FindClaim(Long id) {
-        return Cr.findById(id) ;
+    public Claim FindClaim (Long id) {
+        return Cr.findById(id).orElse(null);
     }
 
     @Override
-    public Optional<Claim> FindClaim(String id) {
+    public Optional<Claim> FindClaim2(String id) {
         return   Cr.findById(Long.parseLong(id));
     }
     
@@ -68,7 +68,7 @@ public class ClaimManager implements ClaimManagerInterface{
 	@Override
 	public Optional<Claim> FindBySubject(String subject) {
 		
-		return Cr.findBySubject(subject); 
+		return Cr.findBysubject(subject); 
 	}
 
 	@Override

@@ -13,8 +13,8 @@ public interface ClaimManagerInterface {
     void deleteClaim(Long id);
     void deleteClaim(String id);
     Claim updateClaim(Claim C);
-    Optional<Claim> FindClaim(Long id);
-    Optional<Claim> FindClaim(String id);
+    Claim FindClaim(Long id);
+    Optional<Claim> FindClaim2(String id);
     Optional<Claim> FindBySubject(String subject);
     Optional<Claim> FindByDate(Date date);
     Claim updateClaimDecision(Claim C);
