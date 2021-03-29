@@ -1,6 +1,5 @@
 package ConsomiTounsi.API.Stripe;
 
-import com.stripe.model.Coupon;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +36,7 @@ public class PaymentController {
             return new Response(false, "Stripe payment token is missing. please try again later.");
         }
 
-        String chargeId = stripeService.createCharge(email, token, 999);// 9.99 usd
+        String chargeId = stripeService.createCharge(email, token, 111);// 9.99 usd
 
         if (chargeId == null) {
             return new Response(false, "An error accurred while trying to charge.");
