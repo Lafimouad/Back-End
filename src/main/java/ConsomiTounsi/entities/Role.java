@@ -1,5 +1,4 @@
 package ConsomiTounsi.entities;
 
-public enum Role { products_manager , accounts_manager , advertisements_manager, deliveries_manager , claims_manager
-
-}
+public enum Role { PRODUCTS_MANAGER , ACCOUNTS_MANAGER , ADVERTISEMENTS_MANAGER,
+	DELIVERIES_MANAGER, CLAIMS_MANAGER }

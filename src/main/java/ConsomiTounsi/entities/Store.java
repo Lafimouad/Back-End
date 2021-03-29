@@ -55,7 +55,6 @@ public class Store implements Serializable {
 		this.gain_store = gain_store;
 	}
 
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
 	private Set<Shelf> shelf;
 

@@ -2,42 +2,71 @@ package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.User;
 
-import java.util.List;
-import java.util.Optional;
+import ConsomiTounsi.repository.UserRepository;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserManager implements UserManagerInterface{
+	
+	@Autowired
+	UserRepository ur ; 
+	
     @Override
     public List<User> retrieveAllUser() {
-        return null;
+        return (List<User>) ur.findAll();
     }
+/*
+	@Override
+	public User addUser(User U) {
+		return ur.save(U);
+	}
 
-    @Override
-    public User addUser(User U) {
-        return null;
-    }
+	@Override
+	public void deleteUserById(Long id) {
+		 ur.findById(id);
+	}
 
-    @Override
-    public void deleteUser(Long id) {
+	@Override
+	public void deleteUserById(String id) {
+		ur.deleteById(Long.parseLong(id));
+	}
 
-    }
+	@Override
+	public User updateUser(User U) {
+		return ur.save(U);
+	}
 
-    @Override
-    public void User(String id) {
+	@Override
+	public User FindUserById(Long id) {
+		return ur.findById(id).orElse(new User());
+	}
 
-    }
+	@Override
+	public User FindUserById(String id) {
+		return ur.findById(Long.parseLong(id)).orElse(new User());
+	}
+*/
+	@Override
+	public User findUserByUsername(String username) {
+		return ur.findByUsernameUser(username);
+	}
 
-    @Override
-    public User updateUser(User U) {
-        return null;
-    }
+	@Override
+	public List<User> findUserByLastNameAndFirstName(String firstname, String lastname) {
+		return ur.RetiveUserByFirstAndLastNameJPQL(firstname, lastname);
+	}
+	@Override
+	public List<User> findUserByFirstName(String firstname) {
+		return ur.findByFirstNameUser(firstname);
+	}
+	@Override
+	public List<User> findUserByLastName(String lastname) {
+		return ur.findByLastNameUser(lastname);
+	}
 
-    @Override
-    public Optional<User> FindUser(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<User> FindUser(String id) {
-        return Optional.empty();
-    }
+	
 }
