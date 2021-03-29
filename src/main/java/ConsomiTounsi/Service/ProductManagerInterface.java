@@ -13,4 +13,5 @@ public interface ProductManagerInterface {
     Product updateProduct(Product P);
     Optional<Product> FindProduct(Long id);
     Optional<Product> FindProduct(String id);
+    List<Product> FindByOrder(Long id);
 }

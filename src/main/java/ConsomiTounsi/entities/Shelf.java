@@ -36,5 +36,4 @@ public class Shelf implements Serializable {
 
 	@ManyToMany(mappedBy="R_product", cascade = CascadeType.ALL)
 	private Set<Product> product;
-
 }
