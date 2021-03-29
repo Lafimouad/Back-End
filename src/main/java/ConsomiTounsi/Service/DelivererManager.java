@@ -2,40 +2,42 @@ package ConsomiTounsi.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class DelivererManager implements DelivererManagerInterface{
+	@Autowired 
+	 DelivererRepository Devrr;
     @Override
-    public List<ConsomiTounsi.entities.Deliverer> retrieveAllDeliverer() {
-        return null;
+    public List<Deliverer> retrieveAllDeliverer() {
+    	return (List<Delivery>) Devrr.findAll();
     }
 
     @Override
-    public ConsomiTounsi.entities.Deliverer addDeliverer(ConsomiTounsi.entities.Deliverer D) {
-        return null;
+    public Deliverer addDeliverer(Deliverer D) {
+    	return Devrr.save(D);
     }
 
     @Override
     public void deleteDeliverer(Long id) {
-
+    	Devrr.deleteById(id);
     }
 
     @Override
     public void deleteDeliverer(String id) {
-
+    	Devrr.deleteById(Long.parseLong(id));
     }
 
     @Override
-    public ConsomiTounsi.entities.Deliverer updateDeliverer(ConsomiTounsi.entities.Deliverer D) {
-        return null;
+    public Deliverer updateDeliverer(Deliverer D) {
+    	return Devr.save(D);
     }
 
     @Override
-    public Optional<ConsomiTounsi.entities.Deliverer> FindDeliverer(Long id) {
-        return Optional.empty();
+    public Optional<Deliverer> FindDeliverer(Long id) {
+    	return Devrr.findById(id);
     }
 
     @Override
     public Optional<ConsomiTounsi.entities.Deliverer> FindDeliverer(String id) {
-        return Optional.empty();
+        return Devrr.findById(Long.parseLong(id));
     }
 }
