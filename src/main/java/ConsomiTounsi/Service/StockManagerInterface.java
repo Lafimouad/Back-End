@@ -19,6 +19,7 @@ public interface StockManagerInterface {
     Stock updateStock(Stock O);
     Optional<Stock> FindStock(Long id);
     Optional<Stock> FindStock(String id);
+    void verifyIfStockIsEmpty(Stock s);
 
     
     @Transactional
@@ -27,6 +28,8 @@ public interface StockManagerInterface {
 	int UpdateStockQuantityByStockname(String Sn,float quantite);
     @Transactional
     List<Stock> FindStockByNameproduct(String namep);
+    @Transactional
+    int UpdateStockStatusByStockName(String stockname , boolean status_stock);
    
 
     

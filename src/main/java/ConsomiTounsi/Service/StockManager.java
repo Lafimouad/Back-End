@@ -15,14 +15,17 @@ import ConsomiTounsi.repository.StockRepository;
 
 @Service
 public class StockManager implements StockManagerInterface {
-	
-	
+
+	@Autowired
+	ProductManager pm;
 
 	@Autowired
 	StockRepository Stor;
-	
-	@Autowired
-	ProductRepository pm;
+
+	@Override
+	public int UpdateStockStatusByStockName(String stockname, boolean status_stock) {
+		return Stor.UpdateStockStatusByStockName(stockname,status_stock);
+	}
 
 	@Override
 	public List<Stock> retrieveAllStock() {
@@ -89,12 +92,15 @@ public class StockManager implements StockManagerInterface {
 	public List<Stock> FindStockByNameproduct(String namep) {
 		return Stor.FindStockByNameproduct(namep);
 	}
-     
-	
-	
-	
 
-	
-	
-
+	@Override
+	public void verifyIfStockIsEmpty(Stock s) {
+		 Long quantity = s.getProduct_quantity();
+		 if (quantity == 0)
+		 {
+		 	boolean status = s.isStatus_stock();
+		 	status = false;
+		 	s.setStatus_stock(status);
+		}
+	}
 }
