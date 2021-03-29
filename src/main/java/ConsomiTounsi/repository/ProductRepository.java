@@ -14,7 +14,10 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends CrudRepository<Product, Long> {
 	
 	@Query(value="select * from Product where stock_id_stock=?1",nativeQuery = true)
-    List<Product> FindByStock(Long id);
+    List<Product> FindProductByIdStock(Long id);
+
+    @Query(value="select * from Product where shelf_id_shelf=?1",nativeQuery = true)
+    List<Product> FindProductByIdShelf(Long id);
 	
 
 

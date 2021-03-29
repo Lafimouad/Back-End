@@ -18,7 +18,8 @@ public interface ProductManagerInterface {
    
     
     @Transactional
-    List<Product> FindByStock(Long id);
-    
+    List<Product> FindProductByIdStock(Long id);
+    @Transactional
+    List<Product> FindProductByIdShelf(Long id);
     
 }

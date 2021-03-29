@@ -75,10 +75,15 @@ import java.util.Optional;
     public Optional<Product> FindProduct(String id) {
       return  Pr.findById(Long.parseLong(id));
     }
-    
+
     @Override
-   	public List<Product> FindByStock(Long id) {
-   		return this.Pr.FindByStock(id);
+    public List<Product> FindProductByIdShelf(Long id) {
+        return this.Pr.FindProductByIdShelf(id);
+    }
+
+    @Override
+   	public List<Product> FindProductByIdStock(Long id) {
+   		return this.Pr.FindProductByIdStock(id);
    	}
 
 	
