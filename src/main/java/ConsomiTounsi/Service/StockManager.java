@@ -50,7 +50,7 @@ public class StockManager implements StockManagerInterface {
 
 	@Override
 	public long getNbEmptyStock() {
-		return 0;
+		return Stor.getNbEmptyStock();
 	}
 
 	@Override
