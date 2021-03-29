@@ -2,6 +2,7 @@ package ConsomiTounsi.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,12 +35,12 @@ public class Stock implements Serializable {
 	
 	private boolean status_stock;
 	
-	private float Product_quantity;
+	private Long Product_quantity;
 	
 	private  String nameProduct;
 
 	
-	public Stock(String stockname, float product_quantity, String nameProduct) {
+	public Stock(String stockname, Long product_quantity, String nameProduct) {
 		super();
 		Stockname = stockname;
 		Product_quantity = product_quantity;
@@ -47,8 +48,8 @@ public class Stock implements Serializable {
 	}
 
 
-	public Stock(Long id_stock, String stockname, boolean status_stock, float product_quantity, String nameProduct,
-			Set<Product> product) {
+	public Stock(Long id_stock, String stockname, boolean status_stock, Long product_quantity, String nameProduct,
+			List<Product> product) {
 		super();
 		this.id_stock = id_stock;
 		Stockname = stockname;
@@ -92,13 +93,20 @@ public class Stock implements Serializable {
 
 
 
-	public float getProduct_quantity() {
+	public Long getProduct_quantity() {
 		return Product_quantity;
 	}
 
 
 
-	public void setProduct_quantity(float product_quantity) {
+	@Override
+	public String toString() {
+		return "Stock [getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+
+
+	public void setProduct_quantity(Long product_quantity) {
 		Product_quantity = product_quantity;
 	}
 
@@ -116,17 +124,17 @@ public class Stock implements Serializable {
 	}
 
 
-	public Set<Product> getProduct() {
+	public List<Product> getProduct() {
 		return product;
 	}
 
 
-	public void setProduct(Set<Product> product) {
+	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
 
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
-	private Set<Product> product;
+	private List<Product> product;
 }

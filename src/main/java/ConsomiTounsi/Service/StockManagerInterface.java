@@ -22,7 +22,7 @@ public interface StockManagerInterface {
 
     
     @Transactional
-	void AddStock(String Stkname, float quant, String productSt);
+	void AddStock(String Stkname, Long quant, String productSt);
     @Transactional
 	int UpdateStockQuantityByStockname(String Sn,float quantite);
     @Transactional

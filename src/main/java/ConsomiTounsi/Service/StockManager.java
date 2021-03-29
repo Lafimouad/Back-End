@@ -30,6 +30,24 @@ public class StockManager implements StockManagerInterface {
 
 	@Override
 	public Stock addStock(Stock S) {
+		  System.out.println(S.toString());
+		        Stock optionalstock=Stor.save(S);
+		        List<Product> products =S.getProduct();
+		        for (int i=0;i<products.size();i++){
+
+		            Product p=products.get(i);
+		            p.setStock(optionalstock);
+		            pm.updateProduct(p);
+		        }
+
+
+
+
+		        return optionalorder;
+		    }
+
+
+		
 		 return Stor.save(S);	}
 
 	@Override
@@ -50,7 +68,7 @@ public class StockManager implements StockManagerInterface {
 	}
 
 	@Override
-	public void AddStock(String Stkname, float quant, String productSt) {
+	public void AddStock(String Stkname, Long quant, String productSt) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -76,7 +94,7 @@ public class StockManager implements StockManagerInterface {
 	public List<Stock> FindStockByNameproduct(String namep) {
 		return Stor.FindStockByNameproduct(namep);
 	}
-
+     
 	
 	
 	

@@ -30,17 +30,18 @@ import java.util.Optional;
 
     @Override
     public Product addProduct(Product P) { 
+        Product  optionalproduct = Pr.save(P);
+
     	List <Stock> Stocks = S.FindStockByNameproduct(P.getName_product());
     	for (int i=0;i<Stocks.size();i++)
     	{
             Stock s=Stocks.get(i);
-            float quan= s.getProduct_quantity();
+            Long quan= s.getProduct_quantity();
             quan = quan+1;
             S.UpdateStockQuantityByStockname(s.getNameProduct(),quan);
 
     	}
     	
-        Product  optionalproduct = Pr.save(P);
         return optionalproduct;
         
         

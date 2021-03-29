@@ -2,6 +2,7 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -107,13 +108,13 @@ public class Product implements Serializable {
 	Supplier supplier;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
-	private Set<Feedback> feedback;
+	private List<Feedback> feedback;
 
 	@ManyToMany(mappedBy="Cart", cascade = CascadeType.ALL)
-	private Set<Order> order;
+	private List<Order> order;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Shelf> R_product;
+	private List<Shelf> R_product;
 	
 	@ManyToOne
 	Stock stock;
