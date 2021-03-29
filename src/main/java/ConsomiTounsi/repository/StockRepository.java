@@ -3,6 +3,7 @@ package ConsomiTounsi.repository;
 import java.util.Date;
 import java.util.List;
 
+import ConsomiTounsi.entities.Role;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -30,6 +31,8 @@ public interface StockRepository extends CrudRepository<Stock ,Long> {
 	@Modifying
 	@Query("UPDATE Stock s SET u.status_stock=:status_stock WHERE s.Stockname=:stockname")
 	int UpdateStockStatusByStockName(@Param("stockname") String stockname,@Param("status_stock") boolean status_stock);
-	
+
+	@Query("SELECT COUNT(a) FROM Stock a WHERE a.status_stock= :FALSE" )
+	long getNbAdminByRole(@Param("role") Role role);
     
 }
