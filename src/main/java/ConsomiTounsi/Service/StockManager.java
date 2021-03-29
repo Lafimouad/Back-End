@@ -37,18 +37,12 @@ public class StockManager implements StockManagerInterface {
 
 		            Product p=products.get(i);
 		            p.setStock(optionalstock);
-		            pm.updateProduct(p);
+		            pdateProduct(p);
 		        }
 
-
-
-
-		        return optionalorder;
+		        return optionalstock;
 		    }
 
-
-		
-		 return Stor.save(S);	}
 
 	@Override
 	public void deleteStock(Long id) {

@@ -1,10 +1,19 @@
 package ConsomiTounsi.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Shelf implements Serializable {
 
 	@Id
@@ -14,21 +23,7 @@ public class Shelf implements Serializable {
 	@Enumerated(EnumType.STRING)
     private typeShelf type_shelf;
 
-	public int getId_shelf() {
-		return id_shelf;
-	}
 
-	public void setId_shelf(int id_shelf) {
-		this.id_shelf = id_shelf;
-	}
-
-	public typeShelf getType_shelf() {
-		return type_shelf;
-	}
-
-	public void setType_shelf(typeShelf type_shelf) {
-		this.type_shelf = type_shelf;
-	}
 
 	@ManyToOne
 	Store store;
