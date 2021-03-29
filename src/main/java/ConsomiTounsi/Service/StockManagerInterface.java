@@ -30,6 +30,9 @@ public interface StockManagerInterface {
     List<Stock> FindStockByNameproduct(String namep);
     @Transactional
     int UpdateStockStatusByStockName(String stockname , boolean status_stock);
+    @Transactional
+    long getNbEmptyStock();
+
    
 
     

@@ -32,7 +32,7 @@ public interface StockRepository extends CrudRepository<Stock ,Long> {
 	@Query("UPDATE Stock s SET u.status_stock=:status_stock WHERE s.Stockname=:stockname")
 	int UpdateStockStatusByStockName(@Param("stockname") String stockname,@Param("status_stock") boolean status_stock);
 
-	@Query("SELECT COUNT(a) FROM Stock a WHERE a.status_stock= :FALSE" )
-	long getNbAdminByRole(@Param("role") Role role);
+	@Query("SELECT COUNT(s) FROM Stock s WHERE s.status_stock = FALSE" )
+	long getNbEmptyStock();
     
 }

@@ -49,6 +49,11 @@ public class StockManager implements StockManagerInterface {
 
 
 	@Override
+	public long getNbEmptyStock() {
+		return 0;
+	}
+
+	@Override
 	public void deleteStock(Long id) {
 		Stor.deleteById(id);		
 	}
