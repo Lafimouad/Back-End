@@ -22,7 +22,7 @@ public class StockManager implements StockManagerInterface {
 	StockRepository Stor;
 	
 	@Autowired
-	ProductRepository Pr;
+	ProductRepository pm;
 
 	@Override
 	public List<Stock> retrieveAllStock() {
@@ -37,8 +37,9 @@ public class StockManager implements StockManagerInterface {
 
 		            Product p=products.get(i);
 		            p.setStock(optionalstock);
-		            pdateProduct(p);
-		        }
+					pm.updateProduct(p);
+
+				}
 
 		        return optionalstock;
 		    }
