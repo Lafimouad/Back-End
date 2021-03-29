@@ -29,7 +29,7 @@ public class DeliveryManager implements DeliveryManagerInterface{
     }
 
     @Override
-    public Delivery updateDeliverer(Delivery De) {
+    public Delivery updateDelivery(Delivery De) {
     	return Devr.save(De);
     }
 
@@ -42,4 +42,5 @@ public class DeliveryManager implements DeliveryManagerInterface{
     public Optional<Delivery> FindDelivery(String id) {
     	return Devr.findById(Long.parseLong(id));
     }
+    
 }
