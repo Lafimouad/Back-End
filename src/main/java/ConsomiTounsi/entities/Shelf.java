@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,7 +30,7 @@ public class Shelf implements Serializable {
 	Store store;
 
 
-	@ManyToMany(mappedBy="R_product", cascade = CascadeType.ALL)
-	private Set<Product> product;
+	@OneToMany(mappedBy="shelf")
+	private List<Product> product;
 
 }

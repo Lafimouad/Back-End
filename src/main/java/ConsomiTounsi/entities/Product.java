@@ -41,9 +41,10 @@ public class Product implements Serializable {
 	@ManyToMany(mappedBy="Cart", cascade = CascadeType.ALL)
 	private List<Order> order;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Shelf> R_product;
 	
 	@ManyToOne
 	private Stock stock;
+
+	@ManyToOne
+	private Shelf shelf;
 }
