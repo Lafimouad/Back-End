@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -19,27 +20,26 @@ public class Product implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private Long id_product;
-	
-	private int quantity_product;
-	private String code_product;
-	private int rating_product;
-	private String name_product;
-	private String category_product;
-	private double price_product;
-	private String shelf_product;
-	private boolean available_product;
-	private String description_product;
-	private double weight_product;
+	private Long id;
+	private int quantity;
+	private String code;
+	private float rating;
+	private String name;
+	private String category;
+	private double price;
+
+	private String shelf;
+	private boolean available;
+	private String description;
+	private double weight;
 
 	@ManyToOne
 	Supplier supplier;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
 	private Set<Feedback> feedback;
-	@JsonIgnore
-	@ManyToOne
-	private Order order;
+	@ManyToMany(cascade= CascadeType.ALL)
+	private List<Order> orders;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Shelf> R_product;

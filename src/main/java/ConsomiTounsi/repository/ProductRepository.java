@@ -10,6 +10,14 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
+    /*
     @Query(value="select * from product where order_id_order=?1",nativeQuery = true)
     List<Product> FindByOrder(Long id);
+
+     */
+
+    List<Product> findProductByName(String name);
+    List<Product> findAllByOrderByRatingDesc();
+    List<Product> findAllByOrderByPriceDesc();
+    List<Product> findAllByOrderByPriceAsc();
 }
