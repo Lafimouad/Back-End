@@ -1,6 +1,12 @@
 package ConsomiTounsi.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,6 +17,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Stock implements Serializable {
 	
 	@Id
@@ -19,6 +29,6 @@ public class Stock implements Serializable {
 	
 	private boolean status_stock;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
-	private Set<Product> product;
+	@OneToMany(mappedBy="stock")
+	private List<Product> products;
 }

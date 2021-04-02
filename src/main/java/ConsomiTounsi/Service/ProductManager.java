@@ -48,10 +48,28 @@ import java.util.Optional;
       return  Pr.findById(Long.parseLong(id));
     }
 
-    @Override
-    public List<Product> FindByOrder(Long id) {
-    return this.Pr.FindByOrder(id);
+
+
+
+    //find By Name
+    public List<Product> findByName(String name){
+        return Pr.findProductByName(name);
+    }
+    // find By Rating
+    public List<Product> findByRating(){
+        return Pr.findAllByOrderByRatingDesc();
+    }
+    // find All Product by desc Order
+    public List<Product> findByDescPrice(){
+        return Pr.findAllByOrderByPriceDesc();
+    }
+    // find All Product By Asc Order
+    public List<Product> findByAscPrice(){
+        return Pr.findAllByOrderByPriceAsc();
     }
 
-
+    /*
+    public List<Product> FindByOrder(Long id) {
+    return this.Pr.FindByOrder(id);
+    } */
 }
