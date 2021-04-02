@@ -153,6 +153,7 @@ public class ClientManager implements ClientManagerInterface{
 		LocalDateTime now = LocalDateTime.now();
 		user.setSubscriptionDate(now);
 		user.setSubMonth(now.getMonth().toString());
+		user.setNbaccessUser(0);
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPasswordUser());
 		user.setPasswordUser(encodedPassword);
 		user.setRoleUser(UserRole.CLIENT);

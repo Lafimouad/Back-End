@@ -20,7 +20,6 @@ public class User implements Serializable
 		this.addressUser = addressUser;
 		this.roleUser = roleUser;
 	}
-
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -55,6 +54,17 @@ public class User implements Serializable
 
 	@Enumerated(EnumType.STRING)
 	private UserRole roleUser;
+
+	public boolean isUpdatedPassword() {
+		return updatedPassword;
+	}
+
+	public void setUpdatedPassword(boolean updatedPassword) {
+		this.updatedPassword = updatedPassword;
+	}
+
+	private boolean updatedPassword ;
+	private int nbaccessUser ;
 
 	public double getSalary() {
 		return salary;
@@ -176,5 +186,14 @@ public class User implements Serializable
 	public boolean isLocked() {
 		return locked;
 	}
+
+	public int getNbaccessUser() {
+		return nbaccessUser;
+	}
+
+	public void setNbaccessUser(int nbaccessUser) {
+		this.nbaccessUser = nbaccessUser;
+	}
+
 
 }

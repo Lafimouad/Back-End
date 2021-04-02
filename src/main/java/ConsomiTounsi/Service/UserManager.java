@@ -19,6 +19,12 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 {
 
 	@Autowired
+	DelivererManager DeliverS;
+
+	@Autowired
+	AdminManager AdminS;
+
+	@Autowired
 	UserRepository ur ;
 
 	@Override
@@ -97,5 +103,6 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 		user.setRoleUser(UserRole.MANAGER);
 		return ur.save(user);
 	}
+
 
 }

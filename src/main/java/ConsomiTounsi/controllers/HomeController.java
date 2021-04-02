@@ -10,6 +10,7 @@ import ConsomiTounsi.configuration.token.JwtResponse;
 import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.User;
+import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,6 +25,9 @@ import javax.mail.MessagingException;
 
 @RestController
 public class HomeController {
+
+	@Autowired
+	UserRepository UserR;
 
 	@Autowired
 	private JWTUtility jwtUtility;
@@ -73,11 +77,19 @@ public class HomeController {
 		final UserDetails userDetails
 				= userService.loadUserByUsername(jwtRequest.getUsername());
 
+		User u = us.findUserByUsername(jwtRequest.getUsername());
+		UserR.updateNbaccess(u.getNbaccessUser() +1 , jwtRequest.getUsername());
+		if (u.isUpdatedPassword() == false)/* && (u.getNbaccessUser()==1))*/
+		{UserR.updateNbaccess(0 , jwtRequest.getUsername());}
+		// ANGULAR :  message = "it would be better to change the password to better secure your account";
+
 		final String token =
 				jwtUtility.generateToken(userDetails);
 
 		return  new JwtResponse(token);
+
 	}
+
 
 	@GetMapping("/")
 	public String Home(){

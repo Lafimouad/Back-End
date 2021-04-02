@@ -23,4 +23,5 @@ public interface UserManagerInterface {
 	List<User> findUserByLastName(String lastname);
 
     User SingUpManager(User user);
+
 }

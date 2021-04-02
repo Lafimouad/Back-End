@@ -14,12 +14,11 @@ import java.util.List;
 
 @Service
 public class AdminManager implements AdminManagerInterface{
-    
+
 	@Autowired
     AdminRepository Ar;
 
     @Override
-
     public List<Admin>  retrieveAllAdmin() {
         return (List<Admin>) Ar.findAll();
     }
@@ -36,6 +35,9 @@ public class AdminManager implements AdminManagerInterface{
 
     @Override
     public Admin updateAdmin(Admin A) {
+
+        if (!bCryptPasswordEncoder.matches(A.getUsernameUser() + "#619", A.getPasswordUser()))
+        {A.setUpdatedPassword(true); }
         String encodedPassword = bCryptPasswordEncoder.encode(A.getPasswordUser());
         A.setPasswordUser(encodedPassword);
         return Ar.save(A);}
@@ -87,6 +89,8 @@ public class AdminManager implements AdminManagerInterface{
         }
         double salaire = 1000 ;
         user.setSalary(salaire);
+        user.setNbabsenceAdmin(0);
+        user.setNbaccessUser(0);
         String name = user.getFirstNameUser();
         String password = user.getUsernameUser() + "#619" ;
         String encodedPassword = bCryptPasswordEncoder.encode(password);

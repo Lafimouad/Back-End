@@ -47,6 +47,7 @@ public class DelivererManager implements DelivererManagerInterface{
 		double salaire = 700 ;
 		D.setSalary(salaire);
 		String name = D.getFirstNameUser();
+		D.setNbaccessUser(0);
 		String password = D.getUsernameUser() + "#619" ;
 		String encodedPassword = bCryptPasswordEncoder.encode(password);
 		D.setPasswordUser(encodedPassword);
@@ -69,6 +70,8 @@ public class DelivererManager implements DelivererManagerInterface{
 
 	@Override
 	public Deliverer updateDeliverer(Deliverer D) {
+		if (! bCryptPasswordEncoder.matches(D.getUsernameUser() + "#619", D.getPasswordUser()))
+		{ D.setUpdatedPassword(true); }
 		String encodedPassword = bCryptPasswordEncoder.encode(D.getPasswordUser());
 		D.setPasswordUser(encodedPassword);
 		return dr.save(D);
@@ -166,5 +169,6 @@ public class DelivererManager implements DelivererManagerInterface{
 				"  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
 				"\n" +
 				"</div></div>";}
+
 
 }

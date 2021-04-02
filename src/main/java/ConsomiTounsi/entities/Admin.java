@@ -20,6 +20,16 @@ public class Admin extends User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Role roleAdmin;
 
+	private int nbabsenceAdmin;
+
+	public int getNbabsenceAdmin() {
+		return nbabsenceAdmin;
+	}
+
+	public void setNbabsenceAdmin(int nbabsenceAdmin) {
+		this.nbabsenceAdmin = nbabsenceAdmin;
+	}
+	
 	public Role getRoleAdmin() {
 		return roleAdmin;
 	}

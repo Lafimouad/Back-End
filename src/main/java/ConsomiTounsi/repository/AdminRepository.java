@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -22,5 +23,8 @@ public interface AdminRepository extends CrudRepository<Admin,Long>{
 	
 	@Query("SELECT COUNT(a) FROM Admin a")
 	long getNbAdmin();
-	
+
+	@Modifying
+	@Query(value="UPDATE admin a SET a.nbabsence_admin=:nb" ,nativeQuery= true )
+	int resetAbsence(@Param("nb") int nb);
 }
