@@ -1,5 +1,6 @@
 package ConsomiTounsi.controllers.dashboard;
 
+import ConsomiTounsi.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,10 @@ public class UsersController {
 	
 	@Autowired
 	DelivererManagerInterface delivererS;
-	
+
+	@Autowired
+	ClientRepository cr;
+
 	@GetMapping("/countClients")
 	public long NbClients(){
 		return clientS.getNombreClient();
@@ -54,5 +58,11 @@ public class UsersController {
 	public Deliverer getDelivererOfTheMonth(){
 		return delivererS.getDelivererOfTheMonth();
 	}
+
+	@GetMapping("/countClients-subMonth")
+	public long NbClientsByMonth(@RequestParam("Month")String Month){
+		return cr.getClientsbysubmonth(Month); }
+
+
 }
 

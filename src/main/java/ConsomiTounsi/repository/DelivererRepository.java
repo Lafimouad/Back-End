@@ -22,4 +22,6 @@ public interface DelivererRepository extends CrudRepository<Deliverer, Long> {
 	@Query("SELECT d FROM Deliverer d WHERE d.delivererOfTheMonthDeliverer = TRUE" )
 	Deliverer getDelivererOfTheMonth();
 
+	@Query("SELECT SUM(d.salary) FROM Deliverer d" )
+	double SommeSaliareDelivere();
 }
