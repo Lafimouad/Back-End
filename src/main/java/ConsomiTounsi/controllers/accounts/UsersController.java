@@ -1,4 +1,4 @@
-package ConsomiTounsi.controllers.dashboard;
+package ConsomiTounsi.controllers.accounts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
