@@ -19,10 +19,10 @@ public class Shelf implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_shelf;
+	private int idShelf;
 	
 	@Enumerated(EnumType.STRING)
-    private typeShelf type_shelf;
+    private typeShelf typeShelf;
 
 
 

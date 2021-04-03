@@ -22,14 +22,14 @@ public interface StockManagerInterface {
     void verifyIfStockIsEmpty(Stock s);
 
     
+    /*@Transactional
+	void AddStock(String Stkname, Long quant, String productSt);*/
     @Transactional
-	void AddStock(String Stkname, Long quant, String productSt);
-    @Transactional
-	int UpdateStockQuantityByStockname(String Sn,float quantite);
+	long UpdateStockQuantityByStockname(String Sn,long quantite);
     @Transactional
     List<Stock> FindStockByNameproduct(String namep);
     @Transactional
-    int UpdateStockStatusByStockName(String stockname , boolean status_stock);
+    int UpdateStockStatusByStockName(String stockname , boolean statusstock);
     @Transactional
     long getNbEmptyStock();
 

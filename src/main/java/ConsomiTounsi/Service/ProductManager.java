@@ -14,7 +14,6 @@ import java.util.Optional;
 
 @Service
     public class ProductManager implements ProductManagerInterface{
-   
 
 	
 
@@ -37,7 +36,7 @@ import java.util.Optional;
     	for (int i=0;i<Stocks.size();i++)
     	{
             Stock s=Stocks.get(i);
-            Long quan= s.getProduct_quantity();
+            Long quan= s.getProductQuantity();
             quan = quan+1;
             S.UpdateStockQuantityByStockname(s.getNameProduct(),quan);
 

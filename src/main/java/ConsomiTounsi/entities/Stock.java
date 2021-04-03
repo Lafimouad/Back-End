@@ -26,13 +26,13 @@ import javax.persistence.OneToMany;
 public class Stock implements Serializable {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private Long id_stock;
+	private long idStock;
 	
-	private String Stockname;
+	private String stockName;
 	
-	private boolean status_stock;
+	private boolean statusStock;
 	
-	private Long Product_quantity;
+	private long productQuantity;
 	
 	private  String nameProduct;
 

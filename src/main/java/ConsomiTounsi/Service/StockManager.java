@@ -23,8 +23,8 @@ public class StockManager implements StockManagerInterface {
 	StockRepository Stor;
 
 	@Override
-	public int UpdateStockStatusByStockName(String stockname, boolean status_stock) {
-		return Stor.UpdateStockStatusByStockName(stockname,status_stock);
+	public int UpdateStockStatusByStockName(String stockname, boolean statusstock) {
+		return Stor.UpdateStockStatusByStockName(stockname,statusstock);
 	}
 
 	@Override
@@ -70,11 +70,10 @@ public class StockManager implements StockManagerInterface {
 
 	}
 
-	@Override
+	/*@Override
 	public void AddStock(String Stkname, Long quant, String productSt) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	}*/
 
 	@Override
 	public Optional<Stock> FindStock(Long id) {
@@ -83,7 +82,7 @@ public class StockManager implements StockManagerInterface {
 	}
 
 	@Override
-	public int UpdateStockQuantityByStockname(String Sn, float quantite) {
+	public long UpdateStockQuantityByStockname(String Sn, long quantite) {
 		return Stor.UpdateStockQuantityByStockname(Sn, quantite);
 
 	}
@@ -100,12 +99,12 @@ public class StockManager implements StockManagerInterface {
 
 	@Override
 	public void verifyIfStockIsEmpty(Stock s) {
-		 Long quantity = s.getProduct_quantity();
+		 Long quantity = s.getProductQuantity();
 		 if (quantity == 0)
 		 {
-		 	boolean status = s.isStatus_stock();
+		 	boolean status = s.isStatusStock();
 		 	status = false;
-		 	s.setStatus_stock(status);
+		 	s.setStatusStock(status);
 		}
 	}
 }
