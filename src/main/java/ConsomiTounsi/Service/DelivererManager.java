@@ -50,6 +50,7 @@ public class DelivererManager implements DelivererManagerInterface{
 		D.setNbaccessUser(0);
 		String password = D.getUsernameUser() + "#619" ;
 		String encodedPassword = bCryptPasswordEncoder.encode(password);
+		D.setBonusDeliverer(0);
 		D.setPasswordUser(encodedPassword);
 		D.setRoleUser(UserRole.DELIVERER);
 		String subject = "Account Activated";
@@ -170,5 +171,43 @@ public class DelivererManager implements DelivererManagerInterface{
 				"\n" +
 				"</div></div>";}
 
+	@Override
+	public double SommeSaliareDeliverer() {
+		return dr.SommeSaliareDeliverer(); }
 
+	@Override
+	public void resetBonus() {
+		dr.resetBonus();
+	}
+
+	@Override
+	public void salaireAvecPrime() {
+		for (Deliverer d : (List<Deliverer>) dr.findAll()){
+		double nb =0; ////= calculer prime ()
+		nb = d.getSalary() + d.getBonusDeliverer();
+		dr.salaireAvecPrime(nb , d.getIdUser());}
+	}
+
+	@Override
+	public double updateprimeDeliverer(long id) {
+		double nb = 0; 		//// nb = calculer prime ()
+		return dr.UpdatePrimeDeliverer(nb,id);
+	}
+
+	@Override
+	public double calculatePrime(long id) {
+		return 0;
+	}
+
+	@Override
+	public void electDelivererOftheMonth(){
+		double nb =0 ;
+		long id =0 ;
+		for (Deliverer d : (List<Deliverer>) dr.findAll())
+		{double b = d.getBonusDeliverer();
+			if ( b>nb ){
+				nb = b;
+				Deliverer elected =d;
+				id = elected.getIdUser();} }
+		dr.updateDelivofthemonth(id);}
 }

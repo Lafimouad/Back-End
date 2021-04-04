@@ -17,23 +17,11 @@ import ConsomiTounsi.Service.ClientManagerInterface;
 import ConsomiTounsi.entities.Client;
 
 @RestController
-@RequestMapping("/admin/accounts//client")
+@RequestMapping("/admin/accounts/client")
 public class ClientController {
 
 	@Autowired
 	ClientManagerInterface clientS;
-	
-	/*
-	{"idUser": 6,
-    "firstNameUser": "hedi",
-    "lastNameUser": "farh",
-    "usernameUser": null,
-    "passwordUser": null,
-    "phoneNumberUser": null,
-    "emailAddressUser": null,
-    "dateBirthUser": null,
-    "addressUser": null}
-	 */
 
 	@GetMapping("/retrieve-all")
 	public List<Client> getListClients(){

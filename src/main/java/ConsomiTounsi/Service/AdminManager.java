@@ -101,6 +101,18 @@ public class AdminManager implements AdminManagerInterface{
         return Ar.save(user);
     }
 
+    @Override
+    public int resetAbsence(int nb) {
+        return Ar.resetAbsence(nb);
+    }
+
+    @Override
+    public int addAbsence(long id) {
+        Admin a = Ar.findById(id).orElse(new Admin());
+        int nb = a.getNbabsenceAdmin() + 1;
+        return Ar.AddAbsence(nb , id);
+    }
+
     public String body( String name , String username , String password){
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +

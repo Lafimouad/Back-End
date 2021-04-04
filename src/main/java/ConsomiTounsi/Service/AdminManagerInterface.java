@@ -20,4 +20,6 @@ public interface AdminManagerInterface {
     long getNbAdmin();
 
     Admin AddAdmin(Admin user);
+    int resetAbsence(int nb);
+    int addAbsence(long id);
 }

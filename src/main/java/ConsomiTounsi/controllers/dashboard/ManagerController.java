@@ -1,11 +1,7 @@
 package ConsomiTounsi.controllers.dashboard;
 
-import ConsomiTounsi.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ConsomiTounsi.Service.AdminManagerInterface;
 import ConsomiTounsi.Service.ClientManagerInterface;
@@ -14,8 +10,8 @@ import ConsomiTounsi.entities.Deliverer;
 import ConsomiTounsi.entities.Role;
 
 @RestController
-@RequestMapping("/admin/dashboard")
-public class UsersController {
+@RequestMapping("/manager")
+public class ManagerController {
 
 	@Autowired
 	ClientManagerInterface clientS;
@@ -25,9 +21,6 @@ public class UsersController {
 	
 	@Autowired
 	DelivererManagerInterface delivererS;
-
-	@Autowired
-	ClientRepository cr;
 
 	@GetMapping("/countClients")
 	public long NbClients(){
@@ -60,9 +53,40 @@ public class UsersController {
 	}
 
 	@GetMapping("/countClients-subMonth")
-	public long NbClientsByMonth(@RequestParam("Month")String Month){
-		return cr.getClientsbysubmonth(Month); }
+	public long getNBClientsBySubMonth(@RequestParam("month") String month){
+		return clientS.getNBClientsbysubmonth(month);
+	}
 
+	@PutMapping("/resetAbsence")
+	public void resetAbsence(){
+		adminS.resetAbsence(0);
+	}
+
+	@PutMapping("/adminAbsent-id")
+	public void addAbsence(@RequestParam("id") long id){adminS.addAbsence(id);}
+
+	@GetMapping("/sommeSalaireDeliverers")
+	public double SalaireDeliveres(){ return delivererS.SommeSaliareDeliverer(); }
+
+	@GetMapping("/SommeSalaires")
+	public double SommeSalaire(){
+		return adminS.getNbAdmin() * 1000 + delivererS.SommeSaliareDeliverer();
+	}
+
+	@PutMapping("/bonusToSalary")
+	public void SalairesAvecPrime(){
+		delivererS.salaireAvecPrime();
+	}
+
+	@PutMapping("/resetBonus")
+	public void resetBonus(){
+		delivererS.resetBonus();
+	}
+
+	@PutMapping("elect-deliv")
+	public void electdeliv(){
+		delivererS.electDelivererOftheMonth();
+	}
 
 }
 

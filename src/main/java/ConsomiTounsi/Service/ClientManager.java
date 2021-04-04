@@ -163,4 +163,9 @@ public class ClientManager implements ClientManagerInterface{
 		return cr.save(user);
 	}
 
+	@Override
+	public long getNBClientsbysubmonth(String Month) {
+		return cr.getClientsbysubmonth(Month);
+	}
+
 }

@@ -18,5 +18,18 @@ public interface DelivererManagerInterface {
     long getNbAvailableDeliveres();
 	long getNbDeliverer();
 	Deliverer getDelivererOfTheMonth();
-  
+    double SommeSaliareDeliverer();
+    void resetBonus();
+
+    void salaireAvecPrime();
+    double updateprimeDeliverer(long id);
+
+    double calculatePrime(long id);
+    //% avg des livraisons ? , add money
+    //% si service behy , add money
+    //or % note ?
+
+    //deliverer of the month is the one wih the biggest bonus
+    void electDelivererOftheMonth();
+
 }

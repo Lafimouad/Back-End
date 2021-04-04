@@ -30,8 +30,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
         http    .csrf().disable() //to be able to use postman
                 .authorizeRequests()
                 //whitelist for webpages you can access with no auth
-                .antMatchers("/register/**" , "/authenticate").permitAll()
-                //.antMatchers("/authenticate").permitAll()
+                .antMatchers("/register/**" , "/authenticate" , "/").permitAll()
                 .antMatchers("/manager/**").hasRole("MANAGER")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN" , "MANAGER")
                 .antMatchers("/client/**").hasAnyRole("ADMIN" , "CLIENT" , "MANAGER")

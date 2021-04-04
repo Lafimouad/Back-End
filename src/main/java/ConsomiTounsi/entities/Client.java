@@ -25,6 +25,14 @@ public class Client extends User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private WorkField workfieldClient;
 
+	public WorkField getWorkfieldClient() {
+		return workfieldClient;
+	}
+
+	public void setWorkfieldClient(WorkField workfieldClient) {
+		this.workfieldClient = workfieldClient;
+	}
+
 	public Gender getGenderClient() {
 		return genderClient;
 	}

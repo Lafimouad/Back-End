@@ -17,7 +17,7 @@ import ConsomiTounsi.entities.Role;
 
 //http://localhost:8081/SpringMVC/accounts/admin.............................
 @RestController
-@RequestMapping("/admin/accounts/admin")
+@RequestMapping("/manager/accounts/admin")
 public class AdminController {
 	
 	@Autowired
