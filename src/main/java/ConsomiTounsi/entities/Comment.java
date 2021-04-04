@@ -20,8 +20,8 @@ public class Comment implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private long idComment;
 	private int likesComment;
-	private boolean prohibitedDictComment;
-	private boolean mostPertinatComment;
+	//private boolean prohibitedDictComment;
+	private boolean mostPertinentComment;
 
 	@ManyToOne
 	Subject subject;

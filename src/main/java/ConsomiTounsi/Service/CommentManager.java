@@ -6,6 +6,7 @@ import ConsomiTounsi.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,4 +48,20 @@ public class CommentManager implements CommentManagerInterface{
     @Override
     public Comment FindComment(String id) {
         return  cr.findById(Long.parseLong(id)).orElse(new Comment());    }
+
+    @Override
+    public List<Comment> retrieveCommentByPertinence(boolean mostPertinentComment) {
+        return cr.retrieveCommentByPertinence(mostPertinentComment);
+    }
+
+    @Transactional
+    public void like(long id) {
+        Comment c = cr.findById(id).get();
+        int x = c.getLikesComment();
+        c.setLikesComment(x++);
+    }
+
+    public void pertinatingComment(){
+        
+    }
 }
