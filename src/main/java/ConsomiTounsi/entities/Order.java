@@ -38,7 +38,32 @@ public class Order implements Serializable {
 
 	@ManyToOne
 	Delivery delivery;
-	@ManyToMany(mappedBy="orders", cascade = CascadeType.ALL)
-	private List<Product> product;
+
+	@ManyToMany(mappedBy="orders", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+
+	private List<Product> products;
+
+	public void addproducts(List<Product> addedProducts){
+
+		addedProducts.forEach(product -> {
+
+			if (!productExist(product.getId()))
+				products.add(product);
+		});
+	}
+
+	public void addproducts(Product addedProducts){
+        if (!productExist(addedProducts.getId()))
+            products.add(addedProducts);
+
+    }
+    private  boolean productExist ( Long idProduct ){
+        for ( Product product:products   ){
+            if ( product.getId()==idProduct)
+                return true  ;
+
+        }
+        return  false ;
+    }
 
 }

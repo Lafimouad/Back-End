@@ -1,4 +1,4 @@
-package ConsomiTounsi.controllers;
+package ConsomiTounsi.controllers.mouadh_Controllers;
 
 import ConsomiTounsi.Service.OrderManager;
 import ConsomiTounsi.entities.Order;
@@ -40,11 +40,12 @@ public class OrderController {
 
     }
     //Update an Order
-    @PutMapping
-    ResponseEntity<?> updateProduct(@RequestBody Order o){
+    @PutMapping("/{id}")
+    ResponseEntity<?> updateProduct(@PathVariable Long id ,@RequestBody Order o){
 
-        om.updateOrder(o);
+        om.updateOrder(id,o);
         return new ResponseEntity<>(new MessageResponseModel("Order Updated"), HttpStatus.OK);
     }
+    //
 
 }

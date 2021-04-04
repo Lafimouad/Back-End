@@ -1,6 +1,6 @@
-package ConsomiTounsi.controllers;
+package ConsomiTounsi.controllers.mouadh_Controllers;
 
-import ConsomiTounsi.entities.Product;
+import ConsomiTounsi.entities.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllProductResponse {
-
-    List<Product> products;
+public class GetAllOrderResponse {
+    List<Order> orders;
 }

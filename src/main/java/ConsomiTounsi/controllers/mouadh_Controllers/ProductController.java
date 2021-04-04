@@ -1,4 +1,4 @@
-package ConsomiTounsi.controllers;
+package ConsomiTounsi.controllers.mouadh_Controllers;
 
 import ConsomiTounsi.Service.ProductManager;
 import ConsomiTounsi.entities.Product;

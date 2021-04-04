@@ -1,4 +1,4 @@
-package ConsomiTounsi.controllers;
+package ConsomiTounsi.controllers.mouadh_Controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

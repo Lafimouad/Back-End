@@ -28,7 +28,7 @@ public class Product implements Serializable {
 	private String category;
 	private double price;
 
-	private String shelf;
+	private typeShelf shelf;
 	private boolean available;
 	private String description;
 	private double weight;
@@ -38,7 +38,12 @@ public class Product implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
 	private Set<Feedback> feedback;
-	@ManyToMany(cascade= CascadeType.ALL)
+
+	@ManyToMany(cascade= CascadeType.PERSIST)
+	@JoinTable(
+			name = "product_ord",
+			joinColumns = @JoinColumn(name = "product_id"),
+			inverseJoinColumns = @JoinColumn(name = "order_id"))
 	private List<Order> orders;
 
 	@ManyToMany(cascade = CascadeType.ALL)

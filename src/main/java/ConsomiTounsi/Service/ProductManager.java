@@ -24,12 +24,18 @@ import java.util.Optional;
 
     @Override
     public void deleteProduct(Long id) {
+        Optional<Product> optionalProduct=Pr.findById(id);
+        if (!optionalProduct.isPresent()) {
+            throw new IllegalStateException("Product Not Found");
+        }
         Pr.deleteById(id);
 
     }
 
     @Override
     public void deleteProduct(String id) {
+
+
         Pr.deleteById(Long.parseLong(id));
     }
 

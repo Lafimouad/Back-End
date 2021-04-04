@@ -1,4 +1,4 @@
-package ConsomiTounsi.controllers;
+package ConsomiTounsi.controllers.mouadh_Controllers;
 
 public class MessageResponseModel {
     String message;
