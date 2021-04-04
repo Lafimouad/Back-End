@@ -7,8 +7,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Getter
@@ -30,7 +33,8 @@ public class Shelf implements Serializable {
 	Store store;
 
 
-	@OneToMany(mappedBy="shelf")
-	private List<Product> product;
-
+	@OneToMany(mappedBy="shelf",
+			cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+			fetch= FetchType.EAGER)
+	private List<Product> product = new ArrayList<>();
 }

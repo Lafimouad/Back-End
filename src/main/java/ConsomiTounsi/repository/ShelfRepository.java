@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ShelfRepository extends CrudRepository<Shelf,Long> {
 	
-	 List<Shelf> findshelfbytype(typeShelf type);
+	 List<Shelf> FindShelfByType(typeShelf type);
 }

@@ -18,4 +18,7 @@ public interface ShelfManagerInterface {
     Optional<Shelf> FindShelf(Long id);
     Optional<Shelf> FindShelf(String id);
     List<Shelf> FindShelfByType(typeShelf type);
-}
+    void AffectProductAShelf(long shelfId, long productId);
+    List<String> getAllProductsNamesByShelf(long shelfId);
+
+    }
