@@ -12,6 +12,6 @@ public interface SubjectManagerInterface {
     void deleteSubject(Long id);
     void deleteSubject(String id);
     Subject updateSubject(Subject Su);
-    Optional<Subject> FindSubject(Long id);
-    Optional<Subject> FindSubject(String id);
+    Subject FindSubject(Long id);
+    Subject FindSubject(String id);
 }

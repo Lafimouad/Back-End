@@ -12,6 +12,6 @@ public interface CommentManagerInterface {
     void deleteComment(Long id);
     void deleteComment(String id);
     Comment updateComment(Comment Co);
-    Optional<Comment> FindComment(Long id);
-    Optional<Comment> FindComment(String id);
+    Comment FindComment(Long id);
+    Comment FindComment(String id);
 }

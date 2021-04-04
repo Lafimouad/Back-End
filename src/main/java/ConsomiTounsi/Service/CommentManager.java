@@ -1,43 +1,50 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.Comment;
+import ConsomiTounsi.repository.CommentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CommentManager implements CommentManagerInterface{
+
+    @Autowired
+    CommentRepository cr;
+
     @Override
     public List<Comment> retrieveAllComment() {
-        return null;
+        return (List<Comment>) cr.findAll();
     }
 
     @Override
     public Comment addComment(Comment Co) {
-        return null;
+        return cr.save(Co);
     }
 
     @Override
     public void deleteComment(Long id) {
-
+        cr.deleteById(id);
     }
 
     @Override
     public void deleteComment(String id) {
-
+        cr.deleteById(Long.parseLong(id));
     }
 
     @Override
     public Comment updateComment(Comment Co) {
-        return null;
+        return cr.save(Co);
     }
 
     @Override
-    public Optional<Comment> FindComment(Long id) {
-        return Optional.empty();
-    }
+    public Comment FindComment(Long id) {
+        return  cr.findById(id).orElse(new Comment());    }
 
     @Override
-    public Optional<Comment> FindComment(String id) {
-        return Optional.empty();
-    }
+    public Comment FindComment(String id) {
+        return  cr.findById(Long.parseLong(id)).orElse(new Comment());    }
 }

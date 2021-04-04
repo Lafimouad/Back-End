@@ -2,6 +2,7 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,6 +30,6 @@ public class Admin extends User implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="admin")
 	private Set<Advertisement> advertisement;
 
-	@ManyToOne
-	Message message;
+	@OneToMany(mappedBy = "admin")
+	private Set <Message> messages = new HashSet<>();
 }

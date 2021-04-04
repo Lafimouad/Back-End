@@ -1,43 +1,45 @@
 package ConsomiTounsi.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Entity
 public class Message implements Serializable {
-	
-	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_message;
-	private String test_message;
-	
-	@Temporal (TemporalType.DATE)
-	private Date date_message;
 
+	@EmbeddedId
+	private MessagePK messagePk = new MessagePK();
 
-	public int getId_message() {
-		return id_message;
+	private String textMessage;
+
+	@Temporal(TemporalType.DATE)
+	private Date dateMessage;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@MapsId("idClient")
+	@JoinColumn(name ="ClientId" , nullable = false , insertable = false , updatable = false)
+	private Client client;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@MapsId("idAdmin")
+	@JoinColumn(name ="AdminId" , nullable = false , insertable = false , updatable = false)
+	private Admin admin;
+
+	public Message(String textMessage, Date dateMessage, Client client, Admin admin) {
+		super();
+		this.textMessage = textMessage;
+		this.dateMessage = dateMessage;
+		this.client = client;
+		this.admin = admin;
 	}
-
-	public void setId_message(int id_message) {
-		this.id_message = id_message;
-	}
-
-	public String getTest_message() {
-		return test_message;
-	}
-
-	public void setTest_message(String test_message) {
-		this.test_message = test_message;
-	}
-
-	public Date getDate_message() {
-		return date_message;
-	}
-
-	public void setDate_message(Date date_message) {
-		this.date_message = date_message;
-	}
-
 }

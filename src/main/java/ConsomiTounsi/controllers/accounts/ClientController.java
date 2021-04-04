@@ -46,7 +46,7 @@ public class ClientController {
 	return clientS.retrieveAllClient(); }
 	
 	@GetMapping("/retrieve-id")
-	public Client getClientnById(@RequestParam("id") long id){
+	public Client getClientById(@RequestParam("id") long id){
 		return clientS.FindClientById(id);
 	}
 	
