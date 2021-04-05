@@ -21,8 +21,8 @@ public interface ProductManagerInterface {
 
 
 
-        @Transactional
-    long getNbProductsByshelf(long idshelf);
+    @Transactional
+    int getNbProductsByshelf(int idshelf);
     
     @Transactional
     List<Product> FindProductByIdShelf(Long id);

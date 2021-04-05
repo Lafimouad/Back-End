@@ -18,8 +18,8 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query(value="select * from Product where shelf_id_shelf=?1",nativeQuery = true)
     List<Product> FindProductByIdShelf(long id);
 
-    @Query("SELECT COUNT(p) FROM Product p WHERE p.shelf_id_shelf = idshelf" )
-    long getNbProductsByshelf(long idshelf);
+    @Query(value="SELECT COUNT(p) FROM Product p WHERE p.shelf_id_shelf = idshelf",nativeQuery = true)
+    int getNbProductsByshelf(long idshelf);
 
     @Modifying
     @Query (value="UPDATE Product p SET p.quantityProduct=:qn WHERE p.id_product=:id",nativeQuery = true)

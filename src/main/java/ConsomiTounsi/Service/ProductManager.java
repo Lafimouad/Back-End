@@ -26,8 +26,10 @@ import java.util.Optional;
 
     @Override
     public Product addProduct(Product P) {
+        Product optionalproduct = Pr.save(P);
+        long id = P.getId_product();
+        addProductQuantity(id);
         return Pr.save(P);
-
     }
     
     
@@ -69,7 +71,7 @@ import java.util.Optional;
    	}*/
 
     @Override
-    public long getNbProductsByshelf(long idshelf) {
+    public int getNbProductsByshelf(int idshelf) {
         return Pr.getNbProductsByshelf(idshelf);   }
 
     @Override
