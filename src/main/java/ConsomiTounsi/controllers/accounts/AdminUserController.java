@@ -12,8 +12,8 @@ import ConsomiTounsi.Service.UserManagerInterface;
 import ConsomiTounsi.entities.User;
 
 @RestController
-@RequestMapping("/admin/accounts/user")
-public class UserController {
+@RequestMapping("/admin/accounts")
+public class AdminUserController {
 
 	@Autowired
 	UserManagerInterface userS;

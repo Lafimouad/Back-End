@@ -11,7 +11,7 @@ import ConsomiTounsi.entities.Role;
 
 @RestController
 @RequestMapping("/manager")
-public class ManagerController {
+public class ManagerDashboardController {
 
 	@Autowired
 	ClientManagerInterface clientS;

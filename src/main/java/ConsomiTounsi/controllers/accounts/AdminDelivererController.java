@@ -13,33 +13,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ConsomiTounsi.Service.ClientManagerInterface;
-import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.Service.DelivererManagerInterface;
+import ConsomiTounsi.entities.Deliverer;
 
 @RestController
-@RequestMapping("/admin/accounts/client")
-public class ClientController {
+@RequestMapping("/admin/accounts/deliverer")
+public class AdminDelivererController {
 
 	@Autowired
-	ClientManagerInterface clientS;
+	DelivererManagerInterface delivererS;
 
+	@PostMapping("/add")
+	public Deliverer addDeliverer(@RequestBody Deliverer a){
+		Deliverer deliverer = delivererS.addDeliverer(a);
+		return deliverer ;	}
+	
 	@GetMapping("/retrieve-all")
-	public List<Client> getListClients(){
-	return clientS.retrieveAllClient(); }
+	public List<Deliverer> getListDeliverers(){
+	return delivererS.retrieveAllDeliverer(); }
 	
 	@GetMapping("/retrieve-id")
-	public Client getClientnById(@RequestParam("id") long id){
-		return clientS.FindClientById(id);
+	public Deliverer getDelivererById(@RequestParam("id") long id){
+		return delivererS.FindDelivererById(id);
 	}
 	
 	@DeleteMapping("remove-id")
 	public void removeClientByID(@RequestParam("id")long id){
-		clientS.deleteClientById(id);
+		delivererS.deleteDelivererById(id);
 	}
-	
-	@PutMapping("/update")
-	public Client updateClient(@RequestBody Client a){
-		return clientS.updateClient(a);
-	}
-	
+
 }

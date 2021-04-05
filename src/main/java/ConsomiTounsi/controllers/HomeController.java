@@ -53,11 +53,6 @@ public class HomeController {
 		return cs.SignUpClient(user);
 	}
 
-	@PostMapping("register/admin")
-	public Admin register(@RequestBody Admin user){
-		return as.AddAdmin(user);
-	}
-
 	@PostMapping("authenticate")
 	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
