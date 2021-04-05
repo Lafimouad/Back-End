@@ -2,6 +2,7 @@ package ConsomiTounsi.controllers.Forum;
 
 import ConsomiTounsi.Service.CommentManagerInterface;
 import ConsomiTounsi.entities.Comment;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +24,10 @@ public class CommentController {
     CommentManagerInterface commentS;
 
     @PostMapping("/add")
-    public Comment addComment(@RequestBody Comment a){
-        Comment comment = commentS.addComment(a);
-        return comment ;}
+    public void addComment(@RequestBody Comment a){ commentS.addComment(a);}
 
     @GetMapping("/retrieve-all")
-    public List<Comment> getListComments(){
-        return commentS.retrieveAllComment(); }
+    public List<Comment> getListComments(){ return commentS.retrieveAllComment(); }
 
     @GetMapping("/retrieve-id")
     public Comment getCommentById(@RequestParam("id") long id){
@@ -45,4 +43,22 @@ public class CommentController {
     public Comment updateComment(@RequestBody Comment a){
         return commentS.updateComment(a);
     }
+
+    @PutMapping("/likeComment-id")
+    public void addLike(@RequestParam("id") long id){commentS.addLike(id);}
+
+    @GetMapping("/mostPertinentComments")
+    public List<Comment> GetPertinentCommentsBySubject(@RequestParam("id") long id){
+        return commentS.retrieveCommentByPertinence(id); }
+
+    @PutMapping("/pertinentComments")
+    public void updatePertinent(){
+        commentS.setPertinentComments();
+    }
+
+    @GetMapping("/retrieveSubjectComments-idSubject")
+    public List<Comment> retrieveSubjectComments(@RequestParam("id") long id){
+        return commentS.retrieveSubjectComments(id);
+    }
+
 }

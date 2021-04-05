@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,13 +17,14 @@ import java.io.Serializable;
 
 @Entity
 public class Comment implements Serializable {
-	
+
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private long idComment;
 	private int likesComment;
-	//private boolean prohibitedDictComment;
 	private boolean mostPertinentComment;
+	private String textComment;
 
 	@ManyToOne
 	Subject subject;

@@ -25,9 +25,8 @@ public class SubjectController {
     SubjectManagerInterface subjectS;
 
     @PostMapping("/add")
-    public Subject addComment(@RequestBody Subject a){
-        Subject subject = subjectS.addSubject(a);
-        return subject ;}
+    public void addSubject(@RequestBody Subject a){
+        subjectS.addSubject(a);}
 
     @GetMapping("/retrieve-all")
     public List<Subject> getListSubjects(){
@@ -47,4 +46,18 @@ public class SubjectController {
     public Subject updateSubject(@RequestBody Subject a){
         return subjectS.updateSubject(a);
     }
+
+    @PutMapping("/likeSubject-id")
+    public void addLike(@RequestParam("id") long id){subjectS.addLike(id);}
+
+    @PutMapping("/setFeauturedSubjects")
+    public void FeatureSubjects(){
+        subjectS.setFeauturedSubjects();
+    }
+
+    @GetMapping("/getFeaturedSubjects")
+    public void ListFeauturedSubjects(){
+        subjectS.getFeautredSubjects();
+    }
 }
+

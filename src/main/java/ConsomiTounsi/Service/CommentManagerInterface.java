@@ -10,15 +10,17 @@ import java.util.Optional;
 
 public interface CommentManagerInterface {
     List<Comment> retrieveAllComment();
-    Comment addComment(Comment Co);
+    void addComment(Comment Co);
     void deleteComment(Long id);
     void deleteComment(String id);
     Comment updateComment(Comment Co);
     Comment FindComment(Long id);
     Comment FindComment(String id);
-    //fct bich tzid ka3ba like
-    void like(long id);
-    @Transactional
-    List<Comment> retrieveCommentByPertinence(boolean mostPertinentComment);
+
+    int addLike(long id);
+    List<Comment> retrieveCommentByPertinence(long id);
+    List<Comment> retrieveSubjectComments(long id);
+
+    void setPertinentComments();
 
 }

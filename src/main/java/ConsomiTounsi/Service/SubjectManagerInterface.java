@@ -8,10 +8,15 @@ import java.util.Optional;
 
 public interface SubjectManagerInterface {
     List<Subject> retrieveAllSubject();
-    Subject addSubject(Subject Su);
+    void addSubject(Subject Su);
     void deleteSubject(Long id);
     void deleteSubject(String id);
     Subject updateSubject(Subject Su);
     Subject FindSubject(Long id);
     Subject FindSubject(String id);
+
+    int addLike(long id);
+    void setFeauturedSubjects();
+    List<Subject> getFeautredSubjects();
+
 }

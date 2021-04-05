@@ -22,7 +22,6 @@ public class Subject implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private long idSubject;
 	
-	private boolean redendantSubject;
 	private boolean featuredSubject;
 	private String descriptionSubject;
 	private int likesSubject;
