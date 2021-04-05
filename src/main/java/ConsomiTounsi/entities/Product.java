@@ -30,6 +30,7 @@ public class Product implements Serializable {
 	private boolean available_product;
 	private String description_product;
 	private double weight_product;
+	private long quantityProduct;
 
 
 	@ManyToOne
@@ -41,9 +42,6 @@ public class Product implements Serializable {
 	@ManyToMany(mappedBy="Cart", cascade = CascadeType.ALL)
 	private List<Order> order;
 
-	
-	@ManyToOne
-	private Stock stock;
 
 	@ManyToOne
 	private Shelf shelf;

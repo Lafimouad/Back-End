@@ -89,6 +89,16 @@ public class ShelfManager implements ShelfManagerInterface{
         return prodNames;
     }
 
+    @Override
+    public void desaffecterProductFromShelf(int shelfId, int productId) {
+        Product p = Pdr.findById((long) productId).orElse(new Product());
+        Shelf s = Shr.findById((long) shelfId).orElse(new Shelf());
+        p.setShelf(null); Pdr.save(p);
+        s.getProduct().remove(p); Shr.save(s);
+    }
+
+
+
 
 
 

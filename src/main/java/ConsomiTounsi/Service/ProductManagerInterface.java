@@ -15,10 +15,10 @@ public interface ProductManagerInterface {
     Product updateProduct(Product P);
     Optional<Product> FindProduct(Long id);
     Optional<Product> FindProduct(String id);
-   
-    
+
     @Transactional
-    List<Product> FindProductByIdStock(Long id);
+    long getNbProductsByshelf(long idshelf);
+    
     @Transactional
     List<Product> FindProductByIdShelf(Long id);
     

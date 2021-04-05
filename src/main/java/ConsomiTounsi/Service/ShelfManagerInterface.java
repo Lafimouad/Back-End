@@ -20,5 +20,8 @@ public interface ShelfManagerInterface {
     List<Shelf> FindShelfByType(typeShelf type);
     void AffectProductAShelf(long shelfId, long productId);
     List<String> getAllProductsNamesByShelf(long shelfId);
+    void desaffecterProductFromShelf(int shelfId, int productId);
+
+
 
     }

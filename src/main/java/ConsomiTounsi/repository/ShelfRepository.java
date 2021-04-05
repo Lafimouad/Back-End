@@ -7,6 +7,7 @@ import ConsomiTounsi.entities.typeShelf;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,7 @@ import org.springframework.stereotype.Repository;
 public interface ShelfRepository extends CrudRepository<Shelf,Long> {
 	
 	 List<Shelf> FindShelfByType(typeShelf type);
+
+
+
 }
