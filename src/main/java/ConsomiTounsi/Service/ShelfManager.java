@@ -61,11 +61,11 @@ public class ShelfManager implements ShelfManagerInterface{
         return  Shr.findById(Long.parseLong(id));
     }
 
-	@Override
-	public List<Shelf> FindShelfByType(typeShelf type) {
-    	return Shr.FindShelfByType(type);
+	/*@Override
+	public List<Shelf> FindByTypeShelf(typeShelf type) {
+    	return Shr.FindByTypeShelf(type);
 
-	}
+	}*/
 
     @Transactional
     public void AffectProductAShelf(long shelfId, long productId) {

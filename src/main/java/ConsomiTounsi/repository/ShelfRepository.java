@@ -14,7 +14,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ShelfRepository extends CrudRepository<Shelf,Long> {
 	
-	 List<Shelf> FindShelfByType(typeShelf type);
+	 /*List<Shelf> FindByTypeShelf(typeShelf type);*/
+
+
+	@Query(value="SELECT COUNT(p) FROM Product p WHERE p.shelf_id_shelf = idshelf",nativeQuery = true)
+	int getNbProductsByshelf(long idshelf);
 
 
 

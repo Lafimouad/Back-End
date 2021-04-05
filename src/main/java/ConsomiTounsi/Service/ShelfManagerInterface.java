@@ -17,7 +17,7 @@ public interface ShelfManagerInterface {
     Shelf updateShelf(Shelf Sh);
     Optional<Shelf> FindShelf(Long id);
     Optional<Shelf> FindShelf(String id);
-    List<Shelf> FindShelfByType(typeShelf type);
+   /* List<Shelf> FindByTypeShelf(typeShelf type);*/
     void AffectProductAShelf(long shelfId, long productId);
     List<String> getAllProductsNamesByShelf(long shelfId);
     void desaffecterProductFromShelf(int shelfId, int productId);
