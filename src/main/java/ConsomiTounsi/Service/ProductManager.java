@@ -71,4 +71,12 @@ import java.util.Optional;
     @Override
     public long getNbProductsByshelf(long idshelf) {
         return Pr.getNbProductsByshelf(idshelf);   }
+
+    @Override
+    public int addProductQuantity(long id) {
+        Product p = Pr.findById(id).orElse(new Product());
+        int nb = p.getQuantityProduct() + 1;
+        return Pr.AddAbsence(nb , id);
+    }
+        
 }
