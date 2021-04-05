@@ -15,8 +15,13 @@ public interface ProductManagerInterface {
     Product updateProduct(Product P);
     Optional<Product> FindProduct(Long id);
     Optional<Product> FindProduct(String id);
+    int addProductQuantity(long id);
+    int decrementProductQuantity(long id);
+    void resetQuantity();
 
-    @Transactional
+
+
+        @Transactional
     long getNbProductsByshelf(long idshelf);
     
     @Transactional

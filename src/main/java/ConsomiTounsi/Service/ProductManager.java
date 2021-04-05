@@ -25,7 +25,7 @@ import java.util.Optional;
     }
 
     @Override
-    public Product addProduct(Product P) { 
+    public Product addProduct(Product P) {
         return Pr.save(P);
 
     }
@@ -75,8 +75,20 @@ import java.util.Optional;
     @Override
     public int addProductQuantity(long id) {
         Product p = Pr.findById(id).orElse(new Product());
-        int nb = p.getQuantityProduct() + 1;
-        return Pr.AddAbsence(nb , id);
+        long qn = p.getQuantityProduct() + 1;
+        return Pr.AddQuantity(qn , id);
+    }
+
+    @Override
+    public int decrementProductQuantity(long id) {
+        Product p = Pr.findById(id).orElse(new Product());
+        long qn = p.getQuantityProduct() - 1;
+        return Pr.AddQuantity(qn , id);
+    }
+
+    @Override
+    public void resetQuantity() {
+        Pr.resetQuantity();
     }
         
 }
