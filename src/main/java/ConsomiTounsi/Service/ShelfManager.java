@@ -1,5 +1,6 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Pool;
 import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.Shelf;
 import ConsomiTounsi.entities.typeShelf;
@@ -52,14 +53,13 @@ public class ShelfManager implements ShelfManagerInterface{
     }
 
     @Override
-    public Optional<Shelf> FindShelf(Long id) {
-        return   Shr.findById(id);
+    public Shelf FindShelf(Long id) {
+        return Shr.findById(id).orElse(new Shelf());
     }
 
     @Override
-    public Optional<Shelf> FindShelf(String id) {
-        return  Shr.findById(Long.parseLong(id));
-    }
+    public Shelf FindShelf(String id) {
+        return  Shr.findById(Long.parseLong(id)).orElse(new Shelf());    }
 
 	/*@Override
 	public List<Shelf> FindByTypeShelf(typeShelf type) {

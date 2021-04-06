@@ -3,6 +3,8 @@ package ConsomiTounsi.controllers.ShelfStoreProduct;
 
 import ConsomiTounsi.Service.ShelfManagerInterface;
 import ConsomiTounsi.entities.Comment;
+import ConsomiTounsi.entities.Shelf;
+import ConsomiTounsi.entities.typeShelf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,30 +23,30 @@ public class ShelfController {
     }
 
     @PostMapping("/add")
-    public void addShelf(@RequestBody Shelf s){ commentS.addComment(a);}
+    public void addShelf(@RequestBody Shelf s){ shelfmanager.addShelf(s);}
 
     @GetMapping("/retrieve-all")
-    public List<Comment> getListShelfs(){ return commentS.retrieveAllComment(); }
+    public List<Shelf> getListShelves(){ return shelfmanager.retrieveAllShelf(); }
 
     @GetMapping("/retrieve-id")
-    public Comment getShelfById(@RequestParam("id") long id){
-        return commentS.FindComment(id);
+    public Shelf getShelfById(@RequestParam("id") long id){
+        return shelfmanager.FindShelf(id);
     }
 
     @DeleteMapping("remove-id")
     public void removeShelfByID(@RequestParam("id")long id){
-        commentS.deleteComment(id);
+        shelfmanager.deleteShelf(id);
     }
 
     @PutMapping("/update")
-    public Comment updateShelf(@RequestBody Comment a){
-        return commentS.updateComment(a);
+    public Shelf updateShelf(@RequestBody Shelf p){
+        return shelfmanager.updateShelf(p);
     }
 
-    /*@PutMapping("/likeComment-id")
-    public void addLike(@RequestParam("id") long id){commentS.addLike(id);}
+    @PutMapping("/TypeShelf")
+    public void FindByTypeShelf(@RequestParam("typeShelf") typeShelf TypeShelf){shelfmanager.FindByTypeShelf(TypeShelf);}
 
-    @GetMapping("/mostPertinentComments")
+    /*@GetMapping("/mostPertinentComments")
     public List<Comment> GetPertinentCommentsBySubject(@RequestParam("id") long id){
         return commentS.retrieveCommentByPertinence(id); }
 

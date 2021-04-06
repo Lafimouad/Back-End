@@ -15,8 +15,8 @@ public interface ShelfManagerInterface {
     void deleteShelf(Long id);
     void deleteShelf(String id);
     Shelf updateShelf(Shelf Sh);
-    Optional<Shelf> FindShelf(Long id);
-    Optional<Shelf> FindShelf(String id);
+    Shelf FindShelf(Long id);
+    Shelf FindShelf(String id);
     List<Shelf> FindByTypeShelf(typeShelf type);
     void AffectProductAShelf(long shelfId, long productId);
     List<String> getAllProductsNamesByShelf(long shelfId);
