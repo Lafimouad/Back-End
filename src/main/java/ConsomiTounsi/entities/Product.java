@@ -19,7 +19,7 @@ public class Product implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_product;
+	private long id_product;
 	
 	private String code_product;
 	private int rating_product;

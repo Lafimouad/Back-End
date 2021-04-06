@@ -22,7 +22,7 @@ public class Shelf implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int idShelf;
+	private long idShelf;
 	
 	@Enumerated(EnumType.STRING)
     private typeShelf typeShelf;

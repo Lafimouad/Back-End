@@ -15,9 +15,9 @@ public interface ProductManagerInterface {
     Product updateProduct(Product P);
     Optional<Product> FindProduct(Long id);
     Optional<Product> FindProduct(String id);
-    int addProductQuantity(long id);
+    int addProductQuantity(long id , int nb);
     int decrementProductQuantity(long id);
-    void resetQuantity();
+    void resetQuantity(long id);
 
 
 
@@ -26,5 +26,6 @@ public interface ProductManagerInterface {
     
     @Transactional
     List<Product> FindProductByIdShelf(Long id);
+
     
 }

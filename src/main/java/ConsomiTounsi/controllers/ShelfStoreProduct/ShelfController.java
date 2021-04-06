@@ -48,13 +48,11 @@ public class ShelfController {
     public void FindByTypeShelf(@RequestParam("typeShelf") typeShelf TypeShelf){shelfmanager.FindByTypeShelf(TypeShelf);}
 
     @PutMapping("/ProductToShelf")
-    @Modifying
     public void AffectProductToShelf(@RequestParam("shelfId") long shelfId, @RequestParam("productId") long productId) {
         shelfmanager.AffectProductAShelf(shelfId, productId);
     }
 
     @PutMapping("/ProductFromShelf")
-    @Modifying
     public void DesaffectProductFromShelf(@RequestParam("shelfId") long shelfId, @RequestParam("productId") long productId) {
         shelfmanager.desaffecterProductFromShelf(shelfId, productId);
     }
