@@ -1,23 +1,37 @@
 package ConsomiTounsi.Service;
 
 
+import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.repository.ClientRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ClientManager implements ClientManagerInterface{
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
+public class ClientManager implements ClientManagerInterface{
+	
+	
+	
+	
+	@Autowired 
+	ClientRepository Clr ;
 	@Override
+	
+	
 	public List<Client> retrieveAllClient() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (List<Client>) Clr.findAll();
 	}
 
 	@Override
 	public Client addClient(Client Cl) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return Clr.save(Cl);
 	}
 
 	@Override

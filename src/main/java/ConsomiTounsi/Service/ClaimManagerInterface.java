@@ -20,5 +20,6 @@ public interface ClaimManagerInterface {
     Claim updateClaimDecision(Claim C);
     Claim updateStatus(Claim C);
     Claim addDecision(Claim C, String decision);
+    //Optional<Claim> FindClaim3(Long idUser);
     
 }

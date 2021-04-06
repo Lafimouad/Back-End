@@ -101,4 +101,9 @@ public class ClaimManager implements ClaimManagerInterface{
 		C.setDecision(decision);
 		return Cr.save(C) ;
 	}
+
+	/*@Override
+	public Optional<Claim> FindClaim3(Long idUser) {
+		return Cr.findByIdUser(idUser) ;
+	}*/
 }

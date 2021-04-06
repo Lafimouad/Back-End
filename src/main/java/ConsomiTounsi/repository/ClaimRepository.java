@@ -20,6 +20,8 @@ public interface ClaimRepository extends CrudRepository<Claim,Long> {
 	
 	Optional<Claim> findByDate(Date date);
 	
+	//@Query("SELECT c FROM Claim c WHERE c.IdUser=:IdUser")
+	//Optional<Claim> findByIdUser (Long idUser) ;
 	
 	
 	

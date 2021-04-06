@@ -11,7 +11,7 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_user;
+	private int idUser;
 	private String username_user;
 	private String password_user;
 	private String phoneNumber_user;
@@ -19,13 +19,40 @@ public class User implements Serializable {
 	@Temporal (TemporalType.DATE)
 	private Date dateBirth_user;
 	private String address_user;
+	@Enumerated(EnumType.STRING)
+	private Gender genderClient;
 
-	public int getId_user() {
-		return id_user;
+	@Enumerated(EnumType.STRING)
+	private WorkField workfieldClient;
+	
+	
+	
+	
+	
+	public Gender getGenderClient() {
+		return genderClient;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setGenderClient(Gender genderClient) {
+		this.genderClient = genderClient;
+	}
+
+	public WorkField getWorkfieldClient() {
+		return workfieldClient;
+	}
+
+	public void setWorkfieldClient(WorkField workfieldClient) {
+		this.workfieldClient = workfieldClient;
+	}
+
+	
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getUsername_user() {

@@ -18,8 +18,8 @@ public class Admin extends User implements Serializable {
 		this.role_admin = role_admin;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="admin")
-	private Set<Advertisement> advertisement;
+	/*@OneToMany(cascade = CascadeType.ALL, mappedBy="admin")
+	private Set<Advertisement> advertisement; */
 
 	@ManyToOne
 	Message message;

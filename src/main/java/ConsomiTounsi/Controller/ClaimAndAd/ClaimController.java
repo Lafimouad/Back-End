@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -31,13 +31,18 @@ public class ClaimController {
 	
 	@GetMapping("/home")
 	public String Home(){
-		return ("<h1> WELCOME TO THE CLAIMANT SERVICES </h1>");
+		return ("WELCOME TO THE CLAIMANT SERVICES");
 	}
 	
 	@GetMapping("/findClaim/{id}")
 	public Claim FindClaim(@PathVariable("id") Long id){
 		return claimManagerI.FindClaim(id);
 	
+	}
+	
+	@GetMapping("/find/{subject}")
+	public Optional<Claim> FindBySubject(@PathVariable("subject") String subject){
+		return claimManagerI.FindBySubject(subject);
 	}
 	
 	@GetMapping("/getC")
@@ -47,8 +52,9 @@ public class ClaimController {
 	}
 	
 	@DeleteMapping("/remove/{id}")
-	public void removeClaim(@PathVariable("id") Long id) {
+	public ResponseEntity<?> removeClaim(@PathVariable("id") Long id) {
 	claimManagerI.deleteClaim(id);
+	return new ResponseEntity<>("Claim Deleted",HttpStatus.OK);
 	}
 	
 	@PostMapping("/add")
@@ -68,7 +74,15 @@ public class ClaimController {
 	
 	
 	
-	
+	/*"idAdvertisment" : 45 ,
+    "nameAdvertisement" : null ,
+    "dateAdvertisment" : 444554,
+	"enddate" : 55554677 ,
+	"finalviews": null,
+	"targetviews" : null ,
+    "typeAdvertisement" : null ,
+	"cost" : null ,
+	"channel" : null*/
 	
 	
 	

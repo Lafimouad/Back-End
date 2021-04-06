@@ -9,110 +9,154 @@ public class Product implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_product;
+	private int idProduct;
 	
-	private int quantity_product;
-	private String code_product;
-	private int rating_product;
-	private String name_product;
-	private String category_product;
-	private double price_product;
-	private String shelf_product;
-	private boolean available_product;
-	private String description_product;
-	private double weight_product;
+	private int quantityProduct;
+	private String codeProduct;
+	private int ratingProduct;
+	private String nameProduct;
+	@Enumerated(EnumType.STRING)
+	private TypeCategory categoryProduct;
+	private double priceProduct;
+	private String shelfProduct;
+	private boolean availableProduct;
+	private String descriptionProduct;
+	private double weightProduct;
 
-	public int getId_product() {
-		return id_product;
+	
+
+	
+
+	public int getIdProduct() {
+		return idProduct;
 	}
 
-	public void setId_product(int id_product) {
-		this.id_product = id_product;
+	public void setIdProduct(int idProduct) {
+		this.idProduct = idProduct;
 	}
 
-	public int getQuantity_product() {
-		return quantity_product;
+	public int getQuantityProduct() {
+		return quantityProduct;
 	}
 
-	public void setQuantity_product(int quantity_product) {
-		this.quantity_product = quantity_product;
+	public void setQuantityProduct(int quantityProduct) {
+		this.quantityProduct = quantityProduct;
 	}
 
-	public String getCode_product() {
-		return code_product;
+	public String getCodeProduct() {
+		return codeProduct;
 	}
 
-	public void setCode_product(String code_product) {
-		this.code_product = code_product;
+	public void setCodeProduct(String codeProduct) {
+		this.codeProduct = codeProduct;
 	}
 
-	public int getRating_product() {
-		return rating_product;
+	public int getRatingProduct() {
+		return ratingProduct;
 	}
 
-	public void setRating_product(int rating_product) {
-		this.rating_product = rating_product;
+	public void setRatingProduct(int ratingProduct) {
+		this.ratingProduct = ratingProduct;
 	}
 
-	public String getName_product() {
-		return name_product;
+	public String getNameProduct() {
+		return nameProduct;
 	}
 
-	public void setName_product(String name_product) {
-		this.name_product = name_product;
+	public void setNameProduct(String nameProduct) {
+		this.nameProduct = nameProduct;
 	}
 
-	public String getCategory_product() {
-		return category_product;
+	public TypeCategory getCategoryProduct() {
+		return categoryProduct;
 	}
 
-	public void setCategory_product(String category_product) {
-		this.category_product = category_product;
+	public void setCategoryProduct(TypeCategory categoryProduct) {
+		this.categoryProduct = categoryProduct;
 	}
 
-	public double getPrice_product() {
-		return price_product;
+	public double getPriceProduct() {
+		return priceProduct;
 	}
 
-	public void setPrice_product(double price_product) {
-		this.price_product = price_product;
+	public void setPriceProduct(double priceProduct) {
+		this.priceProduct = priceProduct;
 	}
 
-	public String getShelf_product() {
-		return shelf_product;
+	public String getShelfProduct() {
+		return shelfProduct;
 	}
 
-	public void setShelf_product(String shelf_product) {
-		this.shelf_product = shelf_product;
+	public void setShelfProduct(String shelfProduct) {
+		this.shelfProduct = shelfProduct;
 	}
 
-	public boolean isAvailable_product() {
-		return available_product;
+	public boolean isAvailableProduct() {
+		return availableProduct;
 	}
 
-	public void setAvailable_product(boolean available_product) {
-		this.available_product = available_product;
+	public void setAvailableProduct(boolean availableProduct) {
+		this.availableProduct = availableProduct;
 	}
 
-	public String getDescription_product() {
-		return description_product;
+	public String getDescriptionProduct() {
+		return descriptionProduct;
 	}
 
-	public void setDescription_product(String description_product) {
-		this.description_product = description_product;
+	public void setDescriptionProduct(String descriptionProduct) {
+		this.descriptionProduct = descriptionProduct;
 	}
 
-	public double getWeight_product() {
-		return weight_product;
+	public double getWeightProduct() {
+		return weightProduct;
 	}
 
-	public void setWeight_product(double weight_product) {
-		this.weight_product = weight_product;
+	public void setWeightProduct(double weightProduct) {
+		this.weightProduct = weightProduct;
 	}
 
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public Set<Feedback> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(Set<Feedback> feedback) {
+		this.feedback = feedback;
+	}
+
+	public Set<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(Set<Order> order) {
+		this.order = order;
+	}
+
+	public Set<Shelf> getR_product() {
+		return R_product;
+	}
+
+	public void setR_product(Set<Shelf> r_product) {
+		R_product = r_product;
+	}
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
 	@ManyToOne
 	Supplier supplier;
-
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
 	private Set<Feedback> feedback;
 
