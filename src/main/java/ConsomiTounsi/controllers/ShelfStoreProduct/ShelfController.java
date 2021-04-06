@@ -6,6 +6,7 @@ import ConsomiTounsi.entities.Comment;
 import ConsomiTounsi.entities.Shelf;
 import ConsomiTounsi.entities.typeShelf;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,22 +47,22 @@ public class ShelfController {
     @PutMapping("/TypeShelf")
     public void FindByTypeShelf(@RequestParam("typeShelf") typeShelf TypeShelf){shelfmanager.FindByTypeShelf(TypeShelf);}
 
-    /*@GetMapping("/mostPertinentComments")
-    public List<Comment> GetPertinentCommentsBySubject(@RequestParam("id") long id){
-        return commentS.retrieveCommentByPertinence(id); }
-
-    @PutMapping("/pertinentComments")
-    public void updatePertinent(){
-        commentS.setPertinentComments();
+    @PutMapping("/ProductToShelf")
+    @Modifying
+    public void AffectProductToShelf(@RequestParam("shelfId") long shelfId, @RequestParam("productId") long productId) {
+        shelfmanager.AffectProductAShelf(shelfId, productId);
     }
 
-    @GetMapping("/retrieveSubjectComments-idSubject")
-    public List<Comment> retrieveSubjectComments(@RequestParam("id") long id){
-        return commentS.retrieveSubjectComments(id);
+    @PutMapping("/ProductFromShelf")
+    @Modifying
+    public void DesaffectProductFromShelf(@RequestParam("shelfId") long shelfId, @RequestParam("productId") long productId) {
+        shelfmanager.desaffecterProductFromShelf(shelfId, productId);
     }
 
 
-}*/
+    @GetMapping("/ProductsNamesByShelf")
+    public List<String> getAllProductsNamesByShelf(@RequestParam("id") long shelfId){
+        return shelfmanager.getAllProductsNamesByShelf(shelfId); }
 
 
 
