@@ -1,6 +1,8 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Event;
+import ConsomiTounsi.entities.Pool;
 import ConsomiTounsi.repository.EventRepository;
 
 import java.util.List;
@@ -19,36 +21,36 @@ public class EventManager implements EventManagerInterface{
 	
     @Override
     public List<Event> retrieveAllEvent() {
-        return null;
+        return  (List<Event>) Er.findAll();
     }
 
     @Override
     public Event addEvent(Event E) {
-        return null;
+        return  Er.save(E);
     }
 
     @Override
     public void deleteEvent(Long id) {
-
+        Er.deleteById(id);
     }
 
     @Override
     public void deleteEvent(String id) {
-
+        Er.deleteById(Long.parseLong(id));
     }
 
     @Override
     public Event updateEvent(Event E) {
-        return null;
+        return Er.save(E) ;
     }
 
     @Override
-    public Optional<Event> FindEvent(Long id) {
-        return Optional.empty();
+    public Event FindEventById(Long id) {
+        return Er.findById(id).orElse(new Event());
     }
 
     @Override
-    public Optional<Event> FindEvent(String id) {
-        return Optional.empty();
+    public Event FindEventById(String id) {
+        return Er.findById(Long.parseLong(id)).orElse(new Event());
     }
 }

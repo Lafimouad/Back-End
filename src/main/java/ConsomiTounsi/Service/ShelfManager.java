@@ -67,6 +67,11 @@ public class ShelfManager implements ShelfManagerInterface{
 
 	}*/
 
+    @Override
+    public List<Shelf> FindByTypeShelf(typeShelf type) {
+        return Shr.FindByTypeShelf(type);
+    }
+
     @Transactional
     public void AffectProductAShelf(long shelfId, long productId) {
 

@@ -12,6 +12,6 @@ public interface DonationManagerInterface {
     void deleteDonation(Long id);
     void deleteDonation(String id);
     Donation updateDonation(Donation Do);
-    Optional<Donation> FindDonation(Long id);
-    Optional<Donation> FindDonation(String id);
+    public Donation FindDonationById(Long id);
+    public Donation FindDonationById(String id);
 }

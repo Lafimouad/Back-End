@@ -1,5 +1,6 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Pool;
 import ConsomiTounsi.repository.PoolRepository;
 
@@ -18,36 +19,36 @@ public class PoolManager implements PoolManagerInterface{
 	 
     @Override
     public List<Pool> retrieveAllPool() {
-        return null;
+        return (List<Pool>) Poolr.findAll();
     }
 
     @Override
     public Pool addPool(Pool Po) {
-        return null;
+        return Poolr.save(Po);
     }
 
     @Override
     public void deletePool(Long id) {
-
+        Poolr.deleteById(id);
     }
 
     @Override
     public void deletePool(String id) {
-
+        Poolr.deleteById(Long.parseLong(id));
     }
 
     @Override
     public Pool updatePool(Pool Po) {
-        return null;
+        return Poolr.save(Po) ;
     }
 
     @Override
-    public Optional<Pool> FindPool(Long id) {
-        return Optional.empty();
+    public Pool FindPoolById(Long id) {
+        return Poolr.findById(id).orElse(new Pool());
     }
 
     @Override
-    public Optional<Pool> FindPool(String id) {
-        return Optional.empty();
+    public Pool FindPoolById(String id) {
+        return  Poolr.findById(Long.parseLong(id)).orElse(new Pool());
     }
 }

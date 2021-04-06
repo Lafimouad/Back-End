@@ -1,6 +1,7 @@
 package ConsomiTounsi.Service;
 
 
+import ConsomiTounsi.entities.Shelf;
 import ConsomiTounsi.entities.Store;
 import ConsomiTounsi.repository.StoreRepository;
 
@@ -19,39 +20,20 @@ public class StoreManager implements StoreManagerInterface{
 	    StoreRepository Str; 
     @Override
     public List<Store> retrieveAllStore() {
-        return null;
+
+        return (List<Store>) Str.findAll();
     }
 
-    @Override
-    public Store addStore(Store St) {
-        return null;
-    }
 
     @Override
-    public void deleteStore(Long id) {
-
-    }
-
-    @Override
-    public void deleteStore(String id) {
-
+    public int UpdateAdressStore(String adress, long id) {
+        return Str.UpdateAdressStore(adress,id);
     }
 
     @Override
     public Store updateStore(Store St) {
-        return null;
-    }
 
-    @Override
-    public Optional<Store> FindStore(Long id) {
-        return Optional.empty();
-    }
+        return Str.save(St);    }
 
-    @Override
-    public Optional<Store> FindStore(String id) {
-        return Optional.empty();
-    }
-   
-    
 
 }

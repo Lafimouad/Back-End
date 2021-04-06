@@ -12,6 +12,6 @@ public interface EventManagerInterface {
     void deleteEvent(Long id);
     void deleteEvent(String id);
     Event updateEvent(Event E);
-    Optional<Event> FindEvent(Long id);
-    Optional<Event> FindEvent(String id);
+    public Event FindEventById(Long id);
+    public Event FindEventById(String id);
 }

@@ -1,6 +1,7 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Donation;
+import ConsomiTounsi.entities.Event;
 import ConsomiTounsi.repository.DonationRepository;
 
 import java.util.List;
@@ -16,36 +17,37 @@ public class DonationManager implements DonationManagerInterface{
 	    DonationRepository Dor; 
     @Override
     public List<Donation> retrieveAllDonation() {
-        return null;
+        return  (List<Donation>) Dor.findAll();
     }
 
     @Override
     public Donation addDonation(Donation Do) {
-        return null;
+        return  Dor.save(Do);
+
     }
 
     @Override
     public void deleteDonation(Long id) {
-
+        Dor.deleteById(id);
     }
 
     @Override
     public void deleteDonation(String id) {
-
+        Dor.deleteById(Long.parseLong(id));
     }
 
     @Override
     public Donation updateDonation(Donation Do) {
-        return null;
+        return Dor.save(Do) ;
     }
 
     @Override
-    public Optional<Donation> FindDonation(Long id) {
-        return Optional.empty();
+    public Donation FindDonationById(Long id) {
+        return Dor.findById(id).orElse(new Donation());
     }
 
     @Override
-    public Optional<Donation> FindDonation(String id) {
-        return Optional.empty();
+    public Donation FindDonationById(String id) {
+        return Dor.findById(Long.parseLong(id)).orElse(new Donation());
     }
 }

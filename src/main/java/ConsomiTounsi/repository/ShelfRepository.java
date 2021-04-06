@@ -17,8 +17,8 @@ public interface ShelfRepository extends CrudRepository<Shelf,Long> {
 	 /*List<Shelf> FindByTypeShelf(typeShelf type);*/
 
 
-	@Query(value="SELECT COUNT(p) FROM Product p WHERE p.shelf_id_shelf = idshelf",nativeQuery = true)
-	int getNbProductsByshelf(long idshelf);
+	@Query(value="SELECT s FROM Shelf s WHERE s.typeShelf = type",nativeQuery = true)
+	List<Shelf> FindByTypeShelf(typeShelf type);
 
 
 
