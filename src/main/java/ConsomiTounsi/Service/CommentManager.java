@@ -1,13 +1,11 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.Comment;
 import ConsomiTounsi.entities.Subject;
 import ConsomiTounsi.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
@@ -25,14 +23,17 @@ public class CommentManager implements CommentManagerInterface{
     }
 
     @Override
-    public void addComment(Comment Co) {
+    public void addComment(Comment Co , long id) {
         boolean prohibited = false;
-        List<String> prohibitedDict = Arrays.asList("fuck", "shit", "bastard", "bitch");
+        List<String> prohibitedDict = Arrays.asList("barcha", "klem", "khayeb");
         List<String> List = new ArrayList<String>(Arrays.asList(Co.getTextComment().split("\\s+")));
         for (String word : List ) {
             if (prohibitedDict.contains(word)){ prohibited = true ;}}
         if (prohibited == false )
         { Co.setLikesComment(0);
+        Co.setMostPertinentComment(false);
+        Subject subj = subjectS.FindSubject(id);
+        Co.setSubject(subj);
         cr.save(Co);} }
 
     @Override
@@ -60,19 +61,36 @@ public class CommentManager implements CommentManagerInterface{
 
 
     @Override
-    public List<Comment> retrieveCommentByPertinence(long id){
-        return cr.retrievePertinentCommentsBySubject(id);
-    }
+    public Comment retrieveCommentByPertinence(long id) {
+        Subject s = subjectS.FindSubject(id);
+        long idC = 0;
+        Set<Comment> com = s.getComment();
+        for (Comment c : com) {
+            if (c.isMostPertinentComment() == true) {
+                 idC = c.getIdComment();}}
+        Comment cc = FindComment(idC);
+        cc.setSubject(null);
+        return cc; }
+
 
     @Override
-    public List<Comment> retrieveSubjectComments(long id) {
-        return cr.retrieveSubjectComments(id);
+    public Set<Comment> retrieveSubjectComments(long id) {
+        Subject s = subjectS.FindSubject(id);
+        Set<Comment> com = s.getComment();
+        for (Comment c : com){ c.setSubject(null);}
+        return com;
     }
 
     @Override
     public void setPertinentComments() {
         int MaxLikes=0;
         long idMax = 0 ;
+        long id = 0;
+        List<Comment> ListComment =  retrieveAllComment();
+        for ( Comment c : ListComment){
+            id = c.getIdComment();
+            cr.notPertinentComment(id);
+        }
         List<Subject> ListSubjects = subjectS.retrieveAllSubject();
         for ( Subject subj : ListSubjects) {
             Set<Comment> ListComments = subj.getComment();
@@ -92,7 +110,5 @@ public class CommentManager implements CommentManagerInterface{
         Comment a = cr.findById(id).orElse(new Comment());
         int nb = a.getLikesComment() + 1;
         return cr.addLike(nb , id) ; }
-
-
 
 }

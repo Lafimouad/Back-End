@@ -7,24 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/Forum/Comment")
 public class CommentController {
 
-    /*{
-    "idComment": 1,
-    "likesComment": 2,
-    "prohibitedDictComment": false,
-    "mostPertinatComment": false,
-    "subject": null
-}*/
-
     @Autowired
     CommentManagerInterface commentS;
 
-    @PostMapping("/add")
-    public void addComment(@RequestBody Comment a){ commentS.addComment(a);}
+    @PutMapping("/add")
+    public void addComment(@RequestBody Comment a, @RequestParam("id") long  id){ commentS.addComment(a , id);}
 
     @GetMapping("/retrieve-all")
     public List<Comment> getListComments(){ return commentS.retrieveAllComment(); }
@@ -48,7 +41,7 @@ public class CommentController {
     public void addLike(@RequestParam("id") long id){commentS.addLike(id);}
 
     @GetMapping("/mostPertinentComments")
-    public List<Comment> GetPertinentCommentsBySubject(@RequestParam("id") long id){
+    public Comment GetPertinentCommentsBySubject(@RequestParam("id") long id){
         return commentS.retrieveCommentByPertinence(id); }
 
     @PutMapping("/pertinentComments")
@@ -57,7 +50,7 @@ public class CommentController {
     }
 
     @GetMapping("/retrieveSubjectComments-idSubject")
-    public List<Comment> retrieveSubjectComments(@RequestParam("id") long id){
+    public Set<Comment> retrieveSubjectComments(@RequestParam("id") long id){
         return commentS.retrieveSubjectComments(id);
     }
 

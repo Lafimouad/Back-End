@@ -12,13 +12,7 @@ import java.util.List;
 public class SubjectController {
 
     /*{
-    "idSubject": 1,
-    "redendantSubject": false,
-    "featuredSubject": false,
     "descriptionSubject": null,
-    "likesSubject": 2,
-    "user": null,
-    "comment": null
 }*/
 
     @Autowired
@@ -52,12 +46,12 @@ public class SubjectController {
 
     @PutMapping("/setFeauturedSubjects")
     public void FeatureSubjects(){
-        subjectS.setFeauturedSubjects();
+        subjectS.setFeaturedSubjects();
     }
 
     @GetMapping("/getFeaturedSubjects")
     public void ListFeauturedSubjects(){
-        subjectS.getFeautredSubjects();
+        subjectS.getFeaturedSubjects();
     }
 }
 

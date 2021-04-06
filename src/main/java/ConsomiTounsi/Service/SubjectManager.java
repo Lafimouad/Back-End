@@ -11,6 +11,7 @@ import java.util.*;
 
 @Service
 public class SubjectManager implements SubjectManagerInterface{
+
     @Autowired
     SubjectRepository sr;
 
@@ -22,13 +23,14 @@ public class SubjectManager implements SubjectManagerInterface{
     @Override
     public void addSubject(Subject Su) {
         boolean prohibited = false;
-        List<String> prohibitedDict = Arrays.asList("fuck", "shit", "bastard", "bitch");
+        List<String> prohibitedDict = Arrays.asList("barcha", "klem", "khayeb");
         List<String> List = new ArrayList<String>(Arrays.asList(Su.getDescriptionSubject().split("\\s+")));
         for (String word : List ) {
             if (prohibitedDict.contains(word)){ prohibited = true ;}
         }
         if (prohibited == false )
         { Su.setLikesSubject(0);
+          Su.setFeaturedSubject(false);
             sr.save(Su);
         }
     }
@@ -66,11 +68,16 @@ public class SubjectManager implements SubjectManagerInterface{
         return sr.addLike(nb , id) ; }
 
     @Override
-    public void setFeauturedSubjects() {
+    public void setFeaturedSubjects() {
         int i = 0;
         int MaxLikes=0;
         long idMax = 0 ;
+        long id=0;
         List<Subject> ListSubjects = retrieveAllSubject();
+        for ( Subject subj : ListSubjects){
+            id = subj.getIdSubject();
+            sr.NotFeatured(id);
+        }
         while(i<3)
         {
         for ( Subject subj : ListSubjects) {
@@ -88,7 +95,7 @@ public class SubjectManager implements SubjectManagerInterface{
     }
 
     @Override
-    public List<Subject> getFeautredSubjects() {
+    public List<Subject> getFeaturedSubjects() {
         return sr.getFeaturedSubjects();
     }
 

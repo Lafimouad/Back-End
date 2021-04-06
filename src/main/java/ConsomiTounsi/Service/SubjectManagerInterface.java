@@ -16,7 +16,7 @@ public interface SubjectManagerInterface {
     Subject FindSubject(String id);
 
     int addLike(long id);
-    void setFeauturedSubjects();
-    List<Subject> getFeautredSubjects();
+    void setFeaturedSubjects();
+    List<Subject> getFeaturedSubjects();
 
 }
