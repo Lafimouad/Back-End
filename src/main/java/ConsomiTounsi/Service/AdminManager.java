@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -102,8 +105,10 @@ public class AdminManager implements AdminManagerInterface{
     }
 
     @Override
-    public int resetAbsence(int nb) {
-        return Ar.resetAbsence(nb);
+    public void resetAbsence(int nb) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        if ( now.getDayOfMonth() == 01) { Ar.resetAbsence(0);}
     }
 
     @Override

@@ -25,11 +25,7 @@ public interface DelivererManagerInterface {
     double updateprimeDeliverer(long id);
 
     double calculatePrime(long id);
-    //% avg des livraisons ? , add money
-    //% si service behy , add money
-    //or % note ?
 
-    //deliverer of the month is the one wih the biggest bonus
     void electDelivererOftheMonth();
 
 }

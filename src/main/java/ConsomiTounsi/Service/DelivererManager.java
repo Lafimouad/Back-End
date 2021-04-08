@@ -1,5 +1,7 @@
 package ConsomiTounsi.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -177,7 +179,11 @@ public class DelivererManager implements DelivererManagerInterface{
 
 	@Override
 	public void resetBonus() {
-		dr.resetBonus();
+		//%date systeme , si 01 debut de mois
+		//appelé chaque auth
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		if ( now.getDayOfMonth() == 01) { dr.resetBonus();}
 	}
 
 	@Override

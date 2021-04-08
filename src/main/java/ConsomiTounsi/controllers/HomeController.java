@@ -2,6 +2,7 @@ package ConsomiTounsi.controllers;
 
 import ConsomiTounsi.Service.AdminManagerInterface;
 import ConsomiTounsi.Service.ClientManagerInterface;
+import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.Service.UserManagerInterface;
 import ConsomiTounsi.configuration.security.UserDetailsService;
 import ConsomiTounsi.configuration.token.JWTUtility;
@@ -35,6 +36,9 @@ public class HomeController {
 
 	@Autowired
 	private UserDetailsService userService;
+
+	@Autowired
+	DelivererManagerInterface ds;
 
 	@Autowired
 	ClientManagerInterface cs;
@@ -76,6 +80,8 @@ public class HomeController {
 		{UserR.updateNbaccess(0 , jwtRequest.getUsername());}
 		// ANGULAR :  message = "it would be better to change the password to better secure your account";
 
+		as.resetAbsence(0);
+		ds.resetBonus();
 		final String token =
 				jwtUtility.generateToken(userDetails);
 
