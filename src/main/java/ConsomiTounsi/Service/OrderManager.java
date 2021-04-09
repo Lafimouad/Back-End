@@ -13,8 +13,6 @@ import java.util.Optional;
 @Service
 public class OrderManager implements OrderManagerInterface{
     @Autowired
-    ProductManager pm;
-    @Autowired
     OrderRepository or;
     @Override
     public List<Order> retrieveAllOrder() {
@@ -25,17 +23,15 @@ public class OrderManager implements OrderManagerInterface{
     public Order addOrder(Order O) {
         System.out.println(O.toString());
         Order optionalorder=or.save(O);
-        List<Product> products =O.getProducts();
+       /* List<Product> products =O.getProducts();
         for (int i=0;i<products.size();i++){
 
             Product p=products.get(i);
             p.setOrder(optionalorder);
             pm.updateProduct(p);
         }
-
-
-
-
+        
+        */
         return optionalorder;
     }
 

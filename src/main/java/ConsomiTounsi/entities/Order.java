@@ -22,31 +22,23 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private Long id_order;
+	private Long id;
 	@Temporal (TemporalType.DATE)
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private Date date_order;
+	private Date date;
 	
 	@Enumerated(EnumType.STRING)
-	private Payment_type paymentType_order;
+	private Payment_type paymentType;
 	
-	private float cost_order;
-	private boolean paid_order;
-	private float weight_order;
-    private Long id_user;
+	private float cost;
+	private boolean paid;
+	private float weight;
+    private Long idUser;
 
 
 	@ManyToOne
 	Delivery delivery;
-	@OneToMany(mappedBy="order")
-	private List<Product> products;
-	public List<Product> getProducts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public List<Product> getProducts1() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	@ManyToMany(mappedBy="orders", cascade = CascadeType.ALL)
+	private List<Product> product;
 
 }

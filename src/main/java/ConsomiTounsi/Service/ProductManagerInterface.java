@@ -12,6 +12,4 @@ public interface ProductManagerInterface {
     void deleteProduct(String id);
     Product updateProduct(Product P);
     Optional<Product> FindProduct(Long id);
-    Optional<Product> FindProduct(String id);
-    List<Product> FindByOrder(Long id);
-}
+    Optional<Product> FindProduct(String id);}
