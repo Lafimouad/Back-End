@@ -32,7 +32,7 @@ public class EventManager implements EventManagerInterface{
 
     @Override
     public Event addEvent(Event E , long id) {
-       
+
         Pool p = Poor.findById(id).orElse(new Pool());
         double amountPool = p.getAmount_pool();
         double amountEvent = E.getRaisedAmount_event();
