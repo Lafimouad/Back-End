@@ -17,14 +17,17 @@ import java.util.Optional;
 
 @Service
 public class PaymentService {
+    //ebde lehni
     private JavaMailSender javaMailSender;
     @Autowired
     public PaymentService(JavaMailSender javaMailSender)
     {
         this.javaMailSender=javaMailSender;
     }
+    //habes lehni
     @Autowired
     PaymentRepository pr;
+    //ebde lehni
     public void sendEmail(String sendTo,String text) throws MailException, MessagingException {
         MimeMessage message = this.javaMailSender.createMimeMessage();
 
@@ -51,7 +54,7 @@ public class PaymentService {
         this.javaMailSender.send(simpleMailMessage);*/
     }
 //find All Payment
-
+//habes lehni
     public List<Payment> retrieveAllPayments() {
         return (List<Payment>) pr.findAll();
     }
@@ -59,6 +62,7 @@ public class PaymentService {
 //Add Payment
 
     public Payment AddPayment(Payment payment) throws MessagingException {
+        //hethi
         this.sendEmail("mouad19971@gmail.com","Payment done");
         return pr.save(payment);
     }
