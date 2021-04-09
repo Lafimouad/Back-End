@@ -2,8 +2,11 @@ package ConsomiTounsi.Controller.ClaimAndAd;
 
 
 
+
 import java.util.List;
 import java.util.Optional;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,6 +48,20 @@ public class ClaimController {
 		return claimManagerI.FindBySubject(subject);
 	}
 	
+	
+	@GetMapping("/find/{status}")
+	public Optional<Claim> FindByStatus(@PathVariable("status") String status){
+		return claimManagerI.FindBySubject(status);
+	}
+	
+	
+	
+	@GetMapping("/calc")
+	public Long Calcul(){
+		return claimManagerI.CountClaims();
+	}
+	
+	
 	@GetMapping("/getC")
 	public List<Claim> getClaims() {
 	List<Claim> list = claimManagerI.retrieveAllClaim();
@@ -63,13 +80,30 @@ public class ClaimController {
 		return claimManagerI.addClaim(C) ;	}
 	
 	@PutMapping("/modify")
-	public Claim modifyUser(@RequestBody Claim C) {
+	public Claim modifyClaim(@RequestBody Claim C) {
 	return claimManagerI.updateClaim(C);
 	}
 	
 	
 	
+	@PutMapping("/decision")
+	public ResponseEntity<?> modifyDecisionAndStatus(@RequestBody Claim C) {
+		claimManagerI.updateClaimDecision(C);
+		return new ResponseEntity<>("your decision has been update and the status has been set",HttpStatus.OK);
+	}
 	
+	/*@GetMapping("/mail")
+	public ResponseEntity<?> mail(){
+		 claimManagerI.SendEmail();
+		 return new ResponseEntity<>("your decision has been update and the status has been set",HttpStatus.OK);
+	}*/
+	
+	
+	
+	/*@PutMapping("/updateStatus/{id}")
+	public Claim updatestatus(@PathVariable("id") Long id) {
+	return claimManagerI.updateStatus(id);
+	}*/
 	
 	
 	
@@ -89,10 +123,30 @@ public class ClaimController {
 	
 	
 	
-	/*"idClaim" : 5 ,
-    "desicion" : null ,
-    "date" : 15022020 ,
+	/*"idClaim" :11 ,
+    "decision" : "merci pour votre temps, votre livraison va etre verifiée" ,
+    "date" : 12 ,
     "status" : null, 
-    "description" : null,
-    "subject" : null*/
+    "description" : " medium product i'm so disappointed, also bad delivery   ",
+    "subject" : null,
+    "level" : null,
+    "user" : {
+          "idUser" : 1,
+"username_user" : null ,
+"password_user" : null,
+"phoneNumber_user" : null,
+"emailAddress_user" : null,
+"dateBirth_user" : null,
+"address_user" : null,
+"genderClient" : "FEMALE",
+"workfieldClient" : null
+
+    }
+    */
+	
+	
+	
+	
+	
+	
 }

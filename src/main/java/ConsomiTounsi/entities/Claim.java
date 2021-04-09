@@ -25,7 +25,7 @@ public class Claim implements Serializable {
 	private String status;
 
 	private String description;
-	
+	private int Level;
 	
 	private String subject;
 
@@ -99,6 +99,18 @@ public class Claim implements Serializable {
 
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+
+
+
+	public int getLevel() {
+		return Level;
+	}
+
+
+
+	public void setLevel(int level) {
+		Level = level;
 	}
 
 

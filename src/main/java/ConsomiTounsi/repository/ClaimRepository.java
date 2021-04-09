@@ -18,11 +18,17 @@ public interface ClaimRepository extends CrudRepository<Claim,Long> {
 	@Query("SELECT m FROM Claim m WHERE m.subject=:subject")
     Optional<Claim> findBysubject(@Param("subject") String subject);
 	
+	
+	@Query("SELECT m FROM Claim m WHERE m.status=:status")
+    Optional<Claim> findBystatus(@Param("status") String status);
+	
 	Optional<Claim> findByDate(Date date);
 	
 	//@Query("SELECT c FROM Claim c WHERE c.IdUser=:IdUser")
 	//Optional<Claim> findByIdUser (Long idUser) ;
 	
 	
+	@Query("SELECT COUNT(m) FROM Claim m")
+	long getNumberOfClaims();
 	
 }

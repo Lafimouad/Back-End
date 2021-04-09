@@ -18,8 +18,11 @@ public interface ClaimManagerInterface {
     Optional<Claim> FindBySubject(String subject);
     Optional<Claim> FindByDate(Date date);
     Claim updateClaimDecision(Claim C);
-    Claim updateStatus(Claim C);
-    Claim addDecision(Claim C, String decision);
+    //Claim updateStatus(Long id);
+    //Claim addDecision(Claim C, String decision);
     //Optional<Claim> FindClaim3(Long idUser);
-    
+    Long CountClaims() ;
+    //void updateStatus();
+    Optional<Claim> FindByStatus(String status);
+   
 }
