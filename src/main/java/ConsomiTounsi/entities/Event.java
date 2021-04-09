@@ -20,7 +20,7 @@ public class Event implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_event;
+	private long id_event;
 	
 	private double raisedAmount_event;
 	private String place_event;

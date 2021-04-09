@@ -20,7 +20,6 @@ public class EventManager implements EventManagerInterface{
         PoolRepository Poor;
 
 
-	 
 	
     @Override
     public List<Event> retrieveAllEvent() {
@@ -28,17 +27,21 @@ public class EventManager implements EventManagerInterface{
     }
 
     @Override
-    public Event addEvent(Event E , long id) {
+    public Event addEvent1(Event E) {
+        return Er.save(E);
+    }
 
+    @Override
+    public Event addEvent(Event E , long id) {
+        Event optionalEvent = new Event() ;
         Pool p = Poor.findById(id).orElse(new Pool());
         double amountPool = p.getAmount_pool();
         double amountEvent = E.getRaisedAmount_event();
         if (amountPool>amountEvent)
         {double a = amountPool - amountEvent;
         p.setAmount_pool(a);
-        }
-        return Er.save(E);
-
+        optionalEvent = Er.save(E) ;}
+        return optionalEvent;
 
     }
 

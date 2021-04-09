@@ -19,7 +19,7 @@ public class Pool implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_pool;
+	private long id_pool;
 	private double amount_pool;
 
 
