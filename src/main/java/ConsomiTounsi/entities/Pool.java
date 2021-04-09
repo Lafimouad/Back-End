@@ -22,12 +22,16 @@ public class Pool implements Serializable {
 	private int id_pool;
 	private double amount_pool;
 
-	@ManyToOne
-	User user;
+
 	
-	@OneToMany(mappedBy="pool",cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+	/*@OneToMany(mappedBy="pool",cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 			fetch= FetchType.EAGER)
-	private Set<Event> event;
+	private Set<Event> event;*/
+
+	@OneToOne(mappedBy="pool")
+	private Admin admin;
+
+
 
 
 

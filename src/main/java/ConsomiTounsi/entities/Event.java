@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,11 +27,18 @@ public class Event implements Serializable {
 	private String target_event;
 	@Temporal (TemporalType.DATE)
 	private Date date_event;
+	private int nombreplace;
+
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="event")
-	private Set<Donation> donation;
+	private List<Donation> donation;
 	
-	@ManyToOne
-	Pool pool;
+	/*@ManyToOne
+	Pool pool;*/
+
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy="event")
+	private List<Client> clients;
+
+
 }

@@ -134,7 +134,6 @@ public class User implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Claim> claim;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private Set<Pool> pool;
+
 
 }

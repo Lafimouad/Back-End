@@ -3,11 +3,13 @@ package ConsomiTounsi.Service;
 import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Event;
 import ConsomiTounsi.entities.Pool;
+import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.repository.EventRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+import ConsomiTounsi.repository.PoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,11 @@ import org.springframework.stereotype.Service;
 public class EventManager implements EventManagerInterface{
 	
 	 @Autowired
-	    EventRepository Er; 
+	    EventRepository Er;
+	 @Autowired
+        PoolRepository Poor;
+
+
 	 
 	
     @Override
@@ -25,7 +31,13 @@ public class EventManager implements EventManagerInterface{
     }
 
     @Override
-    public Event addEvent(Event E) {
+    public Event addEvent(Event E , long id) {
+       
+        Pool p = Poor.findById(id).orElse(new Pool());
+        double amountPool = p.getAmount_pool();
+        double amountEvent = E.getRaisedAmount_event();
+        if (amountPool>amountEvent)
+
         return  Er.save(E);
     }
 
