@@ -1,9 +1,6 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Admin;
-import ConsomiTounsi.entities.Event;
-import ConsomiTounsi.entities.Pool;
-import ConsomiTounsi.entities.Product;
+import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.EventRepository;
 
 import java.util.List;
@@ -37,8 +34,12 @@ public class EventManager implements EventManagerInterface{
         double amountPool = p.getAmount_pool();
         double amountEvent = E.getRaisedAmount_event();
         if (amountPool>amountEvent)
+        {double a = amountPool - amountEvent;
+        p.setAmount_pool(a);
+        }
+        return Er.save(E);
 
-        return  Er.save(E);
+
     }
 
     @Override
