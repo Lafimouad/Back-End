@@ -1,6 +1,6 @@
 package ConsomiTounsi.entities;
 
-public enum Payment {
+public enum Payment_type {
 	online , doorTodoor
 
 }

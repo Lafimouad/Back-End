@@ -1,9 +1,19 @@
 package ConsomiTounsi.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 @Table(name="\"Order\"")
@@ -12,68 +22,31 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_order;
+	private Long id_order;
 	@Temporal (TemporalType.DATE)
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date date_order;
 	
 	@Enumerated(EnumType.STRING)
-	private Payment paymentType_order;
+	private Payment_type paymentType_order;
 	
 	private float cost_order;
 	private boolean paid_order;
 	private float weight_order;
+    private Long id_user;
 
-	public int getId_order() {
-		return id_order;
-	}
-
-	public void setId_order(int id_order) {
-		this.id_order = id_order;
-	}
-
-	public Date getDate_order() {
-		return date_order;
-	}
-
-	public void setDate_order(Date date_order) {
-		this.date_order = date_order;
-	}
-
-	public Payment getPaymentType_order() {
-		return paymentType_order;
-	}
-
-	public void setPaymentType_order(Payment paymentType_order) {
-		this.paymentType_order = paymentType_order;
-	}
-
-	public float getCost_order() {
-		return cost_order;
-	}
-
-	public void setCost_order(float cost_order) {
-		this.cost_order = cost_order;
-	}
-
-	public boolean isPaid_order() {
-		return paid_order;
-	}
-
-	public void setPaid_order(boolean paid_order) {
-		this.paid_order = paid_order;
-	}
-
-	public float getWeight_order() {
-		return weight_order;
-	}
-
-	public void setWeight_order(float weight_order) {
-		this.weight_order = weight_order;
-	}
 
 	@ManyToOne
 	Delivery delivery;
+	@OneToMany(mappedBy="order")
+	private List<Product> products;
+	public List<Product> getProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public List<Product> getProducts1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Product> Cart;
 }

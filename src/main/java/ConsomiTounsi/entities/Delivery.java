@@ -10,7 +10,7 @@ public class Delivery implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_delivery;
+	private Long id_delivery;
 	
 	@Temporal (TemporalType.DATE)
 	private Date date_delivery;
@@ -18,14 +18,23 @@ public class Delivery implements Serializable {
 	private String destination_delivery;
 	
 	@Enumerated(EnumType.STRING)
+	private QualityOfDelivering quality_delivery;
+	
+	private String service_delivery;
+	
+	@Enumerated(EnumType.STRING)
+	private DurationOfDelivering duration_delivery;
+	
+	@Enumerated(EnumType.STRING)
 	private MeansOfTransport meanOfTransport_delivery;
 	private double cost_delivery;
+	private int scoreDelivery;
 
-	public int getId_delivery() {
+	public long getId_delivery() {
 		return id_delivery;
 	}
 
-	public void setId_delivery(int id_delivery) {
+	public void setId_delivery(long id_delivery) {
 		this.id_delivery = id_delivery;
 	}
 
@@ -61,6 +70,37 @@ public class Delivery implements Serializable {
 		this.cost_delivery = cost_delivery;
 	}
 
+	public String getService_delivery() {
+		return service_delivery;
+	}
+	public void setService_delivery(String service_delivery) {
+		this.service_delivery = service_delivery; 
+	}
+	public DurationOfDelivering getDuration_delivery() {
+		return duration_delivery;
+	}
+
+	public void setDuration_delivery(DurationOfDelivering duration_delivery) {
+		this.duration_delivery = duration_delivery;
+	}
+	public QualityOfDelivering getQuality_delivery() {
+		return quality_delivery;
+	}
+
+	public void setQuality_delivery(QualityOfDelivering quality_delivery) {
+		this.quality_delivery = quality_delivery;
+	}
+	public int getScoreDelivery() {
+		return scoreDelivery;
+	}
+
+	public void setScoreDelivery(int scoreDelivery) {
+		this.scoreDelivery = scoreDelivery;
+	}
+	
+	@ManyToOne
+	Deliverer deliverer;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="delivery")
 	private Set<Order> order;
 }

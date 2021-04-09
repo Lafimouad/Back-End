@@ -2,13 +2,19 @@ package ConsomiTounsi.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ConsomiTounsi.entities.Deliverer;
+import ConsomiTounsi.repository.DelivererRepository;
 @Service
 public class DelivererManager implements DelivererManagerInterface{
 	@Autowired 
 	 DelivererRepository Devrr;
     @Override
     public List<Deliverer> retrieveAllDeliverer() {
-    	return (List<Delivery>) Devrr.findAll();
+    	return (List<Deliverer>) Devrr.findAll();
     }
 
     @Override
@@ -28,7 +34,7 @@ public class DelivererManager implements DelivererManagerInterface{
 
     @Override
     public Deliverer updateDeliverer(Deliverer D) {
-    	return Devr.save(D);
+    	return Devrr.save(D);
     }
 
     @Override
@@ -37,7 +43,12 @@ public class DelivererManager implements DelivererManagerInterface{
     }
 
     @Override
-    public Optional<ConsomiTounsi.entities.Deliverer> FindDeliverer(String id) {
+    public Optional<Deliverer> FindDeliverer2(String id) {
         return Devrr.findById(Long.parseLong(id));
     }
+    
+   /* @Override
+    public List<Deliverer> showAvailableDeliverers(){
+        return Devrr.findAvailableDeliverers();
+    }*/
 }

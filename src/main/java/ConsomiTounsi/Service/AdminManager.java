@@ -1,22 +1,24 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Admin;
+import ConsomiTounsi.entities.Role;
 import ConsomiTounsi.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class AdminManager implements AdminManagerInterface{
-    @Autowired
+    
+	@Autowired
     AdminRepository Ar;
 
     @Override
 
-    public List<Admin> retrieveAllAdmin() {
+    public List<Admin>  retrieveAllAdmin() {
         return (List<Admin>) Ar.findAll();
-    }
+    } 
 
     @Override
     public Admin addAdmin(Admin A) {
@@ -24,12 +26,12 @@ public class AdminManager implements AdminManagerInterface{
     }
 
     @Override
-    public void deleteAdmin(Long id) {
+    public void deleteAdminById(Long id) {
         Ar.deleteById(id);
     }
 
     @Override
-    public void deleteAdmin(String id) {
+    public void deleteAdminById(String id) {
         Ar.deleteById(Long.parseLong(id));
     }
 
@@ -38,12 +40,26 @@ public class AdminManager implements AdminManagerInterface{
         return Ar.save(A) ;   }
 
     @Override
-    public Optional<Admin> FindAdmin(Long id) {
-        return   Ar.findById(id);
+    public Admin FindAdminById(Long id) {
+        return  Ar.findById(id).orElse(new Admin());
     }
 
     @Override
-    public Optional<Admin> FindAdmin(String id) {
-        return  Ar.findById(Long.parseLong(id));
+    public Admin FindAdminById(String id) {
+        return  Ar.findById(Long.parseLong(id)).orElse(new Admin());
     }
+    
+    public List<Admin> FindAdminByRole(Role role){
+    	return Ar.findByRoleAdmin(role);
+    }
+
+	@Override
+	public long getNbAdminByRole(Role role) {
+		return Ar.getNbAdminByRole(role);
+	}
+
+	@Override
+	public long getNbAdmin() {
+		return Ar.getNbAdmin();
+	}
 }
