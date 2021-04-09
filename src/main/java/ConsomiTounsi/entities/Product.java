@@ -23,11 +23,10 @@ public class Product implements Serializable {
 	private Long id;
 	private int quantity;
 	private String code;
-	private float rating;
 	private String name;
 	private String category;
 	private double price;
-
+	private float rating;
 	private typeShelf shelf;
 	private boolean available;
 	private String description;
@@ -38,12 +37,9 @@ public class Product implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
 	private Set<Feedback> feedback;
+	@JsonIgnore
+	@ManyToMany(mappedBy="products",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
 
-	@ManyToMany(cascade= CascadeType.PERSIST)
-	@JoinTable(
-			name = "product_ord",
-			joinColumns = @JoinColumn(name = "product_id"),
-			inverseJoinColumns = @JoinColumn(name = "order_id"))
 	private List<Order> orders;
 
 	@ManyToMany(cascade = CascadeType.ALL)

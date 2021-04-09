@@ -29,7 +29,7 @@ public class StockManager implements StockManagerInterface {
 
 			Product p=products.get(i);
 			p.setStock(optionalStock);
-			sm.updateProduct(p);
+			sm.updateProduct(p.getId(),p);
 		}
 		return optionalStock;
 	}

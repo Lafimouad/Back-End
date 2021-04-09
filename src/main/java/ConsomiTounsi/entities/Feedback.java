@@ -11,6 +11,7 @@ public class Feedback implements Serializable {
 	private int id_feedback;
 	
 	private String description_feedback;
+	private int note ;
 
 	public int getId_feedback() {
 		return id_feedback;

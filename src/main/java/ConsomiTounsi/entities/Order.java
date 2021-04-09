@@ -1,6 +1,7 @@
 package ConsomiTounsi.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,12 +35,16 @@ public class Order implements Serializable {
 	private boolean paid;
 	private float weight;
     private Long idUser;
-
+	@OneToOne
+	Payment payment;
 
 	@ManyToOne
 	Delivery delivery;
-
-	@ManyToMany(mappedBy="orders", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "product_ord",
+			joinColumns = @JoinColumn(name = "order_id"),
+			inverseJoinColumns = @JoinColumn(name = "product_id"))
 
 	private List<Product> products;
 
@@ -47,14 +52,17 @@ public class Order implements Serializable {
 
 		addedProducts.forEach(product -> {
 
-			if (!productExist(product.getId()))
-				products.add(product);
+			if (productExist(product.getId())){
+				throw new IllegalStateException("Product Not Found");
+			}
+			products.add(product);
 		});
 	}
 
 	public void addproducts(Product addedProducts){
-        if (!productExist(addedProducts.getId()))
-            products.add(addedProducts);
+        if (productExist(addedProducts.getId()))
+		{throw new IllegalStateException("Product Not even Found");}
+        products.add(addedProducts);
 
     }
     private  boolean productExist ( Long idProduct ){
@@ -66,4 +74,21 @@ public class Order implements Serializable {
         return  false ;
     }
 
+
 }
+	/*
+	boolean trouve=true;
+	List<Product> l=O.getProducts();
+        for (int i=0;i<l.size();i++)
+		{
+		if(!this.pm.product_exist(l.get(i).getId()))
+		trouve=false;
+		}
+		if(trouve)
+		{
+		orderLegacy.setProducts(l);
+		}
+		else
+		throw new IllegalStateException("One of product is messing");
+
+	 */

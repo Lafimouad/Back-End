@@ -18,7 +18,7 @@ public class PaymentController {
         this.stripeService = stripeService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/stripe")
     public String homepage() {
         return "homepage";
     }

@@ -50,10 +50,9 @@ public class ProductController {
 
     }
     // Update A Product
-    @PutMapping("/product")
-    ResponseEntity<?> updateProduct(@RequestBody Product p) {
-
-        pm.updateProduct(p);
+    @PutMapping("/product/{id}")
+    ResponseEntity<?> updateProduct(@PathVariable Long id,@RequestBody Product p) {
+        pm.updateProduct(id,p);
         return new ResponseEntity<>(new MessageResponseModel("Product Updated"), HttpStatus.CREATED);
     }
 
@@ -65,16 +64,15 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    /*
-    @GetMapping("/product/{id}")
-    ResponseEntity<?> getProductByName(@PathVariable Long id) {
-        Product p;
-        String name=p.getName();
-        return new ResponseEntity<>(pm.findByName(name), HttpStatus.OK);
+
+    @GetMapping("/products/{name}")
+    ResponseEntity<?> getProductByName(@PathVariable String name) {
+        List<Product>p=pm.findByName(name);
+        return new ResponseEntity<>(p, HttpStatus.OK);
 
     }
     
-     */
+
 
     // get All Product By Desc Price
     @GetMapping("/productbydesc")
@@ -89,6 +87,14 @@ public class ProductController {
     @GetMapping("/productbyasc")
     ResponseEntity<?> getAllProductByAscPrice() {
         List<Product> p = pm.findByAscPrice();
+        GetAllProductResponse products = new GetAllProductResponse(p);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // get Product By Category
+    @GetMapping("/prodCategory/{category}")
+    ResponseEntity<?> getprodbyCategory(@PathVariable String category){
+        List<Product> p = pm.findProductByCategory(category);
         GetAllProductResponse products = new GetAllProductResponse(p);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }

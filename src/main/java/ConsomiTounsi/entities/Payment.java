@@ -13,15 +13,16 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class payment implements Serializable {
+public class Payment implements Serializable {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private   Long payment_id;
+    private   Long id;
 
-    private   Long payment_customer_id;
+    private   Long customerId;
     @Temporal(TemporalType.DATE)
-    private Date payment_date;
-    private double payment_amount;
-    private  String payment_description;
+    private Date date;
+    private String description;
+    @OneToOne
+    Order order;
 }

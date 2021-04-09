@@ -19,6 +19,9 @@ import java.util.Optional;
 
     @Override
     public Product addProduct(Product P) {
+        if (!P.getCode().startsWith("619")){
+            throw new IllegalStateException("This Product isn't Tunisian");
+        }
         return Pr.save(P);
     }
 
@@ -40,7 +43,11 @@ import java.util.Optional;
     }
 
     @Override
-    public Product updateProduct(Product P) {
+    public Product updateProduct(Long id,Product P) {
+        Optional<Product> optionalProduct=Pr.findById(id);
+        if (!optionalProduct.isPresent()){
+            throw new IllegalStateException("Product id Not Found");
+        }
         return Pr.save(P);
     }
 
@@ -53,7 +60,11 @@ import java.util.Optional;
     public Optional<Product> FindProduct(String id) {
       return  Pr.findById(Long.parseLong(id));
     }
-
+    public boolean product_exist(Long id)
+    {
+        Optional<Product> p=this.Pr.findById(id);
+        return  p.isPresent();
+    }
 
 
 
@@ -72,6 +83,10 @@ import java.util.Optional;
     // find All Product By Asc Order
     public List<Product> findByAscPrice(){
         return Pr.findAllByOrderByPriceAsc();
+    }
+    //find Product By Category
+    public List<Product> findProductByCategory(String name){
+        return  Pr.findProductByCategory(name);
     }
 
     /*

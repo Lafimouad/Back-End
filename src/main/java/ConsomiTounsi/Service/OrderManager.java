@@ -18,10 +18,8 @@ import java.util.Optional;
 public class OrderManager implements OrderManagerInterface{
     @Autowired
     OrderRepository or;
-    @Autowired
-    ProductRepository pr;
-    @Autowired
-    ProductManager pm;
+    //@Autowired
+    //ProductManager pm;
     @Override
     public List<Order> retrieveAllOrder() {
         return (List<Order>) or.findAll();
@@ -29,18 +27,7 @@ public class OrderManager implements OrderManagerInterface{
 
     @Override
     public Order addOrder(Order O) {
-        System.out.println(O.toString());
-        Order optionalorder=or.save(O);
-       /* List<Product> products =O.getProducts();
-        for (int i=0;i<products.size();i++){
-
-            Product p=products.get(i);
-            p.setOrder(optionalorder);
-            pm.updateProduct(p);
-        }
-        
-        */
-        return optionalorder;
+        return or.save(O);
     }
 
     @Override
@@ -71,15 +58,20 @@ public class OrderManager implements OrderManagerInterface{
         if (O.getProducts()!=null){
             orderLegacy.addproducts(O.getProducts());
         }
-        /*
+        float prix=0;
+        float poids=0;
         List<Product> products =orderLegacy.getProducts();
         for (int i=0;i<products.size();i++){
+            prix= (float) (prix+(products.get(i).getQuantity()*products.get(i).getPrice()));
 
-            Product p=products.get(i);
-            pm.updateProduct(p);
         }
 
-         */
+         for (int i=0;i<products.size();i++){
+             poids=(float) (poids+(products.get(i)).getWeight()*products.get(i).getQuantity());
+         }
+            orderLegacy.setWeight(poids);
+            orderLegacy.setCost(prix);
+
 
         return or.save(orderLegacy);
     }
@@ -92,7 +84,7 @@ public class OrderManager implements OrderManagerInterface{
 
     //Add Products to Order
 
-    public ResponseEntity<?> addProductsToOrder (Long id , List<Product> productList){
+    /*public ResponseEntity<?> addProductsToOrder (Long id , List<Product> productList){
         for ( Product product : productList ){
             Optional<Product > optionalProduct  = pr.findById(product.getId());
             if ( ! optionalProduct.isPresent()){
@@ -110,9 +102,11 @@ public class OrderManager implements OrderManagerInterface{
 
             Order order =  optionalOrder.get();
 
-            order.addproducts(product);
+           order.addproducts(product);
 
         }
         return  new ResponseEntity<>( HttpStatus.OK);}
+
+     */
 
 }
