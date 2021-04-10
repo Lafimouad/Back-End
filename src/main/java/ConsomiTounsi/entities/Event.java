@@ -51,24 +51,24 @@ public class Event implements Serializable {
 
 	public void addclients(List<Client> addedCleints){
 
-		addedCleints.forEach(product -> {
+		addedCleints.forEach(client -> {
 
-			if (clientsExist(product.getId())){
-				throw new IllegalStateException("Product Not Found");
+			if (clientExist(client.getIdUser())){
+				throw new IllegalStateException("client Not Exist");
 			}
-			products.add(product);
+			clients.add(client);
 		});
 	}
 
-	public void addproducts(Product addedProducts){
-		if (productExist(addedProducts.getId()))
-		{throw new IllegalStateException("Product Not even Found");}
-		products.add(addedProducts);
+	public void addclients(Client addedClients){
+		if (clientExist(addedClients.getIdUser()))
+		{throw new IllegalStateException("Client Not even Exist");}
+		clients.add(addedClients);
 
 	}
-	private  boolean productExist ( Long idProduct ){
-		for ( Product product:products   ){
-			if ( product.getId()==idProduct)
+	private  boolean clientExist ( Long idClient ){
+		for ( Client client:clients   ){
+			if ( client.getIdUser()!=idClient)
 				return true  ;
 
 		}

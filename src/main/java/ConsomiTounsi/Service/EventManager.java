@@ -62,26 +62,29 @@ public class EventManager implements EventManagerInterface{
 
     public void addClientToEvent (Long id , List<Client> clientsList){
         for ( Client client : clientsList ){
-            Optional<Client > optionalClient  = Clr.findById(client.getId());
-            if ( ! optionalClient.isPresent()){
+            Optional<Client > optionalClient  = Clr.findById(client.getIdUser());
+            /*if (  optionalClient.isPresent()){
                // return  new ResponseEntity<>( new MessageResponseModel( " The Product with Id  "+ product.getId()
                      //   +"Does not exist "), HttpStatus.BAD_REQUEST );
                 throw new IllegalStateException("the client with this Id is not exist");
             }
 
+             */
+
             Optional<Event> optionalEvent = Er.findById(id);
 
-            if ( !optionalEvent.isPresent()){
+            /*if ( optionalEvent.isPresent()){
                 throw new IllegalStateException("the event with this Id is not exist");
 
             }
 
+             */
+
             Event event =  optionalEvent.get();
 
-            order.addproducts(product);
-            event.
-        }
-        return  new ResponseEntity<>( HttpStatus.OK);}
+            event.addclients(client);
+        } }
+
 
 
 
