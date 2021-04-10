@@ -44,7 +44,9 @@ public class EventManager implements EventManagerInterface{
         p.setAmount_pool(a);
         optionalEvent = Er.save(E) ;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();}
+        LocalDateTime now = LocalDateTime.now();
+            E.setDate_event(now);
+        }
         return optionalEvent;
 
     }
