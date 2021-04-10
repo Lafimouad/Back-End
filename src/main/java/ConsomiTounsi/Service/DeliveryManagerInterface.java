@@ -11,7 +11,8 @@ public interface DeliveryManagerInterface {
     Delivery addDelivery(Delivery De);
     void deleteDelivery(Long id);
     void deleteDelivery(String id);
-    Delivery updateDeliverer(Delivery De);
     Optional<Delivery> FindDelivery(Long id);
     Optional<Delivery> FindDelivery(String id);
+    int CalculateScore(Delivery D);
+	Delivery updateDelivery(Delivery De);
 }
