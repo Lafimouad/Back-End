@@ -81,7 +81,6 @@ public class testProduct {
 
 /*
 "idAdvertisment" : 45 ,
-"nameAdvertisement" : null ,
 "dateAdvertisment" : 444554,
 "enddate" : 55554677 ,
 "finalviews": null,

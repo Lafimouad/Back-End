@@ -109,7 +109,6 @@ public class ClaimController {
 	
 	
 	/*"idAdvertisment" : 45 ,
-    "nameAdvertisement" : null ,
     "dateAdvertisment" : 444554,
 	"enddate" : 55554677 ,
 	"finalviews": null,
@@ -128,8 +127,11 @@ public class ClaimController {
     "date" : 12 ,
     "status" : null, 
     "description" : " medium product i'm so disappointed, also bad delivery   ",
-    "subject" : null,
+    "subject" : SYSTEM,
     "level" : null,
+    "systemProb" : SERVER ,
+    "deliveryProb" : null ,
+    "ProductProb": null,
     "user" : {
           "idUser" : 1,
 "username_user" : null ,

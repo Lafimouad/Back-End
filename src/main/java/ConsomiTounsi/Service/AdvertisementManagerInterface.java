@@ -8,11 +8,12 @@ import ConsomiTounsi.entities.TypeCriteria;
 import java.util.List;
 import java.util.Optional;
 
+import javax.mail.MessagingException;
 import javax.persistence.Query;
 
 public interface AdvertisementManagerInterface {
     List<Advertisement> retrieveAllAdvertisement();
-    Advertisement addAdvertisement(Advertisement Ad);
+    Advertisement addAdvertisement(Advertisement Ad) throws MessagingException;
     void deleteAdvertisement(Long id);
     void deleteAdvertisement(String id);
     Advertisement updateChanel(Advertisement Ad, Long id);

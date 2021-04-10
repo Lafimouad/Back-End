@@ -2,12 +2,17 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Advertisement implements Serializable {
+	
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -24,13 +29,13 @@ public class Advertisement implements Serializable {
 	private TypeAdvertisement typeAdvertisement;
 	private double cost;
 	private String channel ;
-	@Enumerated(EnumType.STRING)
-	private TypeCriteria criteria ;
-	@Enumerated(EnumType.STRING)
-	private TypeCriteriaValue1 criteriaValue1 ;
-	@Temporal (TemporalType.DATE)
-	private Date criteriaValue2;
-	private String criteriaValue3;
+	//@Enumerated(EnumType.STRING)
+	//private TypeCriteria criteria ;
+	//@Enumerated(EnumType.STRING)
+	//private TypeCriteriaValue1 criteriaValue1 ;
+	//@Temporal (TemporalType.DATE)
+	//private Date criteriaValue2;
+	//private String criteriaValue3;
 	
 	
 	
@@ -103,7 +108,7 @@ public class Advertisement implements Serializable {
 		this.channel = channel;
 	}
 
-	public TypeCriteriaValue1 getCriteriaValue1() {
+	/*public TypeCriteriaValue1 getCriteriaValue1() {
 		return criteriaValue1;
 	}
 
@@ -125,7 +130,7 @@ public class Advertisement implements Serializable {
 
 	public void setCriteriaValue3(String criteriaValue3) {
 		this.criteriaValue3 = criteriaValue3;
-	}
+	}*/
 
 	public Client getClient() {
 		return client;

@@ -18,16 +18,26 @@ public class Claim implements Serializable {
 	private String decision;
 	
 	
-	@Temporal (TemporalType.DATE)
+
 	
-	private Date date;
+	private String date;
 	
 	private String status;
 
 	private String description;
 	private int Level;
 	
-	private String subject;
+	@Enumerated(EnumType.STRING)
+	private SystemProb systemProb ;
+	
+	@Enumerated(EnumType.STRING)
+	private DeliveryProb deliveryProb ;
+	
+	@Enumerated(EnumType.STRING)
+	private ProductProb ProductProb ;
+	
+	@Enumerated(EnumType.STRING)
+	private ClaimType subject;
 
 	
 
@@ -55,13 +65,13 @@ public class Claim implements Serializable {
 
 
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
 
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -91,13 +101,13 @@ public class Claim implements Serializable {
 
 
 
-	public String getSubject() {
+	public ClaimType getSubject() {
 		return subject;
 	}
 
 
 
-	public void setSubject(String subject) {
+	public void setSubject(ClaimType subject) {
 		this.subject = subject;
 	}
 
@@ -111,6 +121,42 @@ public class Claim implements Serializable {
 
 	public void setLevel(int level) {
 		Level = level;
+	}
+
+
+
+	public SystemProb getSystemProb() {
+		return systemProb;
+	}
+
+
+
+	public void setSystemProb(SystemProb systemProb) {
+		this.systemProb = systemProb;
+	}
+
+
+
+	public DeliveryProb getDeliveryProb() {
+		return deliveryProb;
+	}
+
+
+
+	public void setDeliveryProb(DeliveryProb deliveryProb) {
+		this.deliveryProb = deliveryProb;
+	}
+
+
+
+	public ProductProb getProductProb() {
+		return ProductProb;
+	}
+
+
+
+	public void setProductProb(ProductProb productProb) {
+		ProductProb = productProb;
 	}
 
 

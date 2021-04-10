@@ -3,6 +3,8 @@ package ConsomiTounsi.Controller.ClaimAndAd;
 import java.util.List;
 import java.util.Optional;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +57,7 @@ public class AdController {
 	}
 	
 	@PostMapping("/add")
-	public Advertisement addAd(@RequestBody Advertisement Ad){
+	public Advertisement addAd(@RequestBody Advertisement Ad) throws MessagingException{
 		 
 		return admanagerI.addAdvertisement(Ad) ;	}
 	
