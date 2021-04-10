@@ -26,7 +26,7 @@ public class Event implements Serializable {
 	private double raisedAmount_event;
 	private String place_event;
 	private String target_event;
-	@Temporal (TemporalType.DATE)
+	//@Temporal (TemporalType.DATE)
 	private LocalDateTime date_event;
 	private int nombreplace;
 
