@@ -1,10 +1,9 @@
 package ConsomiTounsi.entities;
 
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,7 +19,11 @@ public class Client extends User implements Serializable {
     @ManyToOne
     Message message;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Event> event;
+	/*@ManyToMany(cascade = CascadeType.ALL)
+	private List<Event> event;*/
+
+	@JsonIgnore
+	@ManyToMany(mappedBy="clients",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
+	private List<Event> events;
 
 }

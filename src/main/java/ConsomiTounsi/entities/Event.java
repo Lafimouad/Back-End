@@ -38,7 +38,15 @@ public class Event implements Serializable {
 	/*@ManyToOne
 	Pool pool;*/
 
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy="event")
+	/*@ManyToMany(cascade = CascadeType.ALL, mappedBy="event")
+	private List<Client> clients;*/
+
+	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "client_event",
+			joinColumns = @JoinColumn(name = "event_id"),
+			inverseJoinColumns = @JoinColumn(name = "client_id"))
+
 	private List<Client> clients;
 
 
