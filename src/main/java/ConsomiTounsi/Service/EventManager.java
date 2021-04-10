@@ -11,6 +11,8 @@ import java.util.Optional;
 import ConsomiTounsi.repository.PoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 
 @Service  
@@ -35,6 +37,9 @@ public class EventManager implements EventManagerInterface{
 
     @Override
     public Event addEvent(Event E , long id) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        E.setDate_event(now);
         Event optionalEvent = new Event() ;
         Pool p = Poor.findById(id).orElse(new Pool());
         double amountPool = p.getAmount_pool();
@@ -43,13 +48,24 @@ public class EventManager implements EventManagerInterface{
         {double a = amountPool - amountEvent;
         p.setAmount_pool(a);
         optionalEvent = Er.save(E) ;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-            E.setDate_event(now);
         }
         return optionalEvent;
 
     }
+
+    @Transactional
+    public void AffectClientToEvent(long clientId, long eventId) {
+
+        Shelf shelfManagedEntity = Shr.findById(shelfId).get();
+        Product prodManagedEntity = Pdr.findById(productId).get();
+
+
+        if (ObjectUtils.isEmpty(shelfManagedEntity)== false && !ObjectUtils.isEmpty(prodManagedEntity) )
+        {prodManagedEntity.setShelf(shelfManagedEntity);}
+
+    }
+
+
 
     @Override
     public void deleteEvent(Long id) {
