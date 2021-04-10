@@ -60,9 +60,9 @@ public class EventManager implements EventManagerInterface{
     }
 
 
-    public void addClientToEvent (Long id , List<Client> clientsList){
-        for ( Client client : clientsList ){
-            Optional<Client > optionalClient  = Clr.findById(client.getIdUser());
+    public void addClientToEvent (Long id , Client clientsList){
+
+
             /*if (  optionalClient.isPresent()){
                // return  new ResponseEntity<>( new MessageResponseModel( " The Product with Id  "+ product.getId()
                      //   +"Does not exist "), HttpStatus.BAD_REQUEST );
@@ -72,6 +72,7 @@ public class EventManager implements EventManagerInterface{
              */
 
             Optional<Event> optionalEvent = Er.findById(id);
+            Event event =  optionalEvent.get();
 
             /*if ( optionalEvent.isPresent()){
                 throw new IllegalStateException("the event with this Id is not exist");
@@ -79,11 +80,8 @@ public class EventManager implements EventManagerInterface{
             }
 
              */
-
-            Event event =  optionalEvent.get();
-
-            event.addclients(client);
-        } }
+            event.addclients(clientsList);
+         }
 
 
 

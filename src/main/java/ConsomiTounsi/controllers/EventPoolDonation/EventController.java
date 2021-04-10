@@ -6,6 +6,7 @@ import ConsomiTounsi.Service.ProductManagerInterface;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.Event;
 import ConsomiTounsi.entities.Pool;
+import ConsomiTounsi.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,9 +30,9 @@ public class EventController {
 
     @GetMapping("/retrieve-all")
     public List<Event> getListEvents(){ return eventmanager.retrieveAllEvent(); }
-    @PutMapping("/AddClienttoevent/{id}")
-    public void addclientstoevent(@PathVariable("id") Long id,@RequestBody List<Client> client){
-        manager.addClientToEvent(id,client);
+    @PostMapping ("/AddClienttoevent/{id}")
+    public void addclientstoevent(@PathVariable("id") Long id,@RequestBody Client c){
+        manager.addClientToEvent(id,c);
     }
 
 }
