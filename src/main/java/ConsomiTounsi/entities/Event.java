@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -26,7 +27,7 @@ public class Event implements Serializable {
 	private String place_event;
 	private String target_event;
 	@Temporal (TemporalType.DATE)
-	private Date date_event;
+	private LocalDateTime date_event;
 	private int nombreplace;
 
 
