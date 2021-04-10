@@ -1,10 +1,20 @@
 package ConsomiTounsi.entities;
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Delivery implements Serializable {
 	

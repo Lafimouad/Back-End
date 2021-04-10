@@ -18,5 +18,9 @@ public interface DelivererManagerInterface {
     long getNbAvailableDeliveres();
 	long getNbDeliverer();
 	Deliverer getDelivererOfTheMonth();
+	void deleteDeliverer(Long id);
+	void deleteDeliverer(String id);
+	Optional<Deliverer> FindDeliverer(Long id);
+	Optional<Deliverer> FindDeliverer2(String id);
   
 }

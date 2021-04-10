@@ -1,20 +1,28 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Deliverer;
+
 import ConsomiTounsi.entities.Delivery;
 import ConsomiTounsi.entities.DurationOfDelivering;
 import ConsomiTounsi.entities.QualityOfDelivering;
 import ConsomiTounsi.entities.ServiceDelivering;
+import ConsomiTounsi.repository.DelivererRepository;
 import ConsomiTounsi.repository.DeliveryRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 @Service
 public class DeliveryManager implements DeliveryManagerInterface{
 	@Autowired 
 	 DeliveryRepository Devr;
+	@Autowired 
+	 DelivererRepository fr;
     @Override
     public List<Delivery> retrieveAllDelivery() {
     	return (List<Delivery>) Devr.findAll();
@@ -105,5 +113,17 @@ public class DeliveryManager implements DeliveryManagerInterface{
      	System.out.println("Score:"+Score);
      	D.setScoreDelivery(Score);
      	Devr.save(D);
-     	
-    	return Score; }}
+    	return Score; }
+         
+    @Transactional
+    public void AffectLivreurLivraison(long livreurId, long livraisonId) {
+
+        Delivery De = Devr.findById(livraisonId).get();
+        Deliverer Dr = fr.findById(livreurId).get();
+
+
+        if (ObjectUtils.isEmpty(De)== false && !ObjectUtils.isEmpty(Dr) )
+        { Dr.setDeliverer(De);
+
+    }
+}

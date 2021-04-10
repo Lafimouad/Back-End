@@ -1,9 +1,24 @@
 package ConsomiTounsi.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.io.Serializable;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Deliverer extends User implements Serializable {
 	
@@ -61,5 +76,11 @@ public class Deliverer extends User implements Serializable {
 	public void setBonusDeliverer(double bonusDeliverer) {
 		this.bonusDeliverer = bonusDeliverer;
 	}
-
+	@OneToMany(mappedBy="deliverer",
+			cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+			fetch= FetchType.EAGER)
+	private List<Delivery> product = new ArrayList<>();
+	
+	/*@OneToMany(cascade = CascadeType.ALL, mappedBy="deliverer")
+	private Set<Delivery> delivery;*/
 }
