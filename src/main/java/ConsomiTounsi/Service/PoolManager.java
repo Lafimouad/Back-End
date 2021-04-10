@@ -51,4 +51,11 @@ public class PoolManager implements PoolManagerInterface{
     public Pool FindPoolById(String id) {
         return  Poolr.findById(Long.parseLong(id)).orElse(new Pool());
     }
+
+    public void AddamountTopool (float amount) {
+        Pool p = Poolr.findById(Long.valueOf(1)).get();
+        p.setAmount_pool(p.getAmount_pool()+amount);
+        System.out.print(p.getAmount_pool());
+        Poolr.save(p);
+    }
 }
