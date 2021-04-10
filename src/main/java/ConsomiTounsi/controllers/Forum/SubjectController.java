@@ -53,5 +53,16 @@ public class SubjectController {
     public void ListFeauturedSubjects(){
         subjectS.getFeaturedSubjects();
     }
+
+    @GetMapping("/getWordFilteredSubjects")
+    public List<Subject> FilterByWords(@RequestParam("word")String word){
+//    public List<String> FilterByWords(@RequestParam("word")String word){
+        return subjectS.FilterByWords(word);
+    }
+
+    @GetMapping("/getLikesFilteredSubjects")
+    public List<Subject> FilterByNbLikes(@RequestParam("minLikes")String minLikes, @RequestParam("maxLikes")String maxLikes){
+        return subjectS.FilterByNbLikes(minLikes, maxLikes);
+    }
 }
 

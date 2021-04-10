@@ -1,13 +1,15 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Comment;
-import ConsomiTounsi.entities.Feedback;
+import ConsomiTounsi.entities.Dictionary;
 import ConsomiTounsi.entities.Subject;
 import ConsomiTounsi.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class SubjectManager implements SubjectManagerInterface{
@@ -23,10 +25,12 @@ public class SubjectManager implements SubjectManagerInterface{
     @Override
     public void addSubject(Subject Su) {
         boolean prohibited = false;
-        List<String> prohibitedDict = Arrays.asList("barcha", "klem", "khayeb");
+        List<String> prohibitedDict = Stream.of(Dictionary.values())
+                .map(Dictionary::name)
+                .collect(Collectors.toList());
         List<String> List = new ArrayList<String>(Arrays.asList(Su.getDescriptionSubject().split("\\s+")));
         for (String word : List ) {
-            if (prohibitedDict.contains(word)){ prohibited = true ;}
+            if (prohibitedDict.contains(word.toUpperCase())){ prohibited = true ;}
         }
         if (prohibited == false )
         { Su.setLikesSubject(0);
@@ -97,6 +101,46 @@ public class SubjectManager implements SubjectManagerInterface{
     @Override
     public List<Subject> getFeaturedSubjects() {
         return sr.getFeaturedSubjects();
+    }
+
+    @Override
+    public List<Subject> FilterByNbLikes(String minLikes, String maxLikes) {
+        List<Subject> allSubjects= retrieveAllSubject();
+        List<Subject> filteredSubjects = new ArrayList<>();
+        for ( Subject s : allSubjects){
+            if((minLikes!="") && (maxLikes !="")) {
+                if ((s.getLikesSubject() >= Integer.parseInt(minLikes)) && (s.getLikesSubject() <= Integer.parseInt(maxLikes))) {
+                    filteredSubjects.add(s);
+                }
+            }
+            if((minLikes!="") && (maxLikes =="")) {
+             if (s.getLikesSubject() >= Integer.parseInt(minLikes)) {
+                    filteredSubjects.add(s);
+                }
+            }
+            if((minLikes=="") && (maxLikes !="")) {
+             if (s.getLikesSubject() <= Integer.parseInt(maxLikes)) {
+                 filteredSubjects.add(s);
+             }
+        }
+        }
+        return filteredSubjects;
+    }
+
+    @Override
+    public List<Subject> FilterByWords(String word) {
+        List<Subject> allSubjects = retrieveAllSubject();
+        List<Subject> filteredSubjects = new ArrayList<>();
+        List<String> words = new ArrayList<String>(Arrays.asList(word.split("\\s+")));
+        if (word.equals("")){return allSubjects;}
+        for (Subject s : allSubjects){
+            List<String> listTest = new ArrayList<String>(Arrays.asList(s.getDescriptionSubject().split("\\s+")));
+            for (String e : words){
+            if(listTest.contains(e)){
+                filteredSubjects.add(s);
+            }}
+        }
+        return filteredSubjects;
     }
 
 }
