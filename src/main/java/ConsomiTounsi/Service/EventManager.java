@@ -1,6 +1,7 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.*;
+import ConsomiTounsi.repository.ClientRepository;
 import ConsomiTounsi.repository.EventRepository;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,8 @@ public class EventManager implements EventManagerInterface{
 	    EventRepository Er;
 	 @Autowired
         PoolRepository Poor;
+	 @Autowired
+       ClientRepository Clr;
 
 
 	
@@ -49,21 +52,37 @@ public class EventManager implements EventManagerInterface{
         p.setAmount_pool(a);
         optionalEvent = Er.save(E) ;
         }
+        else {
+            throw new IllegalStateException("the pool amount is not enough to organise an event");
+        }
         return optionalEvent;
 
     }
 
-    @Transactional
-    public void AffectClientToEvent(long clientId, long eventId) {
 
-        Shelf shelfManagedEntity = Shr.findById(shelfId).get();
-        Product prodManagedEntity = Pdr.findById(productId).get();
+    public void addClientToEvent (Long id , List<Client> clientsList){
+        for ( Client client : clientsList ){
+            Optional<Client > optionalClient  = Clr.findById(client.getId());
+            if ( ! optionalClient.isPresent()){
+               // return  new ResponseEntity<>( new MessageResponseModel( " The Product with Id  "+ product.getId()
+                     //   +"Does not exist "), HttpStatus.BAD_REQUEST );
+                throw new IllegalStateException("the client with this Id is not exist");
+            }
 
+            Optional<Event> optionalEvent = Er.findById(id);
 
-        if (ObjectUtils.isEmpty(shelfManagedEntity)== false && !ObjectUtils.isEmpty(prodManagedEntity) )
-        {prodManagedEntity.setShelf(shelfManagedEntity);}
+            if ( !optionalEvent.isPresent()){
+                throw new IllegalStateException("the event with this Id is not exist");
 
-    }
+            }
+
+            Event event =  optionalEvent.get();
+
+            order.addproducts(product);
+            event.
+        }
+        return  new ResponseEntity<>( HttpStatus.OK);}
+
 
 
 
