@@ -25,8 +25,8 @@ public class EventController {
    //ublic void addEvent(@RequestBody Event e){ eventmanager.addEvent1(e);}
 
 
-    @PostMapping("/add-id")
-    public void addEvent(@RequestBody Event e, @RequestParam("id") long id){ eventmanager.addEvent(e,id);}
+    @PostMapping("/add-id/{id}")
+    public void addEvent(@RequestBody Event e, @PathVariable("id") long id){ eventmanager.addEvent(e,id);}
 
     @GetMapping("/retrieve-all")
     public List<Event> getListEvents(){ return eventmanager.retrieveAllEvent(); }
@@ -42,6 +42,17 @@ public class EventController {
     @PutMapping ("/AddClienttoevent/{idclient}/{idevent}")
     public void addclienttoevent(@PathVariable("idclient") long idclient , @PathVariable("idevent") long idevent){
         manager.AddEventToClient(idclient,idevent);
+    }
+
+    @DeleteMapping("removeeventafteryear/{idevent}")
+    public void DeletEventAfterAYear (@PathVariable("idevent")long idevent){
+        manager.DeleteEventAfterAYear(idevent);
+
+    }
+
+    @DeleteMapping("remove-id/{id}")
+    public void removeAdminByID(@PathVariable("id")long id){
+        eventmanager.deleteEvent(id);
     }
 }
 

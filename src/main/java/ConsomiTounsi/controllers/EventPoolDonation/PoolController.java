@@ -17,6 +17,8 @@ public class PoolController {
     @Autowired
     PoolManagerInterface poolmanager ;
 
+    /*{"amount_pool":500}*/
+
 
 
     @PostMapping("/add")

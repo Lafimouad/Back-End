@@ -23,7 +23,8 @@ public class Event implements Serializable {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private long id_event;
-	
+
+	private String eventName;
 	private double raisedAmount_event;
 	private String place_event;
 	private String target_event;
@@ -33,7 +34,7 @@ public class Event implements Serializable {
 
 
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="event")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="event")
 	private List<Donation> donation;
 	
 	/*@ManyToOne
