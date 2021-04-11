@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,5 +26,13 @@ public class Client extends User implements Serializable {
 	@JsonIgnore
 	@ManyToMany(mappedBy="clients",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
 	private List<Event> events;
+
+	public boolean addEvent(Event ev) {
+		if(events == null)
+			events = new ArrayList<>();
+
+		return events.add(ev);
+	}
+
 
 }

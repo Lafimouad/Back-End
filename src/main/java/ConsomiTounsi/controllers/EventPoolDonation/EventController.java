@@ -30,11 +30,19 @@ public class EventController {
 
     @GetMapping("/retrieve-all")
     public List<Event> getListEvents(){ return eventmanager.retrieveAllEvent(); }
-    @PostMapping ("/AddClienttoevent/{id}")
-    public void addclientstoevent(@PathVariable("id") Long id,@RequestBody Client c){
-        manager.addClientToEvent(id,c);
-    }
+    //@PutMapping ("/AddClienttoevent/{id}")
+    //public void addclientstoevent(@PathVariable("id") Long id,@RequestBody Client c){
+     //   manager.addClientToEvent(id,c);
+    //}
 
+    //@PutMapping ("/AddClienttoevent/{id}")
+   // public void addclientstoevent(@RequestBody Client c,@PathVariable("id") Long id){
+     //   manager.AddEventToClient(c,id);
+   // }
+    @PutMapping ("/AddClienttoevent/{idclient}/{idevent}")
+    public void addclienttoevent(@PathVariable("idclient") long idclient , @PathVariable("idevent") long idevent){
+        manager.AddEventToClient(idclient,idevent);
+    }
 }
 
 

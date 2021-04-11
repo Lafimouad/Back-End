@@ -6,6 +6,7 @@ import ConsomiTounsi.repository.EventRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,7 +61,7 @@ public class EventManager implements EventManagerInterface{
     }
 
 
-    public void addClientToEvent (Long id , Client clientsList){
+   /* public void addClientToEvent (Long id , Client clientsList){
 
 
             /*if (  optionalClient.isPresent()){
@@ -71,8 +72,8 @@ public class EventManager implements EventManagerInterface{
 
              */
 
-            Optional<Event> optionalEvent = Er.findById(id);
-            Event event =  optionalEvent.get();
+      //      Optional<Event> optionalEvent = Er.findById(id);
+      //      Event event =  optionalEvent.get();
 
             /*if ( optionalEvent.isPresent()){
                 throw new IllegalStateException("the event with this Id is not exist");
@@ -80,8 +81,8 @@ public class EventManager implements EventManagerInterface{
             }
 
              */
-            event.addclients(clientsList);
-         }
+          //  event.addclients(clientsList);
+        // }
 
 
 
@@ -111,4 +112,20 @@ public class EventManager implements EventManagerInterface{
     public Event FindEventById(String id) {
         return Er.findById(Long.parseLong(id)).orElse(new Event());
     }
+
+    public Event AddEventToClient( long idclient, long idevent){
+
+        Optional<Client> optionalClient = Clr.findById(idclient);
+        Client client = optionalClient.get();
+        Optional<Event> optionalEvent = Er.findById(idevent);
+        Event event =  optionalEvent.get();
+        event.addclient(client);//pour ajouter l'employé a une mission (l'ajout se fait dans la table "Employees_Missions")
+        client.addEvent(event);
+        Clr.save(client);
+        return Er.save(event);
+    }
+
+
+
+
 }

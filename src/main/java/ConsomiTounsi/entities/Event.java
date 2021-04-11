@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -42,11 +43,10 @@ public class Event implements Serializable {
 	private List<Client> clients;*/
 
 	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-	@JoinTable(
+	/*@JoinTable(
 			name = "client_event",
 			joinColumns = @JoinColumn(name = "event_id"),
-			inverseJoinColumns = @JoinColumn(name = "client_id"))
-
+			inverseJoinColumns = @JoinColumn(name = "client_id"))*/
 	private List<Client> clients;
 
 	public void addclients(List<Client> addedCleints){
@@ -61,8 +61,8 @@ public class Event implements Serializable {
 	}
 
 	public void addclients(Client addedClients){
-		if (clientExist(addedClients.getIdUser()))
-		{throw new IllegalStateException("Client Not even Exist");}
+		/*if (clientExist(addedClients.getIdUser()))
+		{throw new IllegalStateException("Client Not even Exist");}*/
 		clients.add(addedClients);
 
 	}
@@ -75,9 +75,24 @@ public class Event implements Serializable {
 		return  false ;
 	}
 
+	//public void addClient (List<Client> adeddclient) {
+		//if(clients == null)
+			//clients = new ArrayList<>();
+		//adeddclient.forEach(client -> {clients.add(client); });
 
+	public boolean addclient(Client emp) {
+		if(clients == null)
+			clients = new ArrayList<>();
 
-
+		return clients.add(emp);
+	}
 
 
 }
+
+
+
+
+
+
+
