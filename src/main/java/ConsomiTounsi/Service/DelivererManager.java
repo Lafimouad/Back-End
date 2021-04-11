@@ -13,45 +13,43 @@ import ConsomiTounsi.repository.DelivererRepository;
 public class DelivererManager implements DelivererManagerInterface{
 
 	@Autowired 
-	 DelivererRepository Devrr;
+	DelivererRepository Der;
    @Override
    public List<Deliverer> retrieveAllDeliverer() {
-   	return (List<Deliverer>) Devrr.findAll();
+   	return (List<Deliverer>) Der.findAll();
    }
 
    @Override
    public Deliverer addDeliverer(Deliverer D) {
-   	return Devrr.save(D);
+   	return Der.save(D);
    }
 
    @Override
-   public void deleteDeliverer(Long id) {
-   	Devrr.deleteById(id);
+   public void deleteDelivererById(Long id) {
+   	Der.deleteById(id);
    }
 
    @Override
-   public void deleteDeliverer(String id) {
-   	Devrr.deleteById(Long.parseLong(id));
+   public void deleteDelivererById(String id) {
+   	Der.deleteById(Long.parseLong(id));
    }
 
    @Override
    public Deliverer updateDeliverer(Deliverer D) {
-   	return Devrr.save(D);
+   	return Der.save(D);
    }
 
    @Override
-   public Optional<Deliverer> FindDeliverer(Long id) {
-   	return Devrr.findById(id);
+   public Optional<Deliverer> FindDelivererById(Long id) {
+   	return Der.findById(id);
    }
 
    @Override
-   public Optional<Deliverer> FindDeliverer2(String id) {
-       return Devrr.findById(Long.parseLong(id));
+   public Optional<Deliverer> FindDelivererById(String id) {
+       return Der.findById(Long.parseLong(id));
    }
    
-  /* @Override
-   public List<Deliverer> showAvailableDeliverers(){
-       return Devrr.findAvailableDeliverers();
-   }*/
-
+   public Long FindMaxScore() {
+       return Der.getMaxScore();
+   }
 }

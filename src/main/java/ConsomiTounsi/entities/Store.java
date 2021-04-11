@@ -58,7 +58,7 @@ public class Store implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
 	private Set<Shelf> shelf;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
-	private Set<User> user;
+	/*@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
+	private Set<User> user;*/
 
 }

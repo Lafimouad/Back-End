@@ -2,6 +2,7 @@ package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Deliverer;
 
+
 import ConsomiTounsi.entities.Delivery;
 import ConsomiTounsi.entities.DurationOfDelivering;
 import ConsomiTounsi.entities.QualityOfDelivering;
@@ -23,6 +24,7 @@ public class DeliveryManager implements DeliveryManagerInterface{
 	 DeliveryRepository Devr;
 	@Autowired 
 	 DelivererRepository fr;
+	
     @Override
     public List<Delivery> retrieveAllDelivery() {
     	return (List<Delivery>) Devr.findAll();
@@ -115,7 +117,7 @@ public class DeliveryManager implements DeliveryManagerInterface{
      	Devr.save(D);
     	return Score; }
          
-    @Transactional
+     @Transactional
     public void AffectLivreurLivraison(long livreurId, long livraisonId) {
 
         Delivery De = Devr.findById(livraisonId).get();
@@ -123,7 +125,35 @@ public class DeliveryManager implements DeliveryManagerInterface{
 
 
         if (ObjectUtils.isEmpty(De)== false && !ObjectUtils.isEmpty(Dr) )
-        { Dr.setDeliverer(De);
-
+        { De.setDeliverer(Dr);}
+        Devr.save(De);
     }
-}
+	@Override
+	public List<Integer> getScorebyDelivererI(long deliverer_id) {
+		//Delivery d = Devr.findById(deliverer_id).get();
+		List<Integer> score = Devr.getScorebyDelivererI(deliverer_id);
+		return score;
+	}
+	
+	public static int sumScores(List<Integer> list) {
+	    int sum = 0;
+	    for (int i: list) {
+	        sum += i;
+	    }
+	    return sum;
+	}
+ 	 
+    //@Transactional
+	//@Override
+	public int calculateScoreDeliverer(long deliverer_id) {
+		List<Integer> score = Devr.getScorebyDelivererI(deliverer_id);
+        Deliverer deliverer = fr.findById(deliverer_id).get();
+		int sum_score=0; 
+	   sum_score=sumScores(score); 
+	   deliverer.setScore_deliverer(sum_score);
+       fr.save(deliverer);
+		return sum_score;
+	}
+
+ 	
+ 	}

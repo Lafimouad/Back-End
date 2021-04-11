@@ -112,6 +112,13 @@ public class Delivery implements Serializable {
 	public void setService_delivery(ServiceDelivering service_delivery) {
 		this.Stars_service_delivery = service_delivery; 
 	}
+	public Deliverer getDeliverer() {
+		return deliverer;
+	}
+
+	public void setDeliverer(Deliverer deliverer) {
+		this.deliverer = deliverer;
+	}
 	/*public int getScoreDelivery() {
 		return scoreDelivery;
 	}

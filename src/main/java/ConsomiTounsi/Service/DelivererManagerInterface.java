@@ -5,6 +5,7 @@ import ConsomiTounsi.entities.Deliverer;
 import ConsomiTounsi.entities.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DelivererManagerInterface {
 	
@@ -13,14 +14,15 @@ public interface DelivererManagerInterface {
     void deleteDelivererById(Long id);
     void deleteDelivererById(String id);
     Deliverer updateDeliverer(Deliverer D);
-    Deliverer FindDelivererById(Long id);
-    Deliverer FindDelivererById(String id);
-    long getNbAvailableDeliveres();
-	long getNbDeliverer();
-	Deliverer getDelivererOfTheMonth();
-	void deleteDeliverer(Long id);
-	void deleteDeliverer(String id);
-	Optional<Deliverer> FindDeliverer(Long id);
-	Optional<Deliverer> FindDeliverer2(String id);
+    //Deliverer FindDelivererById(Long id);
+   // Deliverer FindDelivererById(String id);
+    //long getNbAvailableDeliveres();
+	//long getNbDeliverer();
+	//Deliverer getDelivererOfTheMonth();
+	//void deleteDeliverer(Long id);
+	//void deleteDeliverer(String id);
+	Optional<Deliverer> FindDelivererById(Long id);
+	Optional<Deliverer> FindDelivererById(String id);
+	Long FindMaxScore();
   
 }

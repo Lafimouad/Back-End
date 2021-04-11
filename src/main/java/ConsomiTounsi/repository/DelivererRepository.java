@@ -13,13 +13,13 @@ import ConsomiTounsi.entities.Deliverer;
 public interface DelivererRepository extends CrudRepository<Deliverer, Long> {
 	
 	
-	@Query("SELECT COUNT(d) FROM Deliverer d WHERE d.availableDeliverer = TRUE" )
-	long getNbAvailableDeliveres();
+	@Query(value="SELECT d.deliverer.id_user FROM Deliverer d WHERE max(d.score_deliverer)" )
+	Long getMaxScore();
 	
-	@Query("SELECT COUNT(d) FROM Deliverer d")
-	long getNbDeliverer();
+	//@Query("SELECT COUNT(d) FROM Deliverer d")
+	//long getNbDeliverer();
 	
-	@Query("SELECT d FROM Deliverer d WHERE d.delivererOfTheMonthDeliverer = TRUE" )
-	Deliverer getDelivererOfTheMonth();
+	//@Query("SELECT d FROM Deliverer d WHERE d.delivererOfTheMonthDeliverer = TRUE" )
+	//Deliverer getDelivererOfTheMonth();
 
 }

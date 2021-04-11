@@ -125,8 +125,8 @@ public class User implements Serializable {
 		this.lastNameUser = lastNameUser;
 	}
 
-	@ManyToOne
-	Store store;
+	/*@ManyToOne
+	Store store;*/
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Subject> subject;

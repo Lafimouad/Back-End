@@ -44,6 +44,16 @@ public class Deliverer extends User implements Serializable {
 	private double distanceDeliverer;
 	
 	private double bonusDeliverer;
+	private int score_deliverer;
+
+
+	public int getScore_deliverer() {
+		return score_deliverer;
+	}
+
+	public void setScore_deliverer(int score_deliverer) {
+		this.score_deliverer = score_deliverer;
+	}
 
 	public boolean isDelivererOfTheMonthDeliverer() {
 		return delivererOfTheMonthDeliverer;
@@ -76,11 +86,14 @@ public class Deliverer extends User implements Serializable {
 	public void setBonusDeliverer(double bonusDeliverer) {
 		this.bonusDeliverer = bonusDeliverer;
 	}
+	
+	
 	@OneToMany(mappedBy="deliverer",
 			cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 			fetch= FetchType.EAGER)
-	private List<Delivery> product = new ArrayList<>();
-	
+	private List<Delivery> delivery = new ArrayList<>();
+
+
 	/*@OneToMany(cascade = CascadeType.ALL, mappedBy="deliverer")
 	private Set<Delivery> delivery;*/
 }

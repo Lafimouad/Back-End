@@ -15,17 +15,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ConsomiTounsi.Service.DeliveryManagerInterface;
 import ConsomiTounsi.entities.Delivery;
 import ConsomiTounsi.entities.Product;
+import ConsomiTounsi.repository.DeliveryRepository;
 
 @RestController
 @RequestMapping("/Delivery")
 public class DeliveryController {
 	@Autowired
 	DeliveryManagerInterface DevliveryI ;
+	
+	@Autowired
+	DeliveryRepository DI ;
 	
 	@GetMapping("/firstage")
 	public String First(){
@@ -68,4 +74,26 @@ public class DeliveryController {
 	public int CalculateScores(@RequestBody Delivery De){
 		return DevliveryI.CalculateScore(De);
 	}
+	@PutMapping(value="/DelivererToDelivery/{livreurId}/{livraisonId}")
+	public void affecterDepartementAEntreprise(@PathVariable("livreurId") int livreurId, @PathVariable("livraisonId") int livraisonId){
+		DevliveryI.AffectLivreurLivraison(livreurId, livraisonId);
+	}
+	/*@PutMapping("/DelivererToDelivery")
+    public void AffectDeliverer(@RequestParam("livreurId") long livreurId, @RequestParam("livraisonId") long livraisonId) {
+		DevliveryI.AffectLivreurLivraison(livreurId, livraisonId);
+    }*/
+	
+	@GetMapping(value= "/GetScore/{deliverer_id}")
+	
+	public List<Integer> getDeliveryScorebyDelivererID(@PathVariable("deliverer_id")long deliverer_id){
+		
+		return DI.getScorebyDelivererI(deliverer_id);
+		
+	}
+	
+	@GetMapping(value="/DelivererScore/{livreurId}")
+	public int setScoreToDeliverer(@PathVariable("livreurId") long livreurId ){
+		return DevliveryI.calculateScoreDeliverer(livreurId);
+		
+	} 
 }
