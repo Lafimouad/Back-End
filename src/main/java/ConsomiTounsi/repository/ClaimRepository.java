@@ -1,8 +1,10 @@
 package ConsomiTounsi.repository;
 
 import ConsomiTounsi.entities.Claim;
+import ConsomiTounsi.entities.ClaimType;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -16,11 +18,11 @@ public interface ClaimRepository extends CrudRepository<Claim,Long> {
 
 	
 	@Query("SELECT m FROM Claim m WHERE m.subject=:subject")
-    Optional<Claim> findBysubject(@Param("subject") String subject);
+    List<Claim> findBysubject(@Param("subject") ClaimType subject);
 	
 	
 	@Query("SELECT m FROM Claim m WHERE m.status=:status")
-    Optional<Claim> findBystatus(@Param("status") String status);
+    List<Claim> findBystatus(@Param("status") String status);
 	
 	Optional<Claim> findByDate(Date date);
 	
@@ -30,5 +32,14 @@ public interface ClaimRepository extends CrudRepository<Claim,Long> {
 	
 	@Query("SELECT COUNT(m) FROM Claim m")
 	long getNumberOfClaims();
+
 	
+	@Query("SELECT m FROM Claim m ORDER BY m.Level ASC")
+	List<Claim> getClaimsByLevelorder();
+	
+	
+	@Query("SELECT m FROM Claim m ORDER BY m.Level DESC")
+	List<Claim> getClaimsByLevelorder2();
+	
+
 }

@@ -11,7 +11,6 @@ public class Claim implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	
 	private Long idClaim;
 	
 	
@@ -26,21 +25,21 @@ public class Claim implements Serializable {
 
 	private String description;
 	private int Level;
+	private int ProductWithProb ;
 	
 	@Enumerated(EnumType.STRING)
-	private SystemProb systemProb ;
+	private SystemProb systemProblem ;
 	
 	@Enumerated(EnumType.STRING)
-	private DeliveryProb deliveryProb ;
+	private DeliveryProb deliveryProblem ;
 	
 	@Enumerated(EnumType.STRING)
-	private ProductProb ProductProb ;
+	private ProductProb productProblem ;
 	
+
 	@Enumerated(EnumType.STRING)
 	private ClaimType subject;
-
 	
-
 	public Long getIdClaim() {
 		return idClaim;
 	}
@@ -101,18 +100,6 @@ public class Claim implements Serializable {
 
 
 
-	public ClaimType getSubject() {
-		return subject;
-	}
-
-
-
-	public void setSubject(ClaimType subject) {
-		this.subject = subject;
-	}
-
-
-
 	public int getLevel() {
 		return Level;
 	}
@@ -125,41 +112,75 @@ public class Claim implements Serializable {
 
 
 
-	public SystemProb getSystemProb() {
-		return systemProb;
+	public SystemProb getSystemProblem() {
+		return systemProblem;
 	}
 
 
 
-	public void setSystemProb(SystemProb systemProb) {
-		this.systemProb = systemProb;
+	public void setSystemProblem(SystemProb systemProblem) {
+		this.systemProblem = systemProblem;
 	}
 
 
 
-	public DeliveryProb getDeliveryProb() {
-		return deliveryProb;
+	public DeliveryProb getDeliveryProblem() {
+		return deliveryProblem;
 	}
 
 
 
-	public void setDeliveryProb(DeliveryProb deliveryProb) {
-		this.deliveryProb = deliveryProb;
+	public void setDeliveryProblem(DeliveryProb deliveryProblem) {
+		this.deliveryProblem = deliveryProblem;
 	}
 
 
 
-	public ProductProb getProductProb() {
-		return ProductProb;
+	public ProductProb getProductProblem() {
+		return productProblem;
 	}
 
 
 
-	public void setProductProb(ProductProb productProb) {
-		ProductProb = productProb;
+	public void setProductProblem(ProductProb productProblem) {
+		this.productProblem = productProblem;
 	}
 
 
+
+	public ClaimType getSubject() {
+		return subject;
+	}
+
+
+
+	public void setSubject(ClaimType subject) {
+		this.subject = subject;
+	}
+
+
+
+	public int getProductWithProb() {
+		return ProductWithProb;
+	}
+
+
+
+	public void setProductWithProb(int productWithProb) {
+		ProductWithProb = productWithProb;
+	}
+
+
+
+
+
+
+	
+	
+	
+	
+
+	
 
 	public User getUser() {
 		return user;
@@ -171,6 +192,9 @@ public class Claim implements Serializable {
 		this.user = user;
 	}
 
+
+
+	
 
 
 	@ManyToOne

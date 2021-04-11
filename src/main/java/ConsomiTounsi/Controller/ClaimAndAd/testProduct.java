@@ -37,11 +37,6 @@ public class testProduct {
 		return testProductI.addProduct(P) ;	}
 	
 	
-	@GetMapping("/getAll/{categoryProduct}")
-	public List<Product> getAdvertisements(@PathVariable("categoryProduct") TypeCategory categoryProduct) {
-	List<Product> list = testProductI.getMyAdvertisements(categoryProduct) ;
-	return list;
-	}
 	
 	
 	/*@GetMapping("/getCat/{cp}")

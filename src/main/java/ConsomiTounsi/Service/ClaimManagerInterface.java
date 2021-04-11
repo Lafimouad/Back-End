@@ -2,6 +2,7 @@ package ConsomiTounsi.Service;
 
 
 import ConsomiTounsi.entities.Claim;
+import ConsomiTounsi.entities.ClaimType;
 
 import java.util.Date;
 import java.util.List;
@@ -15,14 +16,16 @@ public interface ClaimManagerInterface {
     Claim updateClaim(Claim C);
     Claim FindClaim(Long id);
     Optional<Claim> FindClaim2(String id);
-    Optional<Claim> FindBySubject(String subject);
+    List<Claim> FindBySubject(ClaimType subject);
     Optional<Claim> FindByDate(Date date);
     Claim updateClaimDecision(Claim C);
     //Claim updateStatus(Long id);
     //Claim addDecision(Claim C, String decision);
     //Optional<Claim> FindClaim3(Long idUser);
-    Long CountClaims() ;
+    Long CountTotalClaims() ;
     //void updateStatus();
-    Optional<Claim> FindByStatus(String status);
-   
+    List<Claim> FindByStatus(String status);
+    int claimsNumber (int Bp);
+    List<Claim> GetClaimsByLevelorder() ;
+    List<Claim> GetClaimsByLevelorder2() ;
 }

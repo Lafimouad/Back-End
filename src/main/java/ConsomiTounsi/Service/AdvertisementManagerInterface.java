@@ -13,7 +13,7 @@ import javax.persistence.Query;
 
 public interface AdvertisementManagerInterface {
     List<Advertisement> retrieveAllAdvertisement();
-    Advertisement addAdvertisement(Advertisement Ad) throws MessagingException;
+    Advertisement addAdvertisement(Advertisement Ad) ;
     void deleteAdvertisement(Long id);
     void deleteAdvertisement(String id);
     Advertisement updateChanel(Advertisement Ad, Long id);
@@ -23,5 +23,6 @@ public interface AdvertisementManagerInterface {
     //List<Product>findByCategoryProduct(TypeCategory cp);
     //List<Product> showAdvertsementForAll(TypeCriteria criteria);
     List<Product> showAdvertsementByCategory( TypeCategory cp);
+    String CountAdDays(Long id) ;
    
 }

@@ -20,10 +20,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-
-
+import java.text.SimpleDateFormat;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,16 +45,9 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	@Autowired
 	 ClientRepository Clr;
 	
-	  private JavaMailSender javaMailSender;
-	    @Autowired
-	    public AdvertisementManager(JavaMailSender javaMailSender)
-	    {
-	        this.javaMailSender=javaMailSender;
-	    }
+	 
 	
-	 /*@Autowired
-	EntityManagerFactory factory = Persistence.createEntityManagerFactory(null);
-	 EntityManager em = factory.createEntityManager();*/
+	
 	 
 	////////////////////////////Simple CRUD 
 	
@@ -63,88 +57,17 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
     public List<Advertisement> retrieveAllAdvertisement() {
     	return (List<Advertisement>) Adr.findAll();
     }
-    @Autowired
-    EmailSenderService emailSenderService;
+   
     
     @Override
-    public Advertisement addAdvertisement(Advertisement Ad) throws MessagingException {
-		//String subject = "Claim Response";
-		//String to = "maha.themri1@esprit.tn" ;
-		//emailSenderService.sendEmail(to, body(), subject);
-    	 this.sendEmail("maha.themri1@esprit.tn","done");
+    public Advertisement addAdvertisement(Advertisement Ad)  {
+	
        return Adr.save(Ad) ;
        
      }
     
     
-    /*public String body(){
-        return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
-                "\n" +
-                "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +
-                "\n" +
-                "  <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;min-width:100%;width:100%!important\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
-                "    <tbody><tr>\n" +
-                "      <td width=\"100%\" height=\"53\" bgcolor=\"#0b0c0c\">\n" +
-                "        \n" +
-                "        <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;max-width:580px\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">\n" +
-                "          <tbody><tr>\n" +
-                "            <td width=\"70\" bgcolor=\"#0b0c0c\" valign=\"middle\">\n" +
-                "                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\">\n" +
-                "                  <tbody><tr>\n" +
-                "                    <td style=\"padding-left:10px\">\n" +
-                "                  \n" +
-                "                    </td>\n" +
-                "                    <td style=\"font-size:28px;line-height:1.315789474;Margin-top:4px;padding-left:10px\">\n" +
-                "                      <span style=\"font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#ffffff;text-decoration:none;vertical-align:top;display:inline-block\">Welcome to Consomi Tounsi #619</span>\n" +
-                "                    </td>\n" +
-                "                  </tr>\n" +
-                "                </tbody></table>\n" +
-                "              </a>\n" +
-                "            </td>\n" +
-                "          </tr>\n" +
-                "        </tbody></table>\n" +
-                "        \n" +
-                "      </td>\n" +
-                "    </tr>\n" +
-                "  </tbody></table>\n" +
-                "  <table role=\"presentation\" class=\"m_-6186904992287805515content\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;max-width:580px;width:100%!important\" width=\"100%\">\n" +
-                "    <tbody><tr>\n" +
-                "      <td width=\"10\" height=\"10\" valign=\"middle\"></td>\n" +
-                "      <td>\n" +
-                "        \n" +
-                "                <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\">\n" +
-                "                  <tbody><tr>\n" +
-                "                    <td bgcolor=\"#7C0A02\" width=\"100%\" height=\"10\"></td>\n" +
-                "                  </tr>\n" +
-                "                </tbody></table>\n" +
-                "        \n" +
-                "      </td>\n" +
-                "      <td width=\"10\" valign=\"middle\" height=\"10\"></td>\n" +
-                "    </tr>\n" +
-                "  </tbody></table>\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "  <table role=\"presentation\" class=\"m_-6186904992287805515content\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;max-width:580px;width:100%!important\" width=\"100%\">\n" +
-                "    <tbody><tr>\n" +
-                "      <td height=\"30\"><br></td>\n" +
-                "    </tr>\n" +
-                "    <tr>\n" +
-                "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
-                "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
-                "        \n" +
-                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> The following are the default credentials you can use to log in to your account that you can change later on <br> Username : " + " <br> Password : " + "</p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\">" +
-                "  \n" +
-                "      </td>\n" +
-                "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
-                "    </tr>\n" +
-                "    <tr>\n" +
-                "      <td height=\"30\"><br></td>\n" +
-                "    </tr>\n" +
-                "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
-                "\n" +
-                "</div></div>";}*/
-
+    
     @Override
     public void deleteAdvertisement(Long id) {
     	 Adr.deleteById(id);
@@ -192,6 +115,8 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	///////////////////////////////More Advanced ones 
 	
 	
+	
+	
 	@Override
 	public List<Product> showAdvertsementByCategory(TypeCategory cp) {
 		
@@ -224,9 +149,30 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 		}
 		return c ;
 	}
-	//public List<Product> showAdvertsementByCategory(TypeCategory cp) {
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override	
+	public String CountAdDays(Long id) {
+	 Advertisement TargetedAd = Adr.findById(id).orElse(new Advertisement()) ;
+	 SimpleDateFormat sdf
+     = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	 Date endDate = TargetedAd.getEnddate() ;
+	 Date date = new Date();
+	long Difference = endDate.getTime() - date.getTime() ; 
+	int minutes = (int) (Difference / (1000 * 60 ));
+	Long TheId = TargetedAd.getIdAdvertisment();
+	 
+	 return " The advertisement that has the id  " +TheId+ " has :" + " \n" +minutes+ " minutes left " ; 
 		
 		
+   	 
+   }
 	
 	
 	
@@ -241,63 +187,8 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	
 	
 	
-	/*@Override
-	public List<Product> findByCategoryProduct(TypeCategory cp) {
-		return ((AdvertisementManager) Pr).findByCategoryProduct(cp);
-	}*/
 	
-	/*@Override
-	public List<Product> showAdvertsementForAll( TypeCriteria criteria) {
 	
-	if ( criteria == TypeCriteria.ALL) 
-		
-		return Pr.
-	 
-	{ return (List<Product>) Pr.findAll();}
-	else 
-	if ( criteria == TypeCriteria.GENDER)
-		{
-		if (criteriaValue1== TypeCriteriaValue1.MALE)
-		
-			{return }
-		else if (criteriaValue2== TypeCriteriaValue2.FEMALE)
-			{return}
-		}
-		
-	else 
-	if ( criteria == TypeCriteria.WorkField)
-		
-	}*/
-	
-	/*public Query showAdvertsementByCategoryFemale( TypeCategory categoryProduct)
-	{
-	String jpql = 
-		    "select p from Product p"
-		    + " where f.categoryProduct = :categoryProduct" ;
-		Query query = em.createQuery(jpql);
-		query.setParameter("categoryProduct", categoryProduct.makeUp);
-		
-		return query ;
-}
-	*/
-	
-
-	// sammih li theb 3lih, hot fih lhajtin hekom
-	
-	/*Client haja = optionalAdvertisement.getClient() ;
-    haja.getGenderClient() ;*/
-
-	
-	public void sendEmail(String sendTo,String text) throws MailException {
-	
-		SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
-        simpleMailMessage.setTo(sendTo);
-        simpleMailMessage.setFrom("consommitounsi2@gmail.com");
-        simpleMailMessage.setSubject("Payment");
-        simpleMailMessage.setText(text);
-        javaMailSender.send(simpleMailMessage);
-        
-	}
 }
 
 	

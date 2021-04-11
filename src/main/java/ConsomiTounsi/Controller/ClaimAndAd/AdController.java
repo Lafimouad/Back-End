@@ -57,7 +57,7 @@ public class AdController {
 	}
 	
 	@PostMapping("/add")
-	public Advertisement addAd(@RequestBody Advertisement Ad) throws MessagingException{
+	public Advertisement addAd(@RequestBody Advertisement Ad) {
 		 
 		return admanagerI.addAdvertisement(Ad) ;	}
 	
@@ -87,8 +87,13 @@ public class AdController {
 		
 		
 		return admanagerI.showAdvertsementByCategory(cp);
+	}
 	
-}
-	
+	@GetMapping("/calc/{id}")
+	public String CountAdDays( @PathVariable("id") Long id){
+		
+		
+		return admanagerI.CountAdDays(id);
+	}
 	
 }

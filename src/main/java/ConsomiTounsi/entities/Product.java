@@ -1,10 +1,16 @@
 package ConsomiTounsi.entities;
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product implements Serializable {
 	
 	@Id

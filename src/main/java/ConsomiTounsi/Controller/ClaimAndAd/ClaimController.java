@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ConsomiTounsi.Service.ClaimManagerInterface;
 import ConsomiTounsi.entities.Claim;
+import ConsomiTounsi.entities.ClaimType;
 
 
 @RestController
@@ -44,23 +45,43 @@ public class ClaimController {
 	}
 	
 	@GetMapping("/find/{subject}")
-	public Optional<Claim> FindBySubject(@PathVariable("subject") String subject){
+	public List<Claim> FindBySubject(@PathVariable("subject") ClaimType subject){
 		return claimManagerI.FindBySubject(subject);
 	}
 	
 	
-	@GetMapping("/find/{status}")
-	public Optional<Claim> FindByStatus(@PathVariable("status") String status){
-		return claimManagerI.FindBySubject(status);
+	@GetMapping("/find2/{status}")
+	public List<Claim> FindByStatus(@PathVariable("status") String status){
+		return claimManagerI.FindByStatus(status);
 	}
 	
 	
 	
 	@GetMapping("/calc")
 	public Long Calcul(){
-		return claimManagerI.CountClaims();
+		return claimManagerI.CountTotalClaims();
 	}
 	
+	
+	@GetMapping("/Bp/{Bp}")
+	public int claimsNumber(@PathVariable("Bp") int Bp){
+		return claimManagerI.claimsNumber(Bp);
+	}
+	
+	
+	
+	@GetMapping("/levelAsc")
+	public List<Claim> GetClaimsByLevelorder() {
+		return claimManagerI.GetClaimsByLevelorder();
+	
+	}
+	
+	
+	@GetMapping("/levelDesc")
+	public List<Claim> GetClaimsByLevelorder2() {
+		return claimManagerI.GetClaimsByLevelorder2();
+	
+	}
 	
 	@GetMapping("/getC")
 	public List<Claim> getClaims() {
@@ -132,6 +153,7 @@ public class ClaimController {
     "systemProb" : SERVER ,
     "deliveryProb" : null ,
     "ProductProb": null,
+    "ProductWithProb" : 1 ,
     "user" : {
           "idUser" : 1,
 "username_user" : null ,

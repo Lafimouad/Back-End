@@ -19,6 +19,5 @@ public interface ProductManagerInterface {
     Optional<Product> FindProduct(String id);
    // List<Product>findByCategoryProduct(TypeCategory cp);
    // void showAdvertsement( List<Product> products,TypeCriteria criteria) ;
-	EntityManager getEntityManager();
-	 List<Product> getMyAdvertisements(TypeCategory categoryProduct) ;
+    EntityManager getEntityManager();	
 }

@@ -9,6 +9,7 @@ import ConsomiTounsi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,12 +101,7 @@ import javax.persistence.EntityManager;
 		}*/
             
             
-		@Override    
-		public List<Product> getMyAdvertisements(TypeCategory categoryProduct) {
-	        return em.createQuery("SELECT a FROM Product a WHERE a.TypeCategory = :categoryProduct")
-	                .setParameter("categoryProduct", categoryProduct)
-	                .getResultList();
-		}
+		
 			
 			
 			/*{ for(Product product : products)
@@ -144,7 +140,27 @@ import javax.persistence.EntityManager;
 	
 		
 		
-	
+
+
+/*//send List of id for her majesty the Nooba maha hail to the king Mouadh
+    public List<Long> sendIdClaimedProduct(List<Product> productList){
+        List<Long> lass3ed=new ArrayList<Long>();
+        for ( Product product : productList ){
+            Product  optionalProduct  = Pr.findById(product.getId()).get();
+            for (Feedback feedback:optionalProduct.getFeedback()){
+                float nb=feedback.getNote();
+                if (nb<=2){
+                    Long id= product.getId();
+                    lass3ed.add(id);
+                }
+
+            }
+
+                }
+
+
+        return lass3ed;
+}*/
     
 	
 	
