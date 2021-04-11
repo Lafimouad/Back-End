@@ -3,10 +3,7 @@ package ConsomiTounsi.controllers.accounts;
 import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.entities.Deliverer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/deliverer")
@@ -16,8 +13,8 @@ public class DelivererController {
     DelivererManagerInterface delivererS;
 
     @PutMapping("/update")
-    public Deliverer updateDeliverer(@RequestBody Deliverer a){
-        return delivererS.updateDeliverer(a);
+    public void updateDeliverer(@RequestBody Deliverer a , @RequestParam("password") String password){
+         delivererS.updateDeliverer(a , password);
     }
 
 }

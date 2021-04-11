@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +38,7 @@ public class AdminDelivererController {
 		return delivererS.FindDelivererById(id);
 	}
 	
-	@DeleteMapping("remove-id")
+	@DeleteMapping("/remove-id")
 	public void removeClientByID(@RequestParam("id")long id){
 		delivererS.deleteDelivererById(id);
 	}

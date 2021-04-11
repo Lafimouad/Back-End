@@ -11,8 +11,10 @@ import java.util.List;
 
 import ConsomiTounsi.configuration.config.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class UserManager implements UserManagerInterface //, UserDetailsService {
@@ -104,5 +106,9 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 		return ur.save(user);
 	}
 
-
+	@Override
+	public User getConnectedUser(Authentication auth){
+		String username = auth.getName();
+		return ur.findByUsernameUser(username).orElse(new User());
+	}
 }

@@ -37,13 +37,13 @@ public class AdminManager implements AdminManagerInterface{
     }
 
     @Override
-    public Admin updateAdmin(Admin A) {
-
+    public void updateAdmin(Admin A , String password) {
+        if (bCryptPasswordEncoder.matches(A.getPasswordUser(),bCryptPasswordEncoder.encode(password))) {
         if (!bCryptPasswordEncoder.matches(A.getUsernameUser() + "#619", A.getPasswordUser()))
         {A.setUpdatedPassword(true); }
         String encodedPassword = bCryptPasswordEncoder.encode(A.getPasswordUser());
         A.setPasswordUser(encodedPassword);
-        return Ar.save(A);}
+        Ar.save(A);}}
 
     @Override
     public Admin FindAdminById(Long id) {

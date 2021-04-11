@@ -72,12 +72,13 @@ public class DelivererManager implements DelivererManagerInterface{
 	}
 
 	@Override
-	public Deliverer updateDeliverer(Deliverer D) {
-		if (! bCryptPasswordEncoder.matches(D.getUsernameUser() + "#619", D.getPasswordUser()))
+	public void updateDeliverer(Deliverer D , String password) {
+		if (bCryptPasswordEncoder.matches(D.getPasswordUser(),bCryptPasswordEncoder.encode(password))) {
+			if (! bCryptPasswordEncoder.matches(D.getUsernameUser() + "#619", D.getPasswordUser()))
 		{ D.setUpdatedPassword(true); }
 		String encodedPassword = bCryptPasswordEncoder.encode(D.getPasswordUser());
 		D.setPasswordUser(encodedPassword);
-		return dr.save(D);
+		dr.save(D);}
 	}
 
 	@Override

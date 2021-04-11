@@ -32,4 +32,6 @@ public interface AdminRepository extends CrudRepository<Admin,Long>{
 	@Query(value="UPDATE admin a SET a.nbabsence_admin=:nb WHERE a.id_user=:id",nativeQuery= true)
 	int AddAbsence(@Param("nb") int nb , @Param("id") long id);
 
+	
+
 }

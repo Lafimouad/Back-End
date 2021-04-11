@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -89,6 +90,11 @@ public class HomeController {
 
 	}
 
+
+	@GetMapping("/user")
+	public User getConnectedUser(Authentication auth){
+		return us.getConnectedUser(auth);
+	}
 
 	@GetMapping("/")
 	public String Home(){
