@@ -18,8 +18,9 @@ public class Payment implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private   Long id;
-
-    private   Long customerId;
+    private   String customerId;
+    private String email;
+    private  float amount;
     @Temporal(TemporalType.DATE)
     private Date date;
     private String description;

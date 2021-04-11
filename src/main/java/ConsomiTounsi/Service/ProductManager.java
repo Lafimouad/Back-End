@@ -19,9 +19,7 @@ import java.util.Optional;
 
     @Override
     public Product addProduct(Product P) {
-        if (!P.getCode().startsWith("619")){
-            throw new IllegalStateException("This Product isn't Tunisian");
-        }
+
         return Pr.save(P);
     }
 

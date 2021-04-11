@@ -31,7 +31,7 @@ public class Product implements Serializable {
 	private boolean available;
 	private String description;
 	private double weight;
-
+	private String imagePath ;
 	@ManyToOne
 	Supplier supplier;
 

@@ -30,30 +30,30 @@ public class PaymentControllers {
          }
     //Show All Payments
     @GetMapping
-    ResponseEntity<?> getAllOrder(){
+    ResponseEntity<?> getAllPayment(){
         List<Payment> o=om.retrieveAllPayments();
         GetAllPaymentResponse Payments = new GetAllPaymentResponse(o);
         return new ResponseEntity<>(Payments,HttpStatus.OK);
     }
     //Show a Payment by id
     @GetMapping("/{id}")
-    ResponseEntity<?> getOrderById(@PathVariable Long id){
+    ResponseEntity<?> getPaymentById(@PathVariable Long id){
         return new ResponseEntity<>(om.FindPayment(id),HttpStatus.OK);
 
     }
     //Delete a Payment by id
     @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteProductById(@PathVariable Long id){
+    ResponseEntity<?> deletePaymentById(@PathVariable Long id){
         om.deletePayment(id);
-        return new ResponseEntity<>(new MessageResponseModel("Order Deleted"),HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponseModel("Payment Deleted"),HttpStatus.OK);
 
     }
     //Update Payment
     @PutMapping("/{id}")
-    ResponseEntity<?> updateProduct(@PathVariable Long id ,@RequestBody Payment o){
+    ResponseEntity<?> updatePayment(@PathVariable Long id ,@RequestBody Payment o){
 
         om.updatePayment(id,o);
-        return new ResponseEntity<>(new MessageResponseModel("Order Updated"), HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponseModel("Payment Updated"), HttpStatus.OK);
     }
     //find A Payment By Type
 
