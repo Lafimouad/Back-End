@@ -113,16 +113,24 @@ public class EventManager implements EventManagerInterface{
         return Er.findById(Long.parseLong(id)).orElse(new Event());
     }
 
-    public Event AddEventToClient( long idclient, long idevent){
+    public void AddEventToClient( long idclient, long idevent){
 
         Optional<Client> optionalClient = Clr.findById(idclient);
         Client client = optionalClient.get();
         Optional<Event> optionalEvent = Er.findById(idevent);
         Event event =  optionalEvent.get();
+
+        int x = event.getNombreplace();
+        if (x==0){
+             System.out.print("nombre des places de l'evenement = 0 ");
+        }
+        else {
         event.addclient(client);//pour ajouter l'employé a une mission (l'ajout se fait dans la table "Employees_Missions")
         client.addEvent(event);
-        Clr.save(client);
-        return Er.save(event);
+        int y = x-1;
+        event.setNombreplace(y);
+            Clr.save(client);
+            Er.save(event); }
     }
 
 
