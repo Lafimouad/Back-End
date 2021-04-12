@@ -1,11 +1,21 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.User;
+import ConsomiTounsi.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class UserManager implements UserManagerInterface{
+	
+	
+	
+	@Autowired
+	UserRepository ur ;
+	
     @Override
     public List<User> retrieveAllUser() {
         return null;
@@ -40,4 +50,9 @@ public class UserManager implements UserManagerInterface{
     public Optional<User> FindUser(String id) {
         return Optional.empty();
     }
+    
+    
+    
+    
+    
 }

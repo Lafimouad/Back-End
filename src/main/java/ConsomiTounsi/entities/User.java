@@ -2,6 +2,7 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -11,13 +12,12 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int idUser;
+	private Long idUser;
 	private String username_user;
 	private String password_user;
 	private String phoneNumber_user;
 	private String emailAddress_user;
-	@Temporal (TemporalType.DATE)
-	private Date dateBirth_user;
+	private LocalDateTime  dateBirth_user;
 	private String address_user;
 	@Enumerated(EnumType.STRING)
 	private Gender genderClient;
@@ -47,11 +47,11 @@ public class User implements Serializable {
 
 	
 
-	public int getIdUser() {
+	public Long getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(int idUser) {
+	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
 	}
 
@@ -87,11 +87,11 @@ public class User implements Serializable {
 		this.emailAddress_user = emailAddress_user;
 	}
 
-	public Date getDateBirth_user() {
+	public LocalDateTime getDateBirth_user() {
 		return dateBirth_user;
 	}
 
-	public void setDateBirth_user(Date dateBirth_user) {
+	public void setDateBirth_user(LocalDateTime dateBirth_user) {
 		this.dateBirth_user = dateBirth_user;
 	}
 

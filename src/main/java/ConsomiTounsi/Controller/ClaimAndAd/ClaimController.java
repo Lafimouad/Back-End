@@ -63,8 +63,11 @@ public class ClaimController {
 	}
 	
 	
+
+	
+	
 	@GetMapping("/Bp/{Bp}")
-	public int claimsNumber(@PathVariable("Bp") int Bp){
+	public int claimsNumber(@PathVariable("Bp") Long Bp){
 		return claimManagerI.claimsNumber(Bp);
 	}
 	

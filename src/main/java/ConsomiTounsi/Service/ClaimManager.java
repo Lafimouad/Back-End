@@ -5,14 +5,15 @@ package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Claim;
 import ConsomiTounsi.entities.ClaimType;
-import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.DeliveryProb;
+import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.ProductProb;
 import ConsomiTounsi.entities.SystemProb;
 import ConsomiTounsi.repository.ClaimRepository;
 import ConsomiTounsi.repository.ProductRepository;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +41,10 @@ public class ClaimManager implements ClaimManagerInterface{
 	
 	@Autowired 
 	ProductRepository Pr ;
+	
+	
+	@Autowired 
+	ProductManager productManager ;
 	///////////////// SIMPLE CRUD 
 	
 	
@@ -206,7 +211,8 @@ public class ClaimManager implements ClaimManagerInterface{
 		
 		
 		// sending Email 
-		this.sendEmail("maha.themri1@esprit.tn","Your claim got answered, please visit our website to check it ");
+		String emailOfUser = C.getUser().getEmailAddress_user() ;
+		this.sendEmail(emailOfUser,"Your claim got answered, please visit our website to check it ");
 		return Cr.save(C);
 	}
 	
@@ -243,7 +249,7 @@ public class ClaimManager implements ClaimManagerInterface{
 	
 	// counting number of claims for a given product 
 	@Override
-	public int claimsNumber(int Bp) {
+	public int claimsNumber(Long Bp) {
 		int Nb = 0; 
 		for (Claim claim : Cr.findAll()){
 			if (claim.getProductWithProb()== Bp )
@@ -255,17 +261,18 @@ public class ClaimManager implements ClaimManagerInterface{
 	
 	
 	
-	/*// get products with 10 claims to block them 
-	public void WorstProducts () {
-		int idfeedback = Pr.esmElFunctionMte3Repo ;
-		int ClaimNumber = claimsNumber(idfeedback) ;
-		if ( ClaimNumber > 10 )
-			appel lel function mte3 blockage (idfeedback)
-		
-			 
+	// get products with 10 claims to block them 
+	@Override
+	public List<Long> WorstProducts () {
+		List<Product> elProducts = (List<Product>) Pr.findAll() ;
+		List<Long> idfeedback = productManager.sendIdClaimedProduct() ;
+		List<Long> Worst = new ArrayList<>();
+		for (Long theId : idfeedback){
+			int ClaimNumber = claimsNumber(theId) ;
+			if ( ClaimNumber > 10 ) {
+				Worst.add(theId); }
 				
-			
-		}
+		} return Worst ;
 		
 	}
 	
@@ -279,5 +286,5 @@ public class ClaimManager implements ClaimManagerInterface{
 		
 
 
-	}*/
+
 }

@@ -25,7 +25,7 @@ public class Claim implements Serializable {
 
 	private String description;
 	private int Level;
-	private int ProductWithProb ;
+	private Long ProductWithProb ;
 	
 	@Enumerated(EnumType.STRING)
 	private SystemProb systemProblem ;
@@ -160,13 +160,13 @@ public class Claim implements Serializable {
 
 
 
-	public int getProductWithProb() {
+	public Long getProductWithProb() {
 		return ProductWithProb;
 	}
 
 
 
-	public void setProductWithProb(int productWithProb) {
+	public void setProductWithProb(Long productWithProb) {
 		ProductWithProb = productWithProb;
 	}
 

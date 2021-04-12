@@ -54,8 +54,7 @@ public class ClientManager implements ClientManagerInterface{
 
 	@Override
 	public Optional<Client> FindClient(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return Clr.findById(id) ;
 	}
 
 	@Override

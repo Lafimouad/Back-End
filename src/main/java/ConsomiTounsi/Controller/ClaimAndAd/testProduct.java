@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ConsomiTounsi.Service.ProductManagerInterface;
 import ConsomiTounsi.entities.Advertisement;
+import ConsomiTounsi.entities.Feedback;
 import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.TypeCategory;
+import ConsomiTounsi.Service.ClaimManagerInterface;
+import ConsomiTounsi.Service.FeedbackManagerInterface;
 import ConsomiTounsi.Service.ProductManager;
 
 @RestController
@@ -23,6 +26,11 @@ public class testProduct {
 	
 	@Autowired
 	ProductManagerInterface testProductI ;
+	@Autowired
+	FeedbackManagerInterface F ;
+	
+	@Autowired 
+	ClaimManagerInterface C ;
 	
 	
 	@GetMapping("/home")
@@ -35,6 +43,16 @@ public class testProduct {
 	public Product addAd(@RequestBody Product P){
 		 
 		return testProductI.addProduct(P) ;	}
+	
+	@PostMapping("/addFeedback")
+	public Feedback addFeedback(@RequestBody Feedback A){
+		 
+		return F.addFeedback(A) ;	}
+	
+	
+	@GetMapping("/feedback")
+	public List<Long> WorstProducts(){
+		return C.WorstProducts(); }
 	
 	
 	

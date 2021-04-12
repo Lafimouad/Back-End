@@ -25,7 +25,8 @@ public interface ClaimManagerInterface {
     Long CountTotalClaims() ;
     //void updateStatus();
     List<Claim> FindByStatus(String status);
-    int claimsNumber (int Bp);
+    int claimsNumber (Long Bp);
     List<Claim> GetClaimsByLevelorder() ;
     List<Claim> GetClaimsByLevelorder2() ;
+	List<Long> WorstProducts();
 }

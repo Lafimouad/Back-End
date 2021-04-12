@@ -1,5 +1,6 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Feedback;
 import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.TypeCategory;
 import ConsomiTounsi.entities.TypeCriteria;
@@ -142,25 +143,25 @@ import javax.persistence.EntityManager;
 		
 
 
-/*//send List of id for her majesty the Nooba maha hail to the king Mouadh
-    public List<Long> sendIdClaimedProduct(List<Product> productList){
+//send List of id for her majesty the Nooba maha hail to the king Mouadh
+    @Override
+    public List<Long> sendIdClaimedProduct(){
         List<Long> lass3ed=new ArrayList<Long>();
-        for ( Product product : productList ){
-            Product  optionalProduct  = Pr.findById(product.getId()).get();
-            for (Feedback feedback:optionalProduct.getFeedback()){
+        for ( Product product : Pr.findAll() ){
+            Feedback feedback= product.getFeedback() ;
                 float nb=feedback.getNote();
                 if (nb<=2){
-                    Long id= product.getId();
+                    Long id= product.getIdProduct() ;
                     lass3ed.add(id);
                 }
 
             }
 
-                }
+                
 
 
         return lass3ed;
-}*/
+}
     
 	
 	

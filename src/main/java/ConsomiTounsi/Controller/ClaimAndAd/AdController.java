@@ -82,11 +82,11 @@ public class AdController {
 }*/
 	
 	
-	@GetMapping("/getCat2")
-	public List<Product> FindAdvertisement( TypeCategory cp){
+	@GetMapping("/getCat2/{id}")
+	public List<Product> showAdvertsementByCategory( TypeCategory cp,@PathVariable("id")Long id){
 		
 		
-		return admanagerI.showAdvertsementByCategory(cp);
+		return admanagerI.showAdvertsementByCategory(id);
 	}
 	
 	@GetMapping("/calc/{id}")
@@ -96,4 +96,11 @@ public class AdController {
 		return admanagerI.CountAdDays(id);
 	}
 	
+	
+	
+	@DeleteMapping("/check/{id}")
+	public String DeleteIfEnded(@PathVariable("id") Long id) {
+		return admanagerI.DeleteIfEnded(id);
+	
+	}
 }

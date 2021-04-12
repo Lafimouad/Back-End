@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -21,8 +22,8 @@ public class Advertisement implements Serializable {
 	
 	@Temporal (TemporalType.DATE)
 	private Date dateAdvertisment;
-	@Temporal (TemporalType.DATE)
-	private Date enddate;
+	
+	private LocalDateTime  enddate;
 	private int finalviews;
 	private int targetviews;
 	@Enumerated(EnumType.STRING)
@@ -60,11 +61,11 @@ public class Advertisement implements Serializable {
 		this.dateAdvertisment = dateAdvertisment;
 	}
 
-	public Date getEnddate() {
+	public LocalDateTime getEnddate() {
 		return enddate;
 	}
 
-	public void setEnddate(Date enddate) {
+	public void setEnddate(LocalDateTime enddate) {
 		this.enddate = enddate;
 	}
 

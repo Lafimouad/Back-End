@@ -8,10 +8,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class Client extends User implements Serializable {
 

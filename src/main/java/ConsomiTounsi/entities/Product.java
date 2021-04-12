@@ -15,7 +15,7 @@ public class Product implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int idProduct;
+	private Long idProduct;
 	
 	private int quantityProduct;
 	private String codeProduct;
@@ -33,11 +33,11 @@ public class Product implements Serializable {
 
 	
 
-	public int getIdProduct() {
+	public Long getIdProduct() {
 		return idProduct;
 	}
 
-	public void setIdProduct(int idProduct) {
+	public void setIdProduct(Long idProduct) {
 		this.idProduct = idProduct;
 	}
 
@@ -129,11 +129,11 @@ public class Product implements Serializable {
 		this.supplier = supplier;
 	}
 
-	public Set<Feedback> getFeedback() {
+	public Feedback getFeedback() {
 		return feedback;
 	}
 
-	public void setFeedback(Set<Feedback> feedback) {
+	public void setFeedback(Feedback feedback) {
 		this.feedback = feedback;
 	}
 
@@ -163,8 +163,8 @@ public class Product implements Serializable {
 	@ManyToOne
 	Supplier supplier;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
-	private Set<Feedback> feedback;
+	@OneToOne
+	private Feedback feedback;
 
 	@ManyToMany(mappedBy="Cart", cascade = CascadeType.ALL)
 	private Set<Order> order;

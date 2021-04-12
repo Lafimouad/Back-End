@@ -5,34 +5,22 @@ import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.Gender;
 
 import ConsomiTounsi.entities.WorkField;
-import ConsomiTounsi.Mail.EmailSenderService;
-
-import ConsomiTounsi.entities.TypeCategory;
 import ConsomiTounsi.entities.Product;
 
 import ConsomiTounsi.repository.ProductRepository;
+import ConsomiTounsi.repository.UserRepository;
 import ConsomiTounsi.repository.AdvertisementRepository;
 import ConsomiTounsi.repository.ClientRepository;
+//import org.springframework.security.core.Authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.time.Period;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
-import javax.mail.MessagingException;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 @Service
 public class AdvertisementManager implements AdvertisementManagerInterface{
   
@@ -46,7 +34,8 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	 ClientRepository Clr;
 	
 	 
-	
+	@Autowired
+	UserRepository Ur;
 	
 	 
 	////////////////////////////Simple CRUD 
@@ -78,20 +67,11 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
     	Adr.deleteById(Long.parseLong(id));
     }
 
-    @Override
-    public Advertisement updateChanel(Advertisement Ad, Long id) {
-    	  Advertisement advertisementById = Adr
-                  .findById(id)
-                  .orElse(null) ;
-
-         
-          advertisementById.setChannel(Ad.getChannel());
-          return Adr.save(Ad) ;
-    }
+    
 
     @Override
     public Advertisement FindAdvertisement(Long id) {
-    	return Adr.findById(id).orElse(null);
+    	return Adr.findById(id).orElse(new Advertisement());
     }
 
     @Override
@@ -118,18 +98,24 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	
 	
 	@Override
-	public List<Product> showAdvertsementByCategory(TypeCategory cp) {
+	public List<Product> showAdvertsementByCategory(Long id) {
+		Advertisement theAd = Adr.findById(id).orElse(new Advertisement()) ;
+		Client theclient = theAd.getClient() ;
+		List<Product> F = Pr.findByCategoryProduct();
+		List<Product> M = Pr.findByCategoryProduct2();
+		List<Product> H = Pr.findByCategoryProduct5();
+		List<Product> S = Pr.findByCategoryProduct4();
+		List<Product> B = Pr.findByCategoryProduct6();
 		
-		Iterable<Client> clients = Clr.findAll() ;
-		List<Product> F = Pr.findByCategoryProduct(cp);
-		List<Product> M = Pr.findByCategoryProduct2(cp);
-		List<Product> H = Pr.findByCategoryProduct5(cp);
-		List<Product> S = Pr.findByCategoryProduct4(cp);
 		List<Product> c = new ArrayList<>() ;
-		for (Client client : clients){
+		
+			 LocalDateTime date = LocalDateTime.now() ;
+			 LocalDateTime BirthDate = theclient.getDateBirth_user() ;
+			 long age = ChronoUnit.YEARS.between(date, BirthDate);
 			
-            Gender genderClient = client.getGenderClient();
-            WorkField workfieldClient = client.getWorkfieldClient();
+            Gender genderClient = theclient.getGenderClient();
+            WorkField workfieldClient = theclient.getWorkfieldClient();
+            	if (age < 12) {c=B ;}
             	if ( genderClient == Gender.MALE) {
             		if (workfieldClient == WorkField.EDUCATION)
             	  {c = M; }
@@ -146,9 +132,18 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
               		}
             	}
             		
-		}
+		
 		return c ;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -160,42 +155,98 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	@Override	
 	public String CountAdDays(Long id) {
 	 Advertisement TargetedAd = Adr.findById(id).orElse(new Advertisement()) ;
-	 SimpleDateFormat sdf
-     = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-	 Date endDate = TargetedAd.getEnddate() ;
-	 Date date = new Date();
-	long Difference = endDate.getTime() - date.getTime() ; 
-	int minutes = (int) (Difference / (1000 * 60 ));
-	Long TheId = TargetedAd.getIdAdvertisment();
+	 LocalDateTime endDate = TargetedAd.getEnddate() ;
+	 LocalDateTime date = LocalDateTime.now() ;
+	 long period = ChronoUnit.MINUTES.between(date, endDate) ;
+	 Long TheId = TargetedAd.getIdAdvertisment();
 	 
-	 return " The advertisement that has the id  " +TheId+ " has :" + " \n" +minutes+ " minutes left " ; 
+	 return " The advertisement that has the id  " +TheId+ " has :" + " \n" +period+ " minutes left " ; 
 		
 		
    	 
    }
+
+
+	@Override
+	public String DeleteIfEnded(Long id) {
+		Advertisement TargetedAd = Adr.findById(id).orElse(new Advertisement()) ;
+		LocalDateTime endDate = TargetedAd.getEnddate() ;
+		LocalDateTime date = LocalDateTime.now() ;
+		 long period = ChronoUnit.SECONDS.between(date, endDate) ;
+		 if ( period <=0 )  { Adr.deleteById(id) ; 
+		  return "The Advertisement was deleted succesfully " ; }
+		 else
+			 return " The Advertisement still available" ;
+				 
 	
 	
-	
+		 
+		
+		 
 		
 		
-		
-   
-            
-           
-	
-	
-	
-	
-	
-	
-	
+	}
 }
+	
+	
+		
+		
+	
+	/*public Long Target(Authentication auth){
+		String username = auth.getName();
+		User user = Ur.findByUsername_user(username) ;
+		Long theId = user.getIdUser();
+		
+		return theId ;
+			
+	
+} */
 
 	
 	
 	
 	
+	// This function uses the id of the connected client
 	
+	
+	/*	@Override
+		public List<Product> showAdvertsementByCategory2(Authentication auth) {
+			Long theId = this.Target(auth) ;
+			Client theclient = Clr.findById(theId).orElse(new Client ());
+			List<Product> F = Pr.findByCategoryProduct();
+			List<Product> M = Pr.findByCategoryProduct2();
+			List<Product> H = Pr.findByCategoryProduct5();
+			List<Product> S = Pr.findByCategoryProduct4();
+			List<Product> B = Pr.findByCategoryProduct6();
+			
+			List<Product> c = new ArrayList<>() ;
+			
+				 LocalDateTime date = LocalDateTime.now() ;
+				 LocalDateTime BirthDate = theclient.getDateBirth_user() ;
+				 long age = ChronoUnit.YEARS.between(date, BirthDate);
+				
+	            Gender genderClient = theclient.getGenderClient();
+	            WorkField workfieldClient = theclient.getWorkfieldClient();
+	            	if (age < 12) {c=B ;}
+	            	if ( genderClient == Gender.MALE) {
+	            		if (workfieldClient == WorkField.EDUCATION)
+	            	  {c = M; }
+	            		if (workfieldClient == WorkField.COSMETICS) {
+	            			{c= H ;}
+	            		}
+	            	}
+	            	if (genderClient==Gender.FEMALE)
+	            	{
+	            		if (workfieldClient == WorkField.EDUCATION)
+	              	  {c = F; }
+	              		if (workfieldClient == WorkField.COSMETICS) {
+	              			{c= S ;}
+	              		}
+	            	}
+	            		
+			
+			return c ;
+		} */
 
 	
 
