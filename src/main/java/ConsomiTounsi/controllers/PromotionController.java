@@ -34,7 +34,7 @@ public class PromotionController {
 		}
 	@GetMapping("/find/{id}")
 	public Optional<Promotion> getPromotion(@PathVariable("id") long id){
-		return Prm .FindPromotion(id);
+		return Prm.FindPromotion(id);
 	}
 	
 	@GetMapping("/get")
@@ -59,5 +59,9 @@ public class PromotionController {
 		Prm.updatePromotion(Pi);
         return new ResponseEntity<>(new MessageResponseModel("Promotion Updated"), HttpStatus.CREATED);
     }
+	@PutMapping("/Email")
+	public  void EmailPromotion(@PathVariable("pid") long pid){
+		Prm.PromotionNotificationandPriceReduction(pid);
+	}
 
 }

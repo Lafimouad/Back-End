@@ -13,5 +13,6 @@ public interface PromotionManagerInterface {
     Optional<Promotion> FindPromotion(Long id);
     Optional<Promotion> FindPromotion(String id);
     Promotion updatePromotion(Promotion Pm);
+	void PromotionNotificationandPriceReduction(long pid);
 
 }
