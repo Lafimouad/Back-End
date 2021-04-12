@@ -22,9 +22,10 @@ public interface SubjectManagerInterface {
     Subject FindSubject(String id);
 
     int addLike(long id);
+    int dislike(long id);
 
     void setFeaturedSubjects();
-
+    List<Subject> Filter(String word , String minLikes, String maxLikes );
     List<Subject> getFeaturedSubjects();
 
     List<Subject> FilterByWords(String word);

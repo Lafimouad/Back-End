@@ -16,6 +16,7 @@ public interface CommentManagerInterface {
     Comment FindComment(String id);
 
     int addLike(long id);
+    int dislike(long id);
     Comment retrieveCommentByPertinence(long id);
     Set<Comment> retrieveSubjectComments(long id);
 

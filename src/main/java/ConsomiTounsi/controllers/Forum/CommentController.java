@@ -40,6 +40,9 @@ public class CommentController {
     @PutMapping("/likeComment-id")
     public void addLike(@RequestParam("id") long id){commentS.addLike(id);}
 
+    @PutMapping("/dislikeComment-id")
+    public void dislike(@RequestParam("id") long id){commentS.dislike(id);}
+
     @GetMapping("/mostPertinentComments")
     public Comment GetPertinentCommentsBySubject(@RequestParam("id") long id){
         return commentS.retrieveCommentByPertinence(id); }

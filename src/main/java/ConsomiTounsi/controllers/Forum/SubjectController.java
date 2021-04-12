@@ -44,6 +44,9 @@ public class SubjectController {
     @PutMapping("/likeSubject-id")
     public void addLike(@RequestParam("id") long id){subjectS.addLike(id);}
 
+    @PutMapping("/dilikeSubject-id")
+    public void dislike(@RequestParam("id") long id){subjectS.dislike(id);}
+
     @PutMapping("/setFeauturedSubjects")
     public void FeatureSubjects(){
         subjectS.setFeaturedSubjects();
@@ -63,6 +66,11 @@ public class SubjectController {
     @GetMapping("/getLikesFilteredSubjects")
     public List<Subject> FilterByNbLikes(@RequestParam("minLikes")String minLikes, @RequestParam("maxLikes")String maxLikes){
         return subjectS.FilterByNbLikes(minLikes, maxLikes);
+    }
+
+    @GetMapping("/getFilteredSubjects")
+    public List<Subject> Filter(@RequestParam("word")String word , @RequestParam("minLikes")String minLikes, @RequestParam("maxLikes")String maxLikes){
+        return subjectS.Filter(word , minLikes, maxLikes);
     }
 }
 

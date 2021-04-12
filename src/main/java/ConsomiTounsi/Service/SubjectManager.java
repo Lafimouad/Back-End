@@ -1,6 +1,6 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Dictionary;
+import ConsomiTounsi.entities.DictionaryWord;
 import ConsomiTounsi.entities.Subject;
 import ConsomiTounsi.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,9 @@ public class SubjectManager implements SubjectManagerInterface{
     @Autowired
     SubjectRepository sr;
 
+    @Autowired
+    DictionaryManagerInterface dictionaryS;
+
     @Override
     public List<Subject> retrieveAllSubject() {
         return (List<Subject>) sr.findAll();
@@ -24,15 +27,21 @@ public class SubjectManager implements SubjectManagerInterface{
 
     @Override
     public void addSubject(Subject Su) {
+        boolean redundant = false;
         boolean prohibited = false;
-        List<String> prohibitedDict = Stream.of(Dictionary.values())
-                .map(Dictionary::name)
-                .collect(Collectors.toList());
+        List<Subject> allSubjects = retrieveAllSubject();
+        List<String> prohibitedDict = dictionaryS.retrieveAllBadWords();
+        prohibitedDict.replaceAll(String::toUpperCase);
         List<String> List = new ArrayList<String>(Arrays.asList(Su.getDescriptionSubject().split("\\s+")));
         for (String word : List ) {
             if (prohibitedDict.contains(word.toUpperCase())){ prohibited = true ;}
         }
-        if (prohibited == false )
+        for(Subject s : allSubjects){
+            if(Su.getDescriptionSubject().toUpperCase().equals(s.getDescriptionSubject().toUpperCase())){
+                redundant = true ;
+            }
+        }
+        if (prohibited == false && redundant==false )
         { Su.setLikesSubject(0);
           Su.setFeaturedSubject(false);
             sr.save(Su);
@@ -72,6 +81,12 @@ public class SubjectManager implements SubjectManagerInterface{
         return sr.addLike(nb , id) ; }
 
     @Override
+    public int dislike(long id) {
+        Subject a = sr.findById(id).orElse(new Subject());
+        int nb = a.getLikesSubject() - 1;
+        return sr.addLike(nb , id) ; }
+
+    @Override
     public void setFeaturedSubjects() {
         int i = 0;
         int MaxLikes=0;
@@ -96,6 +111,19 @@ public class SubjectManager implements SubjectManagerInterface{
             MaxLikes=0;
             i++;
         }
+    }
+
+    @Override
+    public List<Subject> Filter(String word, String minLikes, String maxLikes) {
+        List<Subject> FilteredByWordsSubjects = FilterByWords( word);
+        List<Subject> FilteredByLikesSubjects = FilterByNbLikes( minLikes, maxLikes);
+        boolean redundant = false;
+        for (Subject s1 : FilteredByLikesSubjects){
+            for (Subject s2 : FilteredByWordsSubjects ){
+                if (s2.equals(s1)){ redundant = true;} }
+            if (redundant == false ){FilteredByWordsSubjects.add(s1);}
+        }
+        return FilteredByWordsSubjects ;
     }
 
     @Override
@@ -142,6 +170,8 @@ public class SubjectManager implements SubjectManagerInterface{
         }
         return filteredSubjects;
     }
+
+
 
 }
 

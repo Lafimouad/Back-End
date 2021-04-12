@@ -29,4 +29,8 @@ public interface CommentRepository extends CrudRepository<Comment,Long> {
     @Modifying
     @Query(value="UPDATE comment c SET c.most_pertinent_comment = FALSE WHERE c.id_comment=:id",nativeQuery= true)
     int notPertinentComment(@Param("id") long id);
+
+    @Modifying
+    @Query(value="UPDATE comment c SET c.likes_comment=:nb WHERE c.id_comment=:id",nativeQuery= true)
+    int dislike(@Param("nb") int nb , @Param("id") long id);
 }

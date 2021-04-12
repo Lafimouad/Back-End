@@ -17,6 +17,9 @@ public class CommentManager implements CommentManagerInterface{
     @Autowired
     CommentRepository cr;
 
+    @Autowired
+    DictionaryManagerInterface dictionaryS;
+
     @Override
     public List<Comment> retrieveAllComment() {
         return (List<Comment>) cr.findAll();
@@ -25,10 +28,11 @@ public class CommentManager implements CommentManagerInterface{
     @Override
     public void addComment(Comment Co , long id) {
         boolean prohibited = false;
-        List<String> prohibitedDict = Arrays.asList("barcha", "klem", "khayeb");
+        List<String> prohibitedDict = dictionaryS.retrieveAllBadWords();
+        prohibitedDict.replaceAll(String::toUpperCase);
         List<String> List = new ArrayList<String>(Arrays.asList(Co.getTextComment().split("\\s+")));
         for (String word : List ) {
-            if (prohibitedDict.contains(word)){ prohibited = true ;}}
+            if (prohibitedDict.contains(word.toUpperCase())){ prohibited = true ;}}
         if (prohibited == false )
         { Co.setLikesComment(0);
         Co.setMostPertinentComment(false);
@@ -109,6 +113,12 @@ public class CommentManager implements CommentManagerInterface{
     public int addLike(long id) {
         Comment a = cr.findById(id).orElse(new Comment());
         int nb = a.getLikesComment() + 1;
+        return cr.addLike(nb , id) ; }
+
+    @Override
+    public int dislike(long id) {
+        Comment a = cr.findById(id).orElse(new Comment());
+        int nb = a.getLikesComment() -1 ;
         return cr.addLike(nb , id) ; }
 
 }
