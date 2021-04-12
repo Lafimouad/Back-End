@@ -60,8 +60,8 @@ public class DeliverersControllers {
 		return DevlivererManI.FindMaxScore();
 	}
 	
-	@PutMapping("/EmailDelivererOftheMonth/{id}")
-	public void EmailDelivererOfTheMonth(@PathVariable("id") long id){
-		Dr.DelivererOfTheMonthMail(id);
+	@PutMapping("/EmailDelivererOftheMonth")
+	public void EmailDelivererOfTheMonth(){
+		Dr.DelivererOfTheMonthMail();
 	}
 }

@@ -11,7 +11,7 @@ public interface DelivererManagerInterface {
 	
 	List<Deliverer> retrieveAllDeliverer();
     Deliverer addDeliverer(Deliverer D);
-    void DelivererOfTheMonthMail(long id);
+    void DelivererOfTheMonthMail();
     void deleteDelivererById(Long id);
     void deleteDelivererById(String id);
     Deliverer updateDeliverer(Deliverer D);

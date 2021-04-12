@@ -28,11 +28,33 @@ public class Product implements Serializable {
 	private String category;
 	private double price;
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	private String shelf;
 	private boolean available;
 	private String description;
 	private double weight;
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public Promotion getPromotion() {
+		return promotion;
+	}
+
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
+	}
 	@ManyToOne
 	Supplier supplier;
 
@@ -46,4 +68,7 @@ public class Product implements Serializable {
 	
 	@ManyToOne
 	Stock stock;
+	
+	@ManyToOne
+	Promotion promotion;
 }
