@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.entities.Deliverer;
 
+@RestController
+@RequestMapping("/Deliverer")
 public class DeliverersControllers {
 	@Autowired
 	DelivererManagerInterface DevlivererManI ;
@@ -49,7 +53,7 @@ public class DeliverersControllers {
 	}
 	
 	@GetMapping("/MaxScore")
-	public Long getMaxOfScore() {
+	public long getMaxOfScore() {
 		return DevlivererManI.FindMaxScore();
 	}
 }

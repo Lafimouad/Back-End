@@ -8,13 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import ConsomiTounsi.entities.Deliverer;
 
-@Transactional
+
 @Repository
 public interface DelivererRepository extends CrudRepository<Deliverer, Long> {
 	
 	
-	@Query(value="SELECT d.deliverer.id_user FROM Deliverer d WHERE max(d.score_deliverer)" )
-	Long getMaxScore();
+	@Query(value="SELECT id_user FROM deliverer WHERE score_deliverer= (SELECT MAX(score_deliverer) FROM deliverer)",nativeQuery = true)
+        	long getMaxScore();
 	
 	//@Query("SELECT COUNT(d) FROM Deliverer d")
 	//long getNbDeliverer();

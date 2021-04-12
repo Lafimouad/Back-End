@@ -23,6 +23,6 @@ public interface DelivererManagerInterface {
 	//void deleteDeliverer(String id);
 	Optional<Deliverer> FindDelivererById(Long id);
 	Optional<Deliverer> FindDelivererById(String id);
-	Long FindMaxScore();
+	long FindMaxScore();
   
 }

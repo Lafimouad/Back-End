@@ -1,4 +1,4 @@
-package ConsomiTounsi.controllers.accounts;
+/*package ConsomiTounsi.controllers.accounts;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class DelivererController {
     "delivererOfTheMonthDeliverer": false,
     "availableDeliverer": false,
     "distanceDeliverer": 0.0,
-    "bonusDeliverer": 0.0}*/
+    "bonusDeliverer": 0.0}
 	
 	@PostMapping("/add")
 	public Deliverer addDeliverer(@RequestBody Deliverer a){
@@ -61,4 +61,4 @@ public class DelivererController {
 	public Deliverer updateDeliverer(@RequestBody Deliverer a){
 		return delivererS.updateDeliverer(a);
 	}
-}
+}*/

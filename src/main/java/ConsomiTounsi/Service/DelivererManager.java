@@ -1,6 +1,7 @@
 package ConsomiTounsi.Service;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,14 @@ public class DelivererManager implements DelivererManagerInterface{
        return Der.findById(Long.parseLong(id));
    }
    
-   public Long FindMaxScore() {
+   public long FindMaxScore() {
        return Der.getMaxScore();
+   }
+   
+   public void DelivererOfTheMounthMail(){
+	   long id = Der.getMaxScore();
+	   Optional <Deliverer> optionalDeliverer = Der.findById(id);
+	   Deliverer deliverer = optionalDeliverer.get();
+	   
    }
 }
