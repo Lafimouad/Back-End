@@ -18,7 +18,7 @@ import java.util.Set;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 @Entity
 public class Deliverer extends User implements Serializable {
 	
