@@ -3,6 +3,7 @@ package ConsomiTounsi.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import ConsomiTounsi.Service.DelivererManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ConsomiTounsi.Service.DelivererManager;
 import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.entities.Deliverer;
 
@@ -22,9 +22,10 @@ import ConsomiTounsi.entities.Deliverer;
 public class DeliverersControllers {
 	@Autowired
 	DelivererManagerInterface DevlivererManI ;
+
 	@Autowired
-	DelivererManager Dr;
-	
+	DelivererManager manager;
+
 	@GetMapping("/firstpage")
 	public String First(){
 		return ("<h1> First Delivery </h1>");
@@ -59,9 +60,8 @@ public class DeliverersControllers {
 	public long getMaxOfScore() {
 		return DevlivererManI.FindMaxScore();
 	}
-	
-	@PutMapping("/EmailDelivererOftheMonth")
-	public void EmailDelivererOfTheMonth(){
-		Dr.DelivererOfTheMonthMail();
+	@PutMapping("/Email")
+	public  void EmailDelivererOfTheMonth(){
+		manager.DelivererOfTheMonthMail();
 	}
 }
