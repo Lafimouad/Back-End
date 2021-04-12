@@ -54,6 +54,11 @@ public class EventController {
     public void removeAdminByID(@PathVariable("id")long id){
         eventmanager.deleteEvent(id);
     }
+
+    @PutMapping("/RemoveClientFromEvent/{idclient}/{idevent}")
+    public void RemoveClientFromEvent (@PathVariable("idclient") long idclient , @PathVariable("idevent") long idevent){
+        manager.RemoveClientFromEvent(idclient,idevent);
+    }
 }
 
 

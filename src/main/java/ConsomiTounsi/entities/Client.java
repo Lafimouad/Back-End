@@ -34,5 +34,12 @@ public class Client extends User implements Serializable {
 		return events.add(ev);
 	}
 
+	public boolean removeEvent(Event ev) {
+		if(events == null)
+			events = new ArrayList<>();
+
+		return events.remove(ev);
+	}
+
 
 }

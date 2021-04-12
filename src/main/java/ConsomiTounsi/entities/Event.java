@@ -31,6 +31,8 @@ public class Event implements Serializable {
 	//@Temporal (TemporalType.DATE)
 	private LocalDateTime date_event;
 	private int nombreplace;
+	private int nombredeplaceinitiale;
+
 
 
 
@@ -86,6 +88,13 @@ public class Event implements Serializable {
 			clients = new ArrayList<>();
 
 		return clients.add(emp);
+	}
+
+	public boolean removeclient(Client emp) {
+		if(clients == null)
+			clients = new ArrayList<>();
+
+		return clients.remove(emp);
 	}
 
 
