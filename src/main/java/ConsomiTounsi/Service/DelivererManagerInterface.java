@@ -9,8 +9,9 @@ import java.util.Optional;
 
 public interface DelivererManagerInterface {
 	
-    List<Deliverer> retrieveAllDeliverer();
+	List<Deliverer> retrieveAllDeliverer();
     Deliverer addDeliverer(Deliverer D);
+    void DelivererOfTheMonthMail(long id);
     void deleteDelivererById(Long id);
     void deleteDelivererById(String id);
     Deliverer updateDeliverer(Deliverer D);

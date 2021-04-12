@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ConsomiTounsi.Service.DelivererManager;
 import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.entities.Deliverer;
 
@@ -21,6 +22,8 @@ import ConsomiTounsi.entities.Deliverer;
 public class DeliverersControllers {
 	@Autowired
 	DelivererManagerInterface DevlivererManI ;
+	@Autowired
+	DelivererManager Dr;
 	
 	@GetMapping("/firstpage")
 	public String First(){
@@ -55,5 +58,10 @@ public class DeliverersControllers {
 	@GetMapping("/MaxScore")
 	public long getMaxOfScore() {
 		return DevlivererManI.FindMaxScore();
+	}
+	
+	@PutMapping("/EmailDelivererOftheMonth/{id}")
+	public void EmailDelivererOfTheMonth(@PathVariable("id") long id){
+		Dr.DelivererOfTheMonthMail(id);
 	}
 }

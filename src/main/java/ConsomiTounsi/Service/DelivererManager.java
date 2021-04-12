@@ -58,13 +58,14 @@ public class DelivererManager implements DelivererManagerInterface{
     @Autowired
     EmailSenderService emailSenderService;
    
-   public void DelivererOfTheMonthMail(){
-	   long id = Der.getMaxScore();
+   public void DelivererOfTheMonthMail(long id){
+	   //long id = Der.getMaxScore();
+	 //  System.out.println(id);
 	   Optional <Deliverer> optionalDeliverer = Der.findById(id);
 	   Deliverer deliverer = optionalDeliverer.get();
        String name = deliverer.getFirstNameUser();
        String subject = "Deliverer of the Month ";
-       emailSenderService.sendEmail(deliverer.getEmailAddressUser(), body(name), subject);
+       emailSenderService.sendEmail(deliverer.getAddressUser(), body(name), subject);
    }
 
     public String body(String name) {
