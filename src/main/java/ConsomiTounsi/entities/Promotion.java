@@ -1,6 +1,7 @@
 package ConsomiTounsi.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,8 +42,8 @@ public class Promotion implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long id_promotion;
 	
-	@Temporal (TemporalType.DATE)
-	private Date date_promotion_debut;
+	//@Temporal (TemporalType.DATE)
+	private LocalDateTime date_promotion_debut;
 
 	@Temporal (TemporalType.DATE)
 	private Date date_promotion_fin;
@@ -63,10 +64,10 @@ public class Promotion implements Serializable {
 	public void setId_promotion(Long id_promotion) {
 		this.id_promotion = id_promotion;
 	}
-	public Date getDate_promotion_debut() {
+	public LocalDateTime getDate_promotion_debut() {
 		return date_promotion_debut;
 	}
-	public void setDate_promotion_debut(Date date_promotion_debut) {
+	public void setDate_promotion_debut(LocalDateTime date_promotion_debut) {
 		this.date_promotion_debut = date_promotion_debut;
 	}
 	public Date getDate_promotion_fin() {

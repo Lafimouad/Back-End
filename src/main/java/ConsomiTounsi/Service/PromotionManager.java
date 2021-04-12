@@ -75,12 +75,13 @@ public class PromotionManager implements PromotionManagerInterface  {
    public void PromotionNotificationandPriceReduction(long PID){
 	   List<Promotion> list2 = Pm.retrieveAllPromotion();
 	 for (Promotion p: list2){
-		 SimpleDateFormat sdFormat= new SimpleDateFormat("yyy-MM-dd");
+	     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		 SimpleDateFormat localDateFormat= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		   LocalDateTime now = LocalDateTime.now();
-		   Date dateProm = p.getDate_promotion_debut();
-		   String d1=sdFormat.format(now);
-		   String d2=sdFormat.format(dateProm);
-          if(d1.compareTo(d2)>0){
+         LocalDateTime dateProm = p.getDate_promotion_debut();
+		  // String d1=localDateFormat.format(now);
+		   //String d2=localDateFormat.format(dateProm);
+          if(now.compareTo(dateProm)>0){
 	      Product pr = Pr.findById(PID).get();
 	   double reduction=p.getValeur_promotion();
 	   double old_price= pr.getPrice(); 
@@ -97,6 +98,7 @@ public class PromotionManager implements PromotionManagerInterface  {
        double val= p.getValeur_promotion();
        String subject = "Don't miss today's promotion!";
        emailSenderService.sendEmail(c.getEmailAddressUser(),body(name,namep,type,val), subject);
+       System.out.println("test");
 	   }
    }
    else System.out.println("Sorry! Wrong date, there's no promotions today");

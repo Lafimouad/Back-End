@@ -59,7 +59,7 @@ public class PromotionController {
 		Prm.updatePromotion(Pi);
         return new ResponseEntity<>(new MessageResponseModel("Promotion Updated"), HttpStatus.CREATED);
     }
-	@PutMapping("/Email")
+	@PutMapping("/Email/{pid}")
 	public  void EmailPromotion(@PathVariable("pid") long pid){
 		Prm.PromotionNotificationandPriceReduction(pid);
 	}
