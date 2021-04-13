@@ -14,7 +14,7 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_order;
+	private long id_order;
 	@Temporal (TemporalType.DATE)
 	private Date date_order;
 	
@@ -25,11 +25,11 @@ public class Order implements Serializable {
 	private boolean paid_order;
 	private float weight_order;
 
-	public int getId_order() {
+	public long getId_order() {
 		return id_order;
 	}
 
-	public void setId_order(int id_order) {
+	public void setId_order(long id_order) {
 		this.id_order = id_order;
 	}
 
