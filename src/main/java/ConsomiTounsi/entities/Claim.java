@@ -2,7 +2,6 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 
 @Entity
@@ -11,58 +10,106 @@ public class Claim implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_claim;
-	
-	private String decision_claim;
-	
-	@Temporal (TemporalType.DATE)
-	private Date date_claim;
-	
-	@Temporal (TemporalType.DATE)
-	private Date datefinal_claim;
-	
-	private String subject_claim;
+	private Long idClaim;
 
-	public int getId_claim() {
-		return id_claim;
+
+	private String decision;
+
+
+
+
+	private String date;
+
+	private String status;
+
+	private String description;
+	private int Level;
+	private int ProductWithProb ;
+
+
+	public Long getIdClaim() {
+		return idClaim;
 	}
 
-	public void setId_claim(int id_claim) {
-		this.id_claim = id_claim;
+
+	public void setIdClaim(Long idClaim) {
+		this.idClaim = idClaim;
 	}
 
-	public String getDecision_claim() {
-		return decision_claim;
+
+	public String getDecision() {
+		return decision;
 	}
 
-	public void setDecision_claim(String decision_claim) {
-		this.decision_claim = decision_claim;
+
+	public void setDecision(String decision) {
+		this.decision = decision;
 	}
 
-	public Date getDate_claim() {
-		return date_claim;
+
+	public String getDate() {
+		return date;
 	}
 
-	public void setDate_claim(Date date_claim) {
-		this.date_claim = date_claim;
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
-	public Date getDatefinal_claim() {
-		return datefinal_claim;
+
+	public String getStatus() {
+		return status;
 	}
 
-	public void setDatefinal_claim(Date datefinal_claim) {
-		this.datefinal_claim = datefinal_claim;
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public String getSubject_claim() {
-		return subject_claim;
+
+	public String getDescription() {
+		return description;
 	}
 
-	public void setSubject_claim(String subject_claim) {
-		this.subject_claim = subject_claim;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
+
+
+	public int getLevel() {
+		return Level;
+	}
+
+
+	public void setLevel(int level) {
+		Level = level;
+	}
+
+
+
+	public int getProductWithProb() {
+		return ProductWithProb;
+	}
+
+
+	public void setProductWithProb(int productWithProb) {
+		ProductWithProb = productWithProb;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 	@ManyToOne
 	User user;
+
 }

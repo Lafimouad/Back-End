@@ -42,7 +42,7 @@ public class PaymentController {
             return new Response(false, "Stripe payment token is missing. please try again later.");
         }
 
-        String chargeId = stripeService.createCharge(email, token, 111);// 9.99 usd
+        String chargeId = stripeService.createCharge(email, token, 71);// 9.99 usd
         System.out.println(email);
         paymentService.sendEmail(email , "amount");
         if (chargeId == null) {

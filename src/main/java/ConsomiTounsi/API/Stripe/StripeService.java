@@ -1,7 +1,9 @@
 package ConsomiTounsi.API.Stripe;
 
 import ConsomiTounsi.Service.PaymentService;
+import ConsomiTounsi.entities.Order;
 import ConsomiTounsi.entities.Payment;
+import ConsomiTounsi.entities.Payment_type;
 import ConsomiTounsi.pdf.PdfService;
 import ConsomiTounsi.repository.PaymentRepository;
 import com.stripe.Stripe;
@@ -54,6 +56,11 @@ public class StripeService {
             payment.setAmount(charge.getAmount());
             payment.setDescription("Your Payment is Successful");
             payment.setEmail(email);
+            Order order =new Order();
+            order.setId(1L);
+            order.setPaid(true);
+            order.setPaymentType(Payment_type.online);
+            payment.setOrder(order);
             paymentRepository.save(payment);
             paymentService.sendWithAttachment(payment,pdfService.toPDF(payment.getId()));
 
@@ -64,5 +71,5 @@ public class StripeService {
 
         return chargeId;
     }
-
 }
+

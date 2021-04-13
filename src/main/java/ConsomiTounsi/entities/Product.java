@@ -22,6 +22,7 @@ public class Product implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int quantity;
+	private boolean productofthemonth;
 	private String code;
 	private String name;
 	private String category;
@@ -35,8 +36,8 @@ public class Product implements Serializable {
 	@ManyToOne
 	Supplier supplier;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
-	private Set<Feedback> feedback;
+	@OneToOne
+	private Feedback feedback;
 	@JsonIgnore
 	@ManyToMany(mappedBy="products",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
 

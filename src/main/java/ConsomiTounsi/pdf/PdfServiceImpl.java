@@ -1,9 +1,10 @@
 package ConsomiTounsi.pdf;
 
+import ConsomiTounsi.entities.Order;
 import ConsomiTounsi.entities.Payment;
+import ConsomiTounsi.repository.OrderRepository;
 import ConsomiTounsi.repository.PaymentRepository;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class PdfServiceImpl implements PdfService {
 
     @Autowired
     PaymentRepository paymentRepository;
+    @Autowired
+    OrderRepository orderRepository;
 
     @Override
     public String toPDF(Long idPayment)
@@ -96,28 +99,18 @@ public class PdfServiceImpl implements PdfService {
                         PdfPTable table = new PdfPTable(3);
                         table.setWidthPercentage(90);
 
-
+                        Order order =orderRepository.findById(1L).get();
                         //Ligne 1
-                        /*PdfPCell Cellnom = new PdfPCell(new Phrase("Your Order weight is :\r\n " + payment.getOrder().getWeight() + " ", subFontPara13N));
-                        Cellnom.setBorder(Rectangle.NO_BORDER);
-                        Cellnom.setBackgroundColor(BaseColor.WHITE);
-                        table.addCell(Cellnom);
 
-                         */
+                        Paragraph para4 = new Paragraph("Your EMAIL IS  :\r\n" + payment.getEmail(), subFontPara13N);
+                        para4.setAlignment(Element.ALIGN_LEFT);
 
-                       /* //Ligne 2
-                        PdfPCell CellEmail = new PdfPCell(new Phrase("Your Payment Type :\r\n" + payment.getOrder().getPaymentType(), subFontPara13N));
-                        CellEmail.setBorder(Rectangle.NO_BORDER);
-                        CellEmail.setBackgroundColor(BaseColor.WHITE);
-                        table.addCell(CellEmail);
-
-                        */
+                        Paragraph para3 = new Paragraph("Your Order weight is :\r\n " +"14g", subFontPara13N);
+                        para3.setAlignment(Element.ALIGN_LEFT);
 
                         //Ligne 3
-                        PdfPCell Celsal = new PdfPCell(new Phrase("Price:\r\n" + payment.getAmount(), subFontPara13N));
-                        Celsal.setBorder(Rectangle.NO_BORDER);
-                        Celsal.setBackgroundColor(BaseColor.WHITE);
-                        table.addCell(Celsal);
+                        Paragraph para5 = new Paragraph("Price:\r\n" + 71+"Dt", subFontPara13N);
+                        para5.setAlignment(Element.ALIGN_LEFT);
 
                         //break
                         Paragraph separator = new Paragraph("_____________________________________________________________________",
@@ -248,8 +241,13 @@ public class PdfServiceImpl implements PdfService {
                         my_pdf_report.add(titre1);
 
                         my_pdf_report.add(espace);
-                        my_pdf_report.add(table);
                         my_pdf_report.add(espace);
+                        my_pdf_report.add(para3);
+                        my_pdf_report.add(espace);
+                        my_pdf_report.add(para5);
+                        my_pdf_report.add(espace);
+                        my_pdf_report.add(para4);
+
 
                         /*
                         my_pdf_report.add(separator);
