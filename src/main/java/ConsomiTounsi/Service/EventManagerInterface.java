@@ -15,4 +15,6 @@ public interface EventManagerInterface {
     Event updateEvent(Event E);
     public Event FindEventById(Long id);
     public Event FindEventById(String id);
+    List<Event> getEventsByLevelorder();
+    List<Event> getEventsByLevelorder2();
 }

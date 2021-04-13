@@ -59,6 +59,14 @@ public class EventController {
     public void RemoveClientFromEvent (@PathVariable("idclient") long idclient , @PathVariable("idevent") long idevent){
         manager.RemoveClientFromEvent(idclient,idevent);
     }
-}
+
+    @GetMapping("/getEventsByLevelorder")
+    public List<Event> getEventsByLevelorder() { return eventmanager.getEventsByLevelorder(); }
+
+    @GetMapping("/getEventsByLevelorder2")
+    public List<Event> getEventsByLevelorder2() { return eventmanager.getEventsByLevelorder2(); }
+
+
+    }
 
 

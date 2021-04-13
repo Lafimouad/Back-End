@@ -43,6 +43,16 @@ public class EventManager implements EventManagerInterface {
     }
 
     @Override
+    public List<Event> getEventsByLevelorder2() {
+        return Er.getEventsByLevelorder2();
+    }
+
+    @Override
+    public List<Event> getEventsByLevelorder() {
+        return Er.getEventsByLevelorder();
+    }
+
+    @Override
     public Event addEvent(Event E, long id) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
