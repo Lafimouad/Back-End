@@ -21,7 +21,7 @@ public class Donation implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private int id_donation;
 	private double amount_donation;
-	private Product product_donation;
+	private long product_donation;
 
 
 	@ManyToOne

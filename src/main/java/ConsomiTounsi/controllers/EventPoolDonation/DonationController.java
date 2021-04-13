@@ -14,8 +14,8 @@ public class DonationController {
     @Autowired
     DonationManager manager;
 
-    @PutMapping("/AddDonaton/{idevent}/{idorder}")
+    /*@PutMapping("/AddDonaton/{idevent}/{idorder}")
     public void addDonation(@RequestBody Donation d, @PathVariable("idevent") long idevent , @PathVariable("idorder") long idorder){
         manager.addDonation(d,idevent,idorder);
-    }
+    }*/
 }

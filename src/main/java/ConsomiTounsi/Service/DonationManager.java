@@ -32,20 +32,20 @@ public class DonationManager implements DonationManagerInterface{
         return  (List<Donation>) Dor.findAll();
     }
 
-    @Override
+   /* @Override
     public void addDonation(Donation Do,long idEvent,long idOrder) {
         Dor.save(Do);
         Event eventManagedEntity = Ev.findById(idEvent).get();
         if (ObjectUtils.isEmpty(eventManagedEntity)== false && !ObjectUtils.isEmpty(Do) )
         {Do.setEvent(eventManagedEntity);}
-         Product c = Do.getProduct_donation();
+        Product c = Pr.findById(Do.getProduct_donation()).get();
          Order o= Or.findById(idOrder).get();
         c.addorders(o);//pour ajouter l'employé a une mission (l'ajout se fait dans la table "Employees_Missions")
         o.addproduct(c);
         Or.save(o);
-        Pr.save(c);
+        Pr.save(c);*/
 
-    }
+   // }
 
     @Override
     public void deleteDonation(Long id) {

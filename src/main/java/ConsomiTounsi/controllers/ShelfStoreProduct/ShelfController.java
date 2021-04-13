@@ -34,7 +34,7 @@ public class ShelfController {
         return shelfmanager.FindShelf(id);
     }
 
-    @DeleteMapping("remove-id")
+    @DeleteMapping("/remove-id")
     public void removeShelfByID(@RequestParam("id")long id){
         shelfmanager.deleteShelf(id);
     }

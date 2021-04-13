@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface DonationManagerInterface {
     List<Donation> retrieveAllDonation();
-    void addDonation(Donation Do,long idEvent,long idOrder);
+  //  void addDonation(Donation Do,long idEvent,long idOrder);
     void deleteDonation(Long id);
     void deleteDonation(String id);
     Donation updateDonation(Donation Do);
