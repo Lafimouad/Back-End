@@ -36,8 +36,14 @@ public class Event implements Serializable {
 
 
 
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="event")
-	private List<Donation> donation;
+	/*@OneToMany(cascade = CascadeType.PERSIST, mappedBy="event")
+	private List<Donation> donation;*/
+
+	@OneToMany(mappedBy="event",
+			cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+			fetch= FetchType.EAGER)
+	private List<Donation> donation = new ArrayList<>();
+
 	
 	/*@ManyToOne
 	Pool pool;*/

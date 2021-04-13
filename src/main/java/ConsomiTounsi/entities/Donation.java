@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,7 +19,10 @@ public class Donation implements Serializable {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private int id_donation;
+	private double amount_donation;
+	private Product product_donation;
+
 
 	@ManyToOne
-	Event event;
+	private Event event;
 }

@@ -1,29 +1,40 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Donation;
-import ConsomiTounsi.entities.Event;
+import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.DonationRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+import ConsomiTounsi.repository.EventRepository;
+import ConsomiTounsi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 @Service 
 public class DonationManager implements DonationManagerInterface{
 	
 	 @Autowired
-	    DonationRepository Dor; 
+	    DonationRepository Dor;
+    @Autowired
+    ProductRepository Pr;
+    @Autowired
+    EventRepository Ev;
+
     @Override
     public List<Donation> retrieveAllDonation() {
         return  (List<Donation>) Dor.findAll();
     }
 
     @Override
-    public Donation addDonation(Donation Do) {
-        return  Dor.save(Do);
-
+    public void addDonation(Donation Do,long idEvent) {
+        Dor.save(Do);
+        Event eventManagedEntity = Ev.findById(idEvent).get();
+        if (ObjectUtils.isEmpty(eventManagedEntity)== false && !ObjectUtils.isEmpty(Do) )
+        {Do.setEvent(eventManagedEntity);}
+         Product c = Do.getProduct_donation();
+        
     }
 
     @Override
@@ -50,4 +61,7 @@ public class DonationManager implements DonationManagerInterface{
     public Donation FindDonationById(String id) {
         return Dor.findById(Long.parseLong(id)).orElse(new Donation());
     }
+
+
+
 }
