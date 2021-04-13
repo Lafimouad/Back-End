@@ -1,5 +1,6 @@
 package ConsomiTounsi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +18,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product implements Serializable {
-	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private long id_product;
@@ -39,10 +40,19 @@ public class Product implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
 	private List<Feedback> feedback;
 
-	@ManyToMany(mappedBy="Cart", cascade = CascadeType.ALL)
-	private List<Order> order;
+	@JsonIgnore
+	@ManyToMany(mappedBy="products",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
+
+	private List<Order> orders;
 
 
 	@ManyToOne
 	private Shelf shelf;
+
+	public boolean addorders(Order o) {
+		if(orders == null)
+			orders = new ArrayList<>();
+
+		return orders.add(o);
+	}
 }

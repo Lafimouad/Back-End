@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ConsomiTounsi.repository.EventRepository;
+import ConsomiTounsi.repository.OrderRepository;
 import ConsomiTounsi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,10 @@ public class DonationManager implements DonationManagerInterface{
     ProductRepository Pr;
     @Autowired
     EventRepository Ev;
+    @Autowired
+    OrderRepository  Or;
+
+
 
     @Override
     public List<Donation> retrieveAllDonation() {
@@ -28,13 +33,18 @@ public class DonationManager implements DonationManagerInterface{
     }
 
     @Override
-    public void addDonation(Donation Do,long idEvent) {
+    public void addDonation(Donation Do,long idEvent,long idOrder) {
         Dor.save(Do);
         Event eventManagedEntity = Ev.findById(idEvent).get();
         if (ObjectUtils.isEmpty(eventManagedEntity)== false && !ObjectUtils.isEmpty(Do) )
         {Do.setEvent(eventManagedEntity);}
          Product c = Do.getProduct_donation();
-        
+         Order o= Or.findById(idOrder).get();
+        c.addorders(o);//pour ajouter l'employé a une mission (l'ajout se fait dans la table "Employees_Missions")
+        o.addproduct(c);
+        Or.save(o);
+        Pr.save(c);
+
     }
 
     @Override

@@ -15,7 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Donation implements Serializable {
-	
+
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private int id_donation;
