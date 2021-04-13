@@ -30,7 +30,19 @@ public class Order implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Payment_type paymentType;
 	
-	private float cost;
+	public Delivery getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
+	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	private double cost;
 	private boolean paid;
 	private float weight;
     private Long idUser;

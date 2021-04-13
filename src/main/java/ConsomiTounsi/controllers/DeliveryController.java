@@ -75,7 +75,7 @@ public class DeliveryController {
 		return DevliveryI.CalculateScore(De);
 	}
 	@PutMapping(value="/DelivererToDelivery/{livreurId}/{livraisonId}")
-	public void affecterDepartementAEntreprise(@PathVariable("livreurId") int livreurId, @PathVariable("livraisonId") int livraisonId){
+	public void affecterDeliveryDeliverer(@PathVariable("livreurId") int livreurId, @PathVariable("livraisonId") int livraisonId){
 		DevliveryI.AffectLivreurLivraison(livreurId, livraisonId);
 	}
 	/*@PutMapping("/DelivererToDelivery")
@@ -95,5 +95,21 @@ public class DeliveryController {
 	public int setScoreToDeliverer(@PathVariable("livreurId") long livreurId ){
 		return DevliveryI.calculateScoreDeliverer(livreurId);
 		
-	} 
+	}
+	@PutMapping(value="/DistanceBetweenTwoPeople/{delvID}/{ClientId}/{livraisonId}")
+	public double getDistance(@PathVariable("delvID") long delvID, @PathVariable("ClientId") long ClientId,@PathVariable("livraisonId") long livraisonId){
+		return DevliveryI.distance(delvID,ClientId,livraisonId);
+	}
+	
+	@PutMapping(value="/sffectLivreur/{client_id}/{livraisonId}")
+	public void AffectNEARdeliverer(@PathVariable("client_id") long client_id, @PathVariable("livraisonId") long livraisonId){
+		DevliveryI.AffectNEARdeliverer(client_id, livraisonId);
+	
+	}
+	@PutMapping(value="/frais/{ordreid}")
+	public double fraislivraison(@PathVariable("ordreid") long ordreid){
+		return DevliveryI.FraisLivraison(ordreid);
+	
+	}
+	
 }

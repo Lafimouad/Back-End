@@ -20,4 +20,8 @@ public interface DeliveryManagerInterface {
 	void AffectLivreurLivraison(long livreurId, long livraisonId);
 	List<Integer> getScorebyDelivererI(long deliverer_id);
 	int calculateScoreDeliverer(long deliverer_id);
+	double distance(long delvID, long ClientId,long livraisonId);
+	void AffectNEARdeliverer(long client_id, long livraisonId);
+	double FraisLivraison(long ordreid);
+
 }

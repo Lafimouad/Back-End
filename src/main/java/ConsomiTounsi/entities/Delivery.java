@@ -39,6 +39,15 @@ public class Delivery implements Serializable {
 
 	private int scoreDelivery;
 	
+	private double distance;
+	
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
 	@Enumerated(EnumType.STRING)
 	private ServiceDelivering Stars_service_delivery;
 
@@ -49,6 +58,7 @@ public class Delivery implements Serializable {
 	public void setId_delivery(Long id_delivery) {
 		this.id_delivery = id_delivery;
 	}
+	
 
 	public Date getDate_delivery() {
 		return date_delivery;

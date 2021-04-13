@@ -13,7 +13,7 @@ public interface ClientManagerInterface {
     void deleteClientById(Long id);
     void deleteClientById(String id);
     Client updateClient(Client Cl);
-    Client FindClientById(Long id);
+    Client FindClientById(long id);
     Client FindClientById(String id);
     long getNombreClient(); 
     

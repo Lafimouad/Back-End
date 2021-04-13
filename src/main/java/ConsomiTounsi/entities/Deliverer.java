@@ -45,7 +45,25 @@ public class Deliverer extends User implements Serializable {
 	
 	private double bonusDeliverer;
 	private int score_deliverer;
+	private double Latitude;
 
+	public double getLatitude() {
+		return Latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		Latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return Longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		Longitude = longitude;
+	}
+
+	private double Longitude;
 
 	public int getScore_deliverer() {
 		return score_deliverer;
