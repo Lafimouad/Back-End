@@ -43,4 +43,7 @@ public class Admin extends User implements Serializable {
 
 	@ManyToOne
 	Message message;
+
+	@OneToOne
+	private Pool pool;
 }

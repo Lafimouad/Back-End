@@ -11,6 +11,6 @@ public interface PoolManagerInterface {
     void deletePool(Long id);
     void deletePool(String id);
     Pool updatePool(Pool Po);
-    Optional<Pool> FindPool(Long id);
-    Optional<Pool> FindPool(String id);
+    public Pool  FindPoolById(Long id);
+    public Pool FindPoolById(String id);
 }

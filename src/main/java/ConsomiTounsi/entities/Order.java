@@ -2,7 +2,9 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,7 +14,7 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_order;
+	private long id_order;
 	@Temporal (TemporalType.DATE)
 	private Date date_order;
 	
@@ -23,11 +25,11 @@ public class Order implements Serializable {
 	private boolean paid_order;
 	private float weight_order;
 
-	public int getId_order() {
+	public long getId_order() {
 		return id_order;
 	}
 
-	public void setId_order(int id_order) {
+	public void setId_order(long id_order) {
 		this.id_order = id_order;
 	}
 
@@ -74,6 +76,14 @@ public class Order implements Serializable {
 	@ManyToOne
 	Delivery delivery;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Product> Cart;
+	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+
+	private List<Product> products;
+
+	public boolean addproduct(Product p) {
+		if(products == null)
+			products = new ArrayList<>();
+
+		return products.add(p);
+	}
 }
