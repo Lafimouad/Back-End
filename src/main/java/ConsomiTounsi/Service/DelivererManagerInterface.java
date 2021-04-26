@@ -12,11 +12,20 @@ public interface DelivererManagerInterface {
     Deliverer addDeliverer(Deliverer D);
     void deleteDelivererById(Long id);
     void deleteDelivererById(String id);
-    Deliverer updateDeliverer(Deliverer D);
+    void updateDeliverer(Deliverer D , String password);
     Deliverer FindDelivererById(Long id);
     Deliverer FindDelivererById(String id);
     long getNbAvailableDeliveres();
 	long getNbDeliverer();
 	Deliverer getDelivererOfTheMonth();
-  
+    double SommeSaliareDeliverer();
+    void resetBonus();
+
+    void salaireAvecPrime();
+    double updateprimeDeliverer(long id);
+
+    double calculatePrime(long id);
+
+    void electDelivererOftheMonth();
+
 }

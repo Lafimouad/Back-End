@@ -4,21 +4,31 @@ import ConsomiTounsi.entities.User;
 
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional 
+@Transactional//(readOnly = true)
+
 @Repository
-public interface UserRepository extends CrudRepository<User,Long> {
-	
-	User findByUsernameUser(String username);
-	public List<User> findByFirstNameUser(String firstname); 
-	public List<User> findByLastNameUser(String lastname);
-	
+public interface UserRepository extends JpaRepository<User,Long> {
+
+	Optional<User>  findByUsernameUser(String username);
+
+	List<User> findByFirstNameUser(String firstname);
+	List<User> findByLastNameUser(String lastname);
+
+	@Modifying
+	@Query("Update User u SET u.nbaccessUser=:nb WHERE u.usernameUser= :fn")
+	int updateNbaccess(@Param("nb") int nb , @Param("fn") String fn );
+
+
 	@Query("SELECT u FROM User u WHERE u.firstNameUser= :fn AND u.lastNameUser = :ln" )
 	List<User> RetiveUserByFirstAndLastNameJPQL(@Param("fn") String fn , @Param("ln") String ln);
 	
