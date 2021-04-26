@@ -3,10 +3,17 @@ package ConsomiTounsi.Service;
 import java.util.List;
 import java.util.Optional;
 
+import ConsomiTounsi.entities.Order;
+import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.Stock;
+import ConsomiTounsi.repository.StockRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class StockManager implements StockManagerInterface {
-
+	@Autowired
+	StockRepository Sr;
+	@Autowired
+	ProductManager sm;
 	@Override
 	public List<Stock> retrieveAllStock() {
 		// TODO Auto-generated method stub
@@ -14,9 +21,17 @@ public class StockManager implements StockManagerInterface {
 	}
 
 	@Override
-	public Stock addOrder(Stock S) {
-		// TODO Auto-generated method stub
-		return null;
+	public Stock addStock(Stock S) {
+		System.out.println(S.toString());
+		Stock optionalStock=Sr.save(S);
+		List<Product> products=S.getProducts();
+		for (int i=0;i<products.size();i++){
+
+			Product p=products.get(i);
+			p.setStock(optionalStock);
+			sm.updateProduct(p.getId(),p);
+		}
+		return optionalStock;
 	}
 
 	@Override
