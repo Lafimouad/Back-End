@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -36,14 +37,14 @@ public class AdminManager implements AdminManagerInterface{
         Ar.deleteById(Long.parseLong(id));
     }
 
+    @Transactional
     @Override
-    public void updateAdmin(Admin A , String password) {
-        if (bCryptPasswordEncoder.matches(A.getPasswordUser(),bCryptPasswordEncoder.encode(password))) {
+    public void updateAdmin(Admin A) {
         if (!bCryptPasswordEncoder.matches(A.getUsernameUser() + "#619", A.getPasswordUser()))
         {A.setUpdatedPassword(true); }
         String encodedPassword = bCryptPasswordEncoder.encode(A.getPasswordUser());
         A.setPasswordUser(encodedPassword);
-        Ar.save(A);}}
+    Ar.save(A);}
 
     @Override
     public Admin FindAdminById(Long id) {

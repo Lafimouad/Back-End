@@ -12,7 +12,7 @@ public interface AdminManagerInterface {
     List<Admin> retrieveAllAdmin();
     void deleteAdminById(Long id);
     void deleteAdminById(String id);
-    void updateAdmin(Admin A , String password);
+    void updateAdmin(Admin A);
     Admin FindAdminById(Long id);
     Admin FindAdminById(String id);
     List<Admin> FindAdminByRole(Role role);

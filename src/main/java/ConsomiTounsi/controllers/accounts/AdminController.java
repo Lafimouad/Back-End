@@ -13,7 +13,7 @@ public class AdminController {
     AdminManagerInterface adminS;
 
     @PutMapping("/update")
-    public void updateAdmin(@RequestBody Admin a , @RequestParam("password") String password){
-         adminS.updateAdmin(a , password);
+    public void updateAdmin(@RequestBody Admin a){
+         adminS.updateAdmin(a);
     }
 }

@@ -42,7 +42,7 @@ public class ManagerDashboardController {
 		return delivererS.getNbDeliverer();
 	}
 	
-	@GetMapping("/countsAvailableDeliveres")
+	@GetMapping("/countsAvailableDeliveres") //by region
 	public long NbAvailableDeliveres(){
 		return delivererS.getNbAvailableDeliveres();
 	}
