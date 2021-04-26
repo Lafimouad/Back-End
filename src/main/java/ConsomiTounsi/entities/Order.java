@@ -1,12 +1,22 @@
 package ConsomiTounsi.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="\"Order\"")
 
@@ -14,76 +24,75 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private long id_order;
+
+	private Long id;
 	@Temporal (TemporalType.DATE)
-	private Date date_order;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date date;
 	
 	@Enumerated(EnumType.STRING)
-	private Payment paymentType_order;
+	private Payment_type paymentType;
 	
-	private float cost_order;
-	private boolean paid_order;
-	private float weight_order;
 
-	public long getId_order() {
-		return id_order;
-	}
-
-	public void setId_order(long id_order) {
-		this.id_order = id_order;
-	}
-
-	public Date getDate_order() {
-		return date_order;
-	}
-
-	public void setDate_order(Date date_order) {
-		this.date_order = date_order;
-	}
-
-	public Payment getPaymentType_order() {
-		return paymentType_order;
-	}
-
-	public void setPaymentType_order(Payment paymentType_order) {
-		this.paymentType_order = paymentType_order;
-	}
-
-	public float getCost_order() {
-		return cost_order;
-	}
-
-	public void setCost_order(float cost_order) {
-		this.cost_order = cost_order;
-	}
-
-	public boolean isPaid_order() {
-		return paid_order;
-	}
-
-	public void setPaid_order(boolean paid_order) {
-		this.paid_order = paid_order;
-	}
-
-	public float getWeight_order() {
-		return weight_order;
-	}
-
-	public void setWeight_order(float weight_order) {
-		this.weight_order = weight_order;
-	}
+	private float cost;
+	private boolean paid;
+	private float weight;
+    private Long idUser;
+	@OneToOne
+	Payment payment;
 
 	@ManyToOne
 	Delivery delivery;
-
 	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "product_ord",
+			joinColumns = @JoinColumn(name = "order_id"),
+			inverseJoinColumns = @JoinColumn(name = "product_id"))
 
 	private List<Product> products;
 
-	public boolean addproduct(Product p) {
-		if(products == null)
-			products = new ArrayList<>();
+	public void addproducts(List<Product> addedProducts){
 
-		return products.add(p);
+		addedProducts.forEach(product -> {
+
+			if (productExist(product.getId())){
+				throw new IllegalStateException("Product Not Found");
+			}
+			products.add(product);
+		});
 	}
+
+	public void addproducts(Product addedProducts){
+        if (productExist(addedProducts.getId()))
+		{throw new IllegalStateException("Product Not even Found");}
+        products.add(addedProducts);
+
+    }
+    private  boolean productExist ( Long idProduct ){
+        for ( Product product:products   ){
+            if ( product.getId()==idProduct)
+                return true  ;
+
+        }
+        return  false ;
+    }
+
+
+
 }
+	/*
+	boolean trouve=true;
+	List<Product> l=O.getProducts();
+        for (int i=0;i<l.size();i++)
+		{
+		if(!this.pm.product_exist(l.get(i).getId()))
+		trouve=false;
+		}
+		if(trouve)
+		{
+		orderLegacy.setProducts(l);
+		}
+		else
+		throw new IllegalStateException("One of product is messing");
+
+	 */

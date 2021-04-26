@@ -37,4 +37,5 @@ public class Shelf implements Serializable {
 			cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 			fetch= FetchType.EAGER)
 	private List<Product> product = new ArrayList<>();
+
 }

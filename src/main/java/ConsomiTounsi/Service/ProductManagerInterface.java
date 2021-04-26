@@ -12,7 +12,7 @@ public interface ProductManagerInterface {
     Product addProduct(Product P);
     void deleteProduct(Long id);
     void deleteProduct(String id);
-    Product updateProduct(Product P);
+    Product updateProduct(Long id ,Product P);
     Optional<Product> FindProduct(Long id);
     Optional<Product> FindProduct(String id);
     int addProductQuantity(long id , int nb);
@@ -27,5 +27,4 @@ public interface ProductManagerInterface {
     @Transactional
     List<Product> FindProductByIdShelf(Long id);
 
-    
 }
