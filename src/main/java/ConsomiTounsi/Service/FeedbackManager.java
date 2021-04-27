@@ -46,5 +46,5 @@ public class FeedbackManager implements FeedbackManagerInterface {
     @Override
     public Feedback FindFeedback(String id) {
         return fr.findById(Long.parseLong(id)).orElse(new Feedback());
-    }
-}
+    }}
+

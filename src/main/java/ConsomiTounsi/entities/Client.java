@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import java.util.Set;
 
@@ -125,6 +127,7 @@ public class Client extends User implements Serializable {
 	public void setLongitude(double longitude) {
 		Longitude = longitude;
 	}
+
 
 
 }

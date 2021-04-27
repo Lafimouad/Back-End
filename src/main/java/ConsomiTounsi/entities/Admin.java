@@ -2,6 +2,7 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -38,9 +39,7 @@ public class Admin extends User implements Serializable {
 		this.roleAdmin = roleAdmin;
 	}
 
-	@ManyToOne
-	Message message;
-
 	@OneToOne
 	private Pool pool;
+
 }

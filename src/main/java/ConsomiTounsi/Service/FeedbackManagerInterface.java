@@ -19,4 +19,5 @@ public interface FeedbackManagerInterface {
 	Feedback FindFeedback(Long id);
 
 	Feedback FindFeedback(String id);
+
 }

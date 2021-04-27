@@ -12,6 +12,6 @@ public interface MessageManagerInterface {
     void deleteMessage(Long id);
     void deleteMessage(String id);
     Message updateMessage(Message M);
-    Optional<Message> FindMessage(Long id);
-    Optional<Message> FindMessage(String id);
+    Message FindMessage(Long id);
+    Message FindMessage(String id);
 }
