@@ -32,6 +32,9 @@ public class Client extends User implements Serializable {
 	public Client() {
 		super();
 	}
+	
+	private double Latitude;
+	private double Longitude;
 
 	private LocalDateTime subscriptionDate;
 	private String subMonth;
@@ -97,6 +100,30 @@ public class Client extends User implements Serializable {
 			events = new ArrayList<>();
 
 		return events.remove(ev);
+	}
+
+
+
+    public double getLatitude() {
+		return Latitude;
+	}
+
+
+
+	public void setLatitude(double latitude) {
+		Latitude = latitude;
+	}
+
+
+
+	public double getLongitude() {
+		return Longitude;
+	}
+
+
+
+	public void setLongitude(double longitude) {
+		Longitude = longitude;
 	}
 
 

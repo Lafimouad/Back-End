@@ -68,9 +68,6 @@ public class User implements Serializable
 	private boolean enabled = true;
 	private boolean locked = false;
 
-	@ManyToOne
-	Store store;
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Subject> subject;
 
@@ -176,6 +173,7 @@ public class User implements Serializable
 	public double getSalary() {
 		return salary;
 	}
+
 
 	public void setSalary(double salary) {
 		this.salary = salary;

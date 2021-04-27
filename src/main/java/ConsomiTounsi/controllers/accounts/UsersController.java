@@ -40,7 +40,7 @@ public class UsersController {
 		return adminS.getNbAdminByRole(role);
 	}
 	
-	@GetMapping("/countsDeliverer")
+	/*@GetMapping("/countsDeliverer")
 	public long NbDeliverers(){
 		return delivererS.getNbDeliverer();
 	}
@@ -53,6 +53,6 @@ public class UsersController {
 	@GetMapping("/DelivererOfTheMonth")
 	public Deliverer getDelivererOfTheMonth(){
 		return delivererS.getDelivererOfTheMonth();
-	}
+	}*/
 }
 

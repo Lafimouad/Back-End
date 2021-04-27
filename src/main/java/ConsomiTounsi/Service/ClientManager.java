@@ -55,7 +55,7 @@ public class ClientManager implements ClientManagerInterface{
 	}
 
 	@Override
-	public Client FindClientById(Long id) {
+	public Client FindClientById(long id) {
 		return  cr.findById(id).orElse(new Client());
 	}
 
