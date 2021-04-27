@@ -9,6 +9,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.jmx.export.annotation.ManagedOperationParameter;
+
+import ConsomiTounsi.entities.TypeCategory;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +58,30 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
 
 
+
  /*   @Query("select id from product order by id desc  limit 1 \n")
     Optional<Product> findLastItemAdde () ;*/
+
+	
+	@Query("SELECT p FROM Product p WHERE p.categoryProduct like 'makeUp%' or p.categoryProduct like 'Stationery%' " )
+	List<Product> findByCategoryProduct();
+	
+	
+	@Query("SELECT p FROM Product p WHERE p.categoryProduct like 'ShavingTools%' or p.categoryProduct like 'Stationery%' " )
+	List<Product> findByCategoryProduct2();
+	
+	@Query("SELECT p FROM Product p WHERE p.categoryProduct like 'Tools%' " )
+	List<Product> findByCategoryProduct3();
+	
+	@Query("SELECT p FROM Product p WHERE p.categoryProduct like 'makeUp%' " )
+	List<Product> findByCategoryProduct4();
+	
+	@Query("SELECT p FROM Product p WHERE p.categoryProduct like 'Cosmetics%' or  p.categoryProduct like 'ShavingTools%' " )
+	List<Product> findByCategoryProduct5();
+	
+	@Query("SELECT p FROM Product p WHERE p.categoryProduct like 'Toys%' " )
+	List<Product> findByCategoryProduct6();
+
 }
+
+

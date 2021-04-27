@@ -38,4 +38,5 @@ public class Shelf implements Serializable {
 			fetch= FetchType.EAGER)
 	private List<Product> product = new ArrayList<>();
 
+
 }

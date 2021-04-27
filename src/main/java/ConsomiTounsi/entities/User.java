@@ -2,7 +2,11 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Set;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -55,37 +59,46 @@ public class User implements Serializable
 	@Enumerated(EnumType.STRING)
 	private UserRole roleUser;
 
-	public boolean isUpdatedPassword() {
-		return updatedPassword;
-	}
-
-	public void setUpdatedPassword(boolean updatedPassword) {
-		this.updatedPassword = updatedPassword;
-	}
-
 	private boolean updatedPassword ;
 	private int nbaccessUser ;
 
-	public double getSalary() {
-		return salary;
-	}
-
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
 
 	private double salary;
 
 	private boolean enabled = true;
 	private boolean locked = false;
 
+	@ManyToOne
+	Store store;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Subject> subject;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Claim> claim;
 
 	public long getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(int idUser) {
+	public void setIdUser(long idUser) {
 		this.idUser = idUser;
+	}
+
+	public String getFirstNameUser() {
+		return firstNameUser;
+	}
+
+	public void setFirstNameUser(String firstNameUser) {
+		this.firstNameUser = firstNameUser;
+	}
+
+	public String getLastNameUser() {
+		return lastNameUser;
+	}
+
+	public void setLastNameUser(String lastNameUser) {
+		this.lastNameUser = lastNameUser;
 	}
 
 	public String getUsernameUser() {
@@ -112,6 +125,14 @@ public class User implements Serializable
 		this.phoneNumberUser = phoneNumberUser;
 	}
 
+	public String getEmailAddressUser() {
+		return emailAddressUser;
+	}
+
+	public void setEmailAddressUser(String emailAddressUser) {
+		this.emailAddressUser = emailAddressUser;
+	}
+
 	public Date getDateBirthUser() {
 		return dateBirthUser;
 	}
@@ -128,62 +149,20 @@ public class User implements Serializable
 		this.addressUser = addressUser;
 	}
 
-	public String getEmailAddressUser() {
-		return emailAddressUser;
+	public UserRole getRoleUser() {
+		return roleUser;
 	}
-
-	public void setEmailAddressUser(String emailAddressUser) {
-		this.emailAddressUser = emailAddressUser;
-	}
-
-	public String getFirstNameUser() {
-		return firstNameUser;
-	}
-
-	public void setFirstNameUser(String firstNameUser) {
-		this.firstNameUser = firstNameUser;
-	}
-
-	public String getLastNameUser() {
-		return lastNameUser;
-	}
-
-	public void setLastNameUser(String lastNameUser) {
-		this.lastNameUser = lastNameUser;
-	}
-
-	@ManyToOne
-	Store store;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private Set<Subject> subject;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private Set<Claim> claim;
-
-
 
 	public void setRoleUser(UserRole roleUser) {
 		this.roleUser = roleUser;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public boolean isUpdatedPassword() {
+		return updatedPassword;
 	}
 
-	public void setLocked(boolean locked) {
-		this.locked = locked;
-	}
-	public UserRole getRoleUser() {
-		return roleUser;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public boolean isLocked() {
-		return locked;
+	public void setUpdatedPassword(boolean updatedPassword) {
+		this.updatedPassword = updatedPassword;
 	}
 
 	public int getNbaccessUser() {
@@ -193,6 +172,31 @@ public class User implements Serializable
 	public void setNbaccessUser(int nbaccessUser) {
 		this.nbaccessUser = nbaccessUser;
 	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
 
 
 }

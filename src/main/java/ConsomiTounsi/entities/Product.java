@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +18,14 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product implements Serializable {
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
+
 	private Long id;
 	private long quantityProduct;
 	private boolean productofthemonth;
@@ -33,28 +39,22 @@ public class Product implements Serializable {
 	private double weight;
 	private String imagePath ;
 
-
+	@Enumerated(EnumType.STRING)
+	private TypeCategory categoryProduct;
 
 
 	@JsonIgnore
 	@ManyToMany(mappedBy="products",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
-
 	private List<Order> orders;
 
 
 	@ManyToOne
 	private Shelf shelf;
 
-
-
 	@ManyToOne
 	Supplier supplier;
 
 	@OneToOne
 	private Feedback feedback;
-
-
-
-
-
 }
+

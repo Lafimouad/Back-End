@@ -8,6 +8,13 @@ import ConsomiTounsi.entities.Claim;
 import ConsomiTounsi.entities.Feedback;
 import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.repository.FeedbackRepository;
+
+import ConsomiTounsi.entities.Feedback;
+import ConsomiTounsi.entities.Product;
+import ConsomiTounsi.entities.TypeCategory;
+import ConsomiTounsi.entities.TypeCriteria;
+import ConsomiTounsi.entities.TypeCriteriaValue1;
+import ConsomiTounsi.repository.ClientRepository;
 import ConsomiTounsi.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +23,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+
+import javax.persistence.EntityManager;
 
 
 @Service
@@ -30,6 +40,15 @@ import java.util.Optional;
 
     @Autowired
     ClaimManager claimManager;
+
+
+    private EntityManager em;
+
+    @Override
+	public EntityManager getEntityManager() {
+        return em;
+        
+    }
 
     @Override
     public List<Product> retrieveAllProducts() {
@@ -151,21 +170,6 @@ import java.util.Optional;
         }
     }
 
-   // send List of id for her majesty the Nooba maha hail to the king Mouadh
-   public List<Long> sendIdClaimedProduct(){
-       List<Long> lass3ed=new ArrayList<Long>();
-       for ( Product product : Pr.findAll() ){
-           Feedback feedback= product.getFeedback() ;
-           float nb=feedback.getNote();
-           if (nb<=2){
-               Long id= product.getId() ;
-               lass3ed.add(id);
-           }
-
-       }
-
-       return lass3ed;
-   }
    // make Worst Product unavailable
 
     public void makeUnavailible(){
@@ -194,7 +198,6 @@ import java.util.Optional;
         }
 
     }
-
 
 
     @Override
@@ -303,5 +306,91 @@ import java.util.Optional;
     public void resetQuantity(long id) {
         Pr.resetQuantity(id);
     }
-        
+
+    ///// it's the part of her majesty, her highness,mahou moutourat
+    
+    
+    
+   /* @Override
+	public List<Product> findByCategoryProduct(TypeCategory cp)
+    {
+    	
+    	
+    	
+		return Pr.findByCategoryProduct(cp);*/
+		
+		
+		
+		
+		/*@Override
+		public void showAdvertsement(TypeCriteria criteria) {
+		
+		if ( criteria == TypeCriteria.ALL) 
+			
+			
+		{ 	Iterable<Product> products = Pr.findAll() ;
+        for (int i=0;i<products.size();i++){
+
+            Product p=products.get(i);
+        }
+            
+		}*/
+            
+            
+		
+			
+			
+			/*{ for(Product product : products)
+		printMessage("-------------------------------------------------------------");
+        Product product;
+		printMessage("Check this product " + product.getNameProduct() );
+        printMessage("It only costs " + product.getPriceProduct()  );
+   
+        printMessage("-------------------------------------------------------------");
+			}
+    } */
+		 
+		/*{ return (List<Product>) Pr.findAll();}
+		else 
+		if ( criteria == TypeCriteria.GENDER)
+			{
+			if (criteriaValue1== TypeCriteriaValue1.MALE)
+			
+				{return }
+			else if (criteriaValue2== TypeCriteriaValue2.FEMALE)
+				{return}
+			}
+			
+		else 
+		if ( criteria == TypeCriteria.WorkField)
+			
+		}*/
+	
+    
+
+
+	//private void printMessage(String message) {
+   // System.out.println(message);
+
+
+	
+		
+		
+
+
+//send List of id for her majesty the Nooba maha hail to the king Mouadh
+    @Override
+    public List<Long> sendIdClaimedProduct(){
+        List<Long> lass3ed=new ArrayList<Long>();
+        for ( Product product : Pr.findAll() ){
+            Feedback feedback= product.getFeedback() ;
+                float nb=feedback.getNote();
+                if (nb<=2){
+                    Long id= product.getId() ;
+                    lass3ed.add(id);
+                }
+            }
+        return lass3ed;
+}
+    
 }

@@ -19,8 +19,9 @@ public class Feedback implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private int id_feedback;
 	
-	private String description_feedback;
 	private float note ;
+	
+	private String description_feedback;
 
 	@OneToOne
 	Product product;

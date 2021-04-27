@@ -1,11 +1,16 @@
 package ConsomiTounsi.entities;
 
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -17,8 +22,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Set;
 
 @Entity
+@AllArgsConstructor
 
 public class Client extends User implements Serializable {
 
@@ -28,6 +35,7 @@ public class Client extends User implements Serializable {
 
 	private LocalDateTime subscriptionDate;
 	private String subMonth;
+
 	@Enumerated(EnumType.STRING)
 	private Gender genderClient;
 
@@ -66,8 +74,9 @@ public class Client extends User implements Serializable {
 		return subscriptionDate;
 	}
 
-	@ManyToOne
-    Message message;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="client")
+	private Set<Advertisement> advertisement;
 
 	/*@ManyToMany(cascade = CascadeType.ALL)
 	private List<Event> event;*/

@@ -24,11 +24,11 @@ public class Store implements Serializable {
 	private boolean open_store;
 	private double gain_store;
 
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
 	private Set<Shelf> shelf;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="store")
 	private Set<User> user;
+
 
 }

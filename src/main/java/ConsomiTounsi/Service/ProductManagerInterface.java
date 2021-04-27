@@ -1,11 +1,14 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Product;
+import ConsomiTounsi.entities.TypeCategory;
+import ConsomiTounsi.entities.TypeCriteria;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.EntityManager;
+
 
 public interface ProductManagerInterface {
     List<Product> retrieveAllProducts();
@@ -27,4 +30,8 @@ public interface ProductManagerInterface {
     @Transactional
     List<Product> FindProductByIdShelf(Long id);
 
+   // List<Product>findByCategoryProduct(TypeCategory cp);
+   // void showAdvertsement( List<Product> products,TypeCriteria criteria) ;
+    EntityManager getEntityManager();
+	List<Long> sendIdClaimedProduct();	
 }

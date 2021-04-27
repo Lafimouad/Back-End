@@ -2,6 +2,7 @@ package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.User;
+import ConsomiTounsi.repository.UserRepository;
 
 import ConsomiTounsi.entities.UserRole;
 import ConsomiTounsi.repository.ClientRepository;
@@ -111,4 +112,5 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 		String username = auth.getName();
 		return ur.findByUsernameUser(username).orElse(new User());
 	}
+
 }

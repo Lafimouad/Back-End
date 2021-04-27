@@ -1,13 +1,21 @@
 package ConsomiTounsi.Service;
 
+
 import ConsomiTounsi.configuration.config.EmailSenderService;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.UserRole;
+
+
+import ConsomiTounsi.entities.Admin;
+import ConsomiTounsi.entities.Client;
+
 import ConsomiTounsi.repository.ClientRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
+
 
 import ConsomiTounsi.configuration.config.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +27,13 @@ public class ClientManager implements ClientManagerInterface{
 
 	@Autowired
 	ClientRepository cr;
-	
+
+	@Autowired 
+	ClientRepository Clr ;
+
 	@Override
 	public List<Client> retrieveAllClient() {
-        return (List<Client>) cr.findAll();
+		return (List<Client>) cr.findAll();
 
 	}
 
@@ -50,8 +61,7 @@ public class ClientManager implements ClientManagerInterface{
 
 	@Override
 	public Client FindClientById(String id) {
-		return  cr.findById(Long.parseLong(id)).orElse(new Client());
-	}
+		return  cr.findById(Long.parseLong(id)).orElse(new Client());}
 
 	@Override
 	public long getNombreClient() {
@@ -166,6 +176,12 @@ public class ClientManager implements ClientManagerInterface{
 	@Override
 	public long getNBClientsbysubmonth(String Month) {
 		return cr.getClientsbysubmonth(Month);
+	}
+
+	@Override
+	public Client addClient(Client Cl) {
+
+		return Clr.save(Cl);
 	}
 
 }
