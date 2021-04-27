@@ -17,8 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -110,7 +112,9 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 		List<Product> c = new ArrayList<>() ;
 		
 			 LocalDateTime date = LocalDateTime.now() ;
-			 LocalDateTime BirthDate = theclient.getDateBirth_user() ;
+			 LocalDateTime BirthDate = theclient.getDateBirthUser().toInstant()
+					 .atZone(ZoneId.systemDefault())
+					 .toLocalDateTime(); ;
 			 long age = ChronoUnit.YEARS.between(date, BirthDate);
 			
             Gender genderClient = theclient.getGenderClient();

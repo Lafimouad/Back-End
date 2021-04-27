@@ -5,6 +5,7 @@ import ConsomiTounsi.entities.Client;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ClientManagerInterface {
 	
@@ -15,7 +16,7 @@ public interface ClientManagerInterface {
     Client FindClientById(Long id);
     Client FindClientById(String id);
     long getNombreClient();
-
     Client SignUpClient(Client user);
     long getNBClientsbysubmonth(String Month);
+    Client addClient(Client Cl);
 }
