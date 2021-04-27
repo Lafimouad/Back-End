@@ -113,7 +113,7 @@
                     var token = result.token.id;
                     var email = $('#email').val();
                     $.post(
-                        "/create-charge",
+                        "/create-charge1",
                         {email: email, token: token},
                         function (data) {
                             alert(data.details);

@@ -62,12 +62,12 @@ public class OrderManager implements OrderManagerInterface{
         float poids=0;
         List<Product> products =orderLegacy.getProducts();
         for (int i=0;i<products.size();i++){
-            prix= (float) (prix+(products.get(i).getQuantity()*products.get(i).getPrice()));
+            prix= (float) (prix+(products.get(i).getQuantityProduct()*products.get(i).getPrice()));
 
         }
 
          for (int i=0;i<products.size();i++){
-             poids=(float) (poids+(products.get(i)).getWeight()*products.get(i).getQuantity());
+             poids=(float) (poids+(products.get(i)).getWeight()*products.get(i).getQuantityProduct());
          }
             orderLegacy.setWeight(poids);
             orderLegacy.setCost(prix);

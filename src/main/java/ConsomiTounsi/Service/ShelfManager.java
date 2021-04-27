@@ -88,7 +88,7 @@ public class ShelfManager implements ShelfManagerInterface{
         Shelf shelfManagedEntity = Shr.findById(shelfId).get();
         List<String> prodNames = new ArrayList<>();
         for(Product prod : shelfManagedEntity.getProduct()){
-            prodNames.add(prod.getName_product());
+            prodNames.add(prod.getName());
         }
 
         return prodNames;

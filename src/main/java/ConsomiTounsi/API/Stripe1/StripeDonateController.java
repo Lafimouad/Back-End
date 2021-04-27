@@ -22,18 +22,18 @@ public class StripeDonateController {
         this.stripeService1 = stripeService1;
     }
 
-    @GetMapping("/")
+    @GetMapping("/1")
     public String homepage() {
         return "homepage1";
     }
 
-    @GetMapping("/charge")
+    @GetMapping("/charge1")
     public String chargePage(Model model) {
         model.addAttribute("stripePublicKey", API_PUBLIC_KEY);
         return "donate";
     }
 
-    @PostMapping("/create-charge")
+    @PostMapping("/create-charge1")
     public @ResponseBody Response createCharge(String email, String token) {
 
         if (token == null) {
