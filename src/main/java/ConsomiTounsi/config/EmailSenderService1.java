@@ -10,11 +10,11 @@ import javax.mail.internet.MimeMessage;
 
 
 @Service
-public class EmailSenderService {
+public class EmailSenderService1 {
         @Autowired
         private JavaMailSender mailSender;
 
-        public EmailSenderService(JavaMailSender mailSender) {
+        public EmailSenderService1(JavaMailSender mailSender) {
             this.mailSender = mailSender;
         }
 

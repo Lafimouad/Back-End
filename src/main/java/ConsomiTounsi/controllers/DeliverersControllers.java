@@ -32,7 +32,7 @@ public class DeliverersControllers {
 	}
 	@GetMapping("/findD/{id}")
 	public Optional<Deliverer> getDevliverer(@PathVariable("id") long id){
-		return DevlivererManI.FindDelivererById(id);
+		return DevlivererManI.FindDelivererByIdOpt(id);
 	}
 	
 	@GetMapping("/getD")

@@ -18,11 +18,14 @@ public interface DelivererRepository extends CrudRepository<Deliverer, Long> {
 	@Query(value="SELECT id_user FROM deliverer WHERE score_deliverer= (SELECT MAX(score_deliverer) FROM deliverer)",nativeQuery = true)
         	long getMaxScore();
 	
-	//@Query("SELECT COUNT(d) FROM Deliverer d")
-	//long getNbDeliverer();
+	@Query("SELECT COUNT(d) FROM Deliverer d")
+	long getNbDeliverer();
+
+	@Query("SELECT COUNT(d) FROM Deliverer d WHERE d.availableDeliverer = TRUE" )
+	long getNbAvailableDeliveres();
 	
-	//@Query("SELECT d FROM Deliverer d WHERE d.delivererOfTheMonthDeliverer = TRUE" )
-	//Deliverer getDelivererOfTheMonth();
+	@Query("SELECT d FROM Deliverer d WHERE d.delivererOfTheMonthDeliverer = TRUE" )
+	Deliverer getDelivererOfTheMonth();
 
 	@Query("SELECT SUM(d.salary) FROM Deliverer d" )
 	double SommeSaliareDeliverer();

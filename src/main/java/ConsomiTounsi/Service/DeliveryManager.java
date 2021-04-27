@@ -248,37 +248,37 @@ public void AffectNEARdeliverer(long client_id, long livraisonId) {
 // delivery frais livraison selon produit and distance
 public double FraisLivraison(long order_id){
 	 Order r = Or.findById(order_id).get();
-     double price_product = r.getCost();
+     float price_product = r.getCost();
      Delivery d = r.getDelivery();
-     double delivery_price=d.getCost_delivery();
+     float delivery_price=d.getCost_delivery();
      double distance = d.getDistance();
-     double new_price=0;
+     float new_price= 0.00F;
      if(distance<=50){
-    	 new_price=price_product*0.02;
+    	 new_price=price_product*0.02F;
      }
      else if( (distance<=100) && (50<=distance)){
-    	 new_price=price_product*0.05;
+    	 new_price=price_product*0.05F;
      }
      else if( (distance<=200) && (100<=distance)){
-    	 new_price=price_product*0.1;
+    	 new_price=price_product*0.1F;
      }
      else if( (distance<=500) && (200<=distance)){
-    	 new_price=price_product*0.15;
+    	 new_price=price_product*0.15F;
      }
      else if( (distance<=1000) && (500<=distance)){
-    	 new_price=price_product*0.2;
+    	 new_price=price_product*0.2F;
      }
      else if( (distance<=2000) && (1000<=distance)){
-    	 new_price=price_product*0.25;
+    	 new_price=price_product*0.25F;
      }
      else if( (distance<=3000) && (2000<=distance)){
-    	 new_price=price_product*0.3;
+    	 new_price=price_product*0.3F;
      }
      else if( (distance<=4000) && (3000<=distance)){
-    	 new_price=price_product*0.35;
+    	 new_price=price_product*0.35F;
      }
      else if( (distance<=5000) && (4000<=distance)){
-    	 new_price=price_product*0.5;
+    	 new_price=price_product*0.5F;
      }
      d.setCost_delivery(new_price);
      Devr.save(d);

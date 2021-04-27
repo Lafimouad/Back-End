@@ -29,7 +29,7 @@ public class Delivery implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private MeansOfTransport meanOfTransport_delivery;
-	private double cost_delivery;
+	private float cost_delivery;
 	
 	@Enumerated(EnumType.STRING)
 	private QualityOfDelivering quality_delivery;	
@@ -84,11 +84,11 @@ public class Delivery implements Serializable {
 		this.meanOfTransport_delivery = meanOfTransport_delivery;
 	}
 
-	public double getCost_delivery() {
+	public float getCost_delivery() {
 		return cost_delivery;
 	}
 
-	public void setCost_delivery(double cost_delivery) {
+	public void setCost_delivery(float cost_delivery) {
 		this.cost_delivery = cost_delivery;
 	}
 	

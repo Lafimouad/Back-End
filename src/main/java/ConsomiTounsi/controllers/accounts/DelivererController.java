@@ -58,4 +58,4 @@ public class DelivererController {
 	public Deliverer updateDeliverer(@RequestBody Deliverer a){
 		return delivererS.updateDeliverer(a);
 	}
-}
+}*/

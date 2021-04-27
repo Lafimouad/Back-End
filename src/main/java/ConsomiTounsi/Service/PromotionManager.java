@@ -3,21 +3,16 @@ package ConsomiTounsi.Service;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ConsomiTounsi.config.EmailSenderService;
+import ConsomiTounsi.config.EmailSenderService1;
 import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.Deliverer;
-import ConsomiTounsi.entities.Delivery;
 import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.Promotion;
-import ConsomiTounsi.entities.User;
-import ConsomiTounsi.repository.ClientRepository;
 import ConsomiTounsi.repository.ProductRepository;
 import ConsomiTounsi.repository.PromotionRepository;
 
@@ -70,7 +65,7 @@ public class PromotionManager implements PromotionManagerInterface  {
     }
     
     @Autowired
-    EmailSenderService emailSenderService;
+    EmailSenderService1 emailSenderService;
    
    public void PromotionNotificationandPriceReduction(long PID){
 	   List<Promotion> list2 = Pm.retrieveAllPromotion();
