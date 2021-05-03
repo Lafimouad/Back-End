@@ -1,20 +1,45 @@
 package ConsomiTounsi.configuration.token;
 
+
+import java.util.Collection;
+
 public class JwtResponse {
-    public String getJwtToken() {
-        return jwtToken;
+    private String token;
+    private String type = "Bearer";
+    private String username;
+    private Collection authorities;
+
+    public JwtResponse(String accessToken, String username, Collection authorities) {
+        this.token = accessToken;
+        this.username = username;
+        this.authorities = authorities;
     }
 
-    public JwtResponse(String jwtToken) {
-        this.jwtToken = jwtToken;
+    public String getAccessToken() {
+        return token;
     }
 
-    public void setJwtToken(String jwtToken) {
-        this.jwtToken = jwtToken;
+    public void setAccessToken(String accessToken) {
+        this.token = accessToken;
     }
 
-    private String jwtToken;
+    public String getTokenType() {
+        return type;
+    }
 
-    public JwtResponse() {
+    public void setTokenType(String tokenType) {
+        this.type = tokenType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Collection getAuthorities() {
+        return authorities;
     }
 }

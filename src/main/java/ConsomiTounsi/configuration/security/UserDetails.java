@@ -30,12 +30,12 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return !this.locked;
     }
 
     @Override
@@ -55,6 +55,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return this.enabled;
     }
 }

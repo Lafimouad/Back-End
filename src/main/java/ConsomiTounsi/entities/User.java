@@ -146,7 +146,7 @@ public class User implements Serializable
 		this.addressUser = addressUser;
 	}
 
-	public UserRole getRoleUser() {
+	public  UserRole getRoleUser() {
 		return roleUser;
 	}
 

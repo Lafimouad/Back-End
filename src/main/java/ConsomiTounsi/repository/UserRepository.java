@@ -24,6 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
+	boolean existsByUsernameUser(String username);
+	boolean existsByEmailAddressUser(String email);
+
 	Optional<User>  findByUsernameUser(String username);
 
 	List<User> findByFirstNameUser(String firstname);
