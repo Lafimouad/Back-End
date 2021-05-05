@@ -61,7 +61,6 @@ public class HomeController {
 
 	@PostMapping("register/client")
 	public ResponseEntity register(@Valid @RequestBody Client user) {
-		/*System.out.print(user);
 		if (UserR.existsByUsernameUser(user.getUsernameUser())) {
 			return new ResponseEntity<>(new MessageResponseModel("Fail -> Username is already taken!"),
 					HttpStatus.BAD_REQUEST);
@@ -71,13 +70,9 @@ public class HomeController {
 			return new ResponseEntity<>(new MessageResponseModel("Fail -> Email is already in use!"),
 					HttpStatus.BAD_REQUEST);
 		}
-*/
 		cs.SignUpClient(user);
 		return new ResponseEntity<>(new MessageResponseModel("User registered successfully!"), HttpStatus.OK);
 	}
-
-
-
 	@PostMapping("authenticate")
 	public ResponseEntity authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
