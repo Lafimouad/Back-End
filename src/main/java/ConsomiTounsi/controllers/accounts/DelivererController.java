@@ -1,27 +1,24 @@
 package ConsomiTounsi.controllers.accounts;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.entities.Deliverer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/accounts/deliverer")
+@RequestMapping("/deliverer")
 public class DelivererController {
 
-	@Autowired
-	DelivererManagerInterface delivererS;
+    @Autowired
+    DelivererManagerInterface delivererS;
+
+    @PutMapping("/update")
+    public void updateDeliverer(@RequestBody Deliverer a , @RequestParam("password") String password){
+         delivererS.updateDeliverer(a , password);
+    }
+
+}
+
 	
 	/*{
     "idUser": 8,
@@ -36,7 +33,7 @@ public class DelivererController {
     "delivererOfTheMonthDeliverer": false,
     "availableDeliverer": false,
     "distanceDeliverer": 0.0,
-    "bonusDeliverer": 0.0}*/
+    "bonusDeliverer": 0.0}
 	
 	@PostMapping("/add")
 	public Deliverer addDeliverer(@RequestBody Deliverer a){
@@ -61,4 +58,4 @@ public class DelivererController {
 	public Deliverer updateDeliverer(@RequestBody Deliverer a){
 		return delivererS.updateDeliverer(a);
 	}
-}
+}*/

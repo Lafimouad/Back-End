@@ -2,18 +2,18 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User implements Serializable {
-	
+public class User implements Serializable
+{
 
-	public User(long idUser, String firstNameUser, String lastNameUser, String usernameUser, String passwordUser,
-			String phoneNumberUser, String emailAddressUser, Date dateBirthUser, String addressUser) {
-		super();
-		this.idUser = idUser;
+	public User(String firstNameUser, String lastNameUser, String usernameUser, String passwordUser, String phoneNumberUser, String emailAddressUser, Date dateBirthUser, String addressUser, UserRole roleUser) {
 		this.firstNameUser = firstNameUser;
 		this.lastNameUser = lastNameUser;
 		this.usernameUser = usernameUser;
@@ -22,8 +22,8 @@ public class User implements Serializable {
 		this.emailAddressUser = emailAddressUser;
 		this.dateBirthUser = dateBirthUser;
 		this.addressUser = addressUser;
+		this.roleUser = roleUser;
 	}
-
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -34,18 +34,21 @@ public class User implements Serializable {
 	@Column(updatable = false, nullable = false)
 	private long idUser;
 	
+	@Column(nullable=false , length=20)
 	private String firstNameUser; 
 	
+	@Column(nullable=false , length=20)
 	private String lastNameUser;
-	
-	@Column(unique=true)
+
+	@Column(unique=true , nullable=false , length=30)
 	private String usernameUser;
 	
+	@Column(nullable=false, length=64)
 	private String passwordUser;
 	
 	private String phoneNumberUser;
 	
-	@Column(unique=true)
+	@Column(unique=true , nullable=false , length=45)
 	private String emailAddressUser;
 	
 	@Temporal (TemporalType.DATE)
@@ -53,12 +56,46 @@ public class User implements Serializable {
 	
 	private String addressUser;
 
+	@Enumerated(EnumType.STRING)
+	private UserRole roleUser;
+
+	private boolean updatedPassword ;
+	private int nbaccessUser ;
+
+
+	private double salary;
+
+	private boolean enabled = true;
+	private boolean locked = false;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Subject> subject;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Claim> claim;
+
 	public long getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(int idUser) {
+	public void setIdUser(long idUser) {
 		this.idUser = idUser;
+	}
+
+	public String getFirstNameUser() {
+		return firstNameUser;
+	}
+
+	public void setFirstNameUser(String firstNameUser) {
+		this.firstNameUser = firstNameUser;
+	}
+
+	public String getLastNameUser() {
+		return lastNameUser;
+	}
+
+	public void setLastNameUser(String lastNameUser) {
+		this.lastNameUser = lastNameUser;
 	}
 
 	public String getUsernameUser() {
@@ -85,6 +122,14 @@ public class User implements Serializable {
 		this.phoneNumberUser = phoneNumberUser;
 	}
 
+	public String getEmailAddressUser() {
+		return emailAddressUser;
+	}
+
+	public void setEmailAddressUser(String emailAddressUser) {
+		this.emailAddressUser = emailAddressUser;
+	}
+
 	public Date getDateBirthUser() {
 		return dateBirthUser;
 	}
@@ -101,40 +146,55 @@ public class User implements Serializable {
 		this.addressUser = addressUser;
 	}
 
-	public String getEmailAddressUser() {
-		return emailAddressUser;
+	public  UserRole getRoleUser() {
+		return roleUser;
 	}
 
-	public void setEmailAddressUser(String emailAddressUser) {
-		this.emailAddressUser = emailAddressUser;
+	public void setRoleUser(UserRole roleUser) {
+		this.roleUser = roleUser;
 	}
 
-	public String getFirstNameUser() {
-		return firstNameUser;
+	public boolean isUpdatedPassword() {
+		return updatedPassword;
 	}
 
-	public void setFirstNameUser(String firstNameUser) {
-		this.firstNameUser = firstNameUser;
+	public void setUpdatedPassword(boolean updatedPassword) {
+		this.updatedPassword = updatedPassword;
 	}
 
-	public String getLastNameUser() {
-		return lastNameUser;
+	public int getNbaccessUser() {
+		return nbaccessUser;
 	}
 
-	public void setLastNameUser(String lastNameUser) {
-		this.lastNameUser = lastNameUser;
+	public void setNbaccessUser(int nbaccessUser) {
+		this.nbaccessUser = nbaccessUser;
 	}
 
-	@ManyToOne
-	Store store;
+	public double getSalary() {
+		return salary;
+	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private Set<Subject> subject;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private Set<Claim> claim;
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private Set<Pool> pool;
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
+
 
 }

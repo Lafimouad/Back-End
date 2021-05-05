@@ -1,22 +1,29 @@
 package ConsomiTounsi.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Donation implements Serializable {
-	
+
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private int id_donation;
+	private double amount_donation;
+	private long product_donation;
 
-	public int getId_donation() {
-		return id_donation;
-	}
 
-	public void setId_donation(int id_donation) {
-		this.id_donation = id_donation;
-	}
 	@ManyToOne
-	Event event;
+	private Event event;
 }

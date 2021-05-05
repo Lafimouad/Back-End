@@ -8,10 +8,13 @@ import java.util.Optional;
 
 public interface EventManagerInterface {
     List<Event> retrieveAllEvent();
-    Event addEvent(Event E);
-    void deleteEvent(Long id);
+    Event addEvent(Event E,long id);
+    Event addEvent1(Event E);
+    void deleteEvent(long id);
     void deleteEvent(String id);
     Event updateEvent(Event E);
-    Optional<Event> FindEvent(Long id);
-    Optional<Event> FindEvent(String id);
+    public Event FindEventById(Long id);
+    public Event FindEventById(String id);
+    List<Event> getEventsByLevelorder();
+    List<Event> getEventsByLevelorder2();
 }

@@ -1,5 +1,5 @@
 package ConsomiTounsi.entities;
 
-public enum TypeAdvertisement { internal , external
+public enum TypeAdvertisement { photo , video
 
 }

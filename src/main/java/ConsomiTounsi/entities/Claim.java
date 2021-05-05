@@ -2,7 +2,6 @@ package ConsomiTounsi.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 
 @Entity
@@ -11,58 +10,128 @@ public class Claim implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private int id_claim;
+	private Long idClaim;
+
+	private String decision;
+
+	private String date;
+
+	private String status;
+
+	private String description;
+	private int Level;
+
+	private Long ProductWithProb ;
 	
-	private String decision_claim;
+	@Enumerated(EnumType.STRING)
+	private SystemProb systemProblem ;
 	
-	@Temporal (TemporalType.DATE)
-	private Date date_claim;
+	@Enumerated(EnumType.STRING)
+	private DeliveryProb deliveryProblem ;
 	
-	@Temporal (TemporalType.DATE)
-	private Date datefinal_claim;
-	
-	private String subject_claim;
+	@Enumerated(EnumType.STRING)
+	private ProductProb productProblem ;
 
-	public int getId_claim() {
-		return id_claim;
-	}
-
-	public void setId_claim(int id_claim) {
-		this.id_claim = id_claim;
-	}
-
-	public String getDecision_claim() {
-		return decision_claim;
-	}
-
-	public void setDecision_claim(String decision_claim) {
-		this.decision_claim = decision_claim;
-	}
-
-	public Date getDate_claim() {
-		return date_claim;
-	}
-
-	public void setDate_claim(Date date_claim) {
-		this.date_claim = date_claim;
-	}
-
-	public Date getDatefinal_claim() {
-		return datefinal_claim;
-	}
-
-	public void setDatefinal_claim(Date datefinal_claim) {
-		this.datefinal_claim = datefinal_claim;
-	}
-
-	public String getSubject_claim() {
-		return subject_claim;
-	}
-
-	public void setSubject_claim(String subject_claim) {
-		this.subject_claim = subject_claim;
-	}
+	@Enumerated(EnumType.STRING)
+	private ClaimType subject;
 
 	@ManyToOne
 	User user;
+
+	public Long getIdClaim() {
+		return idClaim;
+	}
+
+	public void setIdClaim(Long idClaim) {
+		this.idClaim = idClaim;
+	}
+
+	public String getDecision() {
+		return decision;
+	}
+
+	public void setDecision(String decision) {
+		this.decision = decision;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getLevel() {
+		return Level;
+	}
+
+	public void setLevel(int level) {
+		Level = level;
+	}
+
+	public Long getProductWithProb() {
+		return ProductWithProb;
+	}
+
+	public void setProductWithProb(Long productWithProb) {
+		ProductWithProb = productWithProb;
+	}
+
+	public SystemProb getSystemProblem() {
+		return systemProblem;
+	}
+
+	public void setSystemProblem(SystemProb systemProblem) {
+		this.systemProblem = systemProblem;
+	}
+
+	public DeliveryProb getDeliveryProblem() {
+		return deliveryProblem;
+	}
+
+	public void setDeliveryProblem(DeliveryProb deliveryProblem) {
+		this.deliveryProblem = deliveryProblem;
+	}
+
+	public ProductProb getProductProblem() {
+		return productProblem;
+	}
+
+	public void setProductProblem(ProductProb productProblem) {
+		this.productProblem = productProblem;
+	}
+
+	public ClaimType getSubject() {
+		return subject;
+	}
+
+	public void setSubject(ClaimType subject) {
+		this.subject = subject;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
+

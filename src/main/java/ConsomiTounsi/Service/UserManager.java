@@ -1,21 +1,36 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.User;
+import ConsomiTounsi.repository.UserRepository;
 
+import ConsomiTounsi.entities.UserRole;
+import ConsomiTounsi.repository.ClientRepository;
 import ConsomiTounsi.repository.UserRepository;
 
 import java.util.List;
 
+import ConsomiTounsi.configuration.config.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
-public class UserManager implements UserManagerInterface{
-	
+public class UserManager implements UserManagerInterface //, UserDetailsService {
+{
+
 	@Autowired
-	UserRepository ur ; 
-	
-    @Override
+	DelivererManager DeliverS;
+
+	@Autowired
+	AdminManager AdminS;
+
+	@Autowired
+	UserRepository ur ;
+
+	@Override
     public List<User> retrieveAllUser() {
         return (List<User>) ur.findAll();
     }
@@ -52,7 +67,7 @@ public class UserManager implements UserManagerInterface{
 */
 	@Override
 	public User findUserByUsername(String username) {
-		return ur.findByUsernameUser(username);
+		return ur.findByUsernameUser(username).orElse(new User());
 	}
 
 	@Override
@@ -68,5 +83,34 @@ public class UserManager implements UserManagerInterface{
 		return ur.findByLastNameUser(lastname);
 	}
 
-	
+	//registration
+
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	public UserManager(UserRepository ur, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.ur = ur;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+
+	@Autowired
+	EmailValidator emailValidator;
+
+	@Override
+	public User SingUpManager(User user) {
+		boolean isValidEmail = emailValidator.test(user.getEmailAddressUser());
+		if (!isValidEmail) {
+			throw new IllegalStateException("Email not valid");
+		}
+		String encodedPassword = bCryptPasswordEncoder.encode(user.getPasswordUser());
+		user.setPasswordUser(encodedPassword);
+		user.setRoleUser(UserRole.MANAGER);
+		return ur.save(user);
+	}
+
+	@Override
+	public User getConnectedUser(Authentication auth){
+		String username = auth.getName();
+		return ur.findByUsernameUser(username).orElse(new User());
+	}
+
 }
