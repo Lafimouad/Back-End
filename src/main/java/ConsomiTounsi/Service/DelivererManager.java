@@ -55,23 +55,22 @@ public class DelivererManager implements DelivererManagerInterface{
 		String password = D.getUsernameUser() + "#619" ;
 		String encodedPassword = bCryptPasswordEncoder.encode(password);
 		D.setBonusDeliverer(0);
+		D.setAvailableDeliverer(true);
 		D.setPasswordUser(encodedPassword);
 		D.setRoleUser(UserRole.DELIVERER);
 		String subject = "Account Activated";
-		emailSenderService.sendEmail(D.getEmailAddressUser(), body(name , D.getUsernameUser(), password) ,subject );
+		//emailSenderService.sendEmail(D.getEmailAddressUser(), body(name , D.getUsernameUser(), password) ,subject );
 		return dr.save(D);
 	}
 
 
 	@Override
-	public void updateDeliverer(Deliverer D , String password) {
-		if (bCryptPasswordEncoder.matches(D.getPasswordUser(),bCryptPasswordEncoder.encode(password))) {
-			if (! bCryptPasswordEncoder.matches(D.getUsernameUser() + "#619", D.getPasswordUser()))
+	public Deliverer updateDeliverer(Deliverer D) {
+		if (! bCryptPasswordEncoder.matches(D.getUsernameUser() + "#619", D.getPasswordUser()))
 		{ D.setUpdatedPassword(true); }
 		String encodedPassword = bCryptPasswordEncoder.encode(D.getPasswordUser());
 		D.setPasswordUser(encodedPassword);
-		dr.save(D);}
-	}
+		return dr.save(D);}
 
 	@Override
 	public Deliverer FindDelivererById(Long id) {
@@ -221,11 +220,6 @@ public class DelivererManager implements DelivererManagerInterface{
    @Override
    public void deleteDelivererById(String id) {
    	Der.deleteById(Long.parseLong(id));
-   }
-
-   @Override
-   public Deliverer updateDeliverer(Deliverer D) {
-   	return Der.save(D);
    }
 
    @Override
