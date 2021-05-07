@@ -1,7 +1,10 @@
 package ConsomiTounsi.controllers.accounts;
 
 import ConsomiTounsi.Service.DelivererManagerInterface;
+import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.Deliverer;
+import ConsomiTounsi.entities.User;
+import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,9 @@ public class DelivererRessources {
 
     @Autowired
     DelivererManagerInterface cs;
+
+    @Autowired
+    UserRepository ur;
 
     @GetMapping("/all")
     public ResponseEntity<List<Deliverer>> getAllEmployees () {
@@ -44,5 +50,10 @@ public class DelivererRessources {
         cs.deleteDelivererById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/getbyusername/{username}")
+    public Deliverer getByID(@PathVariable("username") String  username){
+        User u = ur.findByUsernameUser(username).orElse(new User());
+        return cs.FindDelivererById(u.getIdUser());}
 
 }
