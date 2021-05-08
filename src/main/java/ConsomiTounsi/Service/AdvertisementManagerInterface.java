@@ -4,6 +4,7 @@ import ConsomiTounsi.entities.Advertisement;
 import ConsomiTounsi.entities.Product;
 import ConsomiTounsi.entities.TypeCategory;
 import ConsomiTounsi.entities.TypeCriteria;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,5 +28,6 @@ public interface AdvertisementManagerInterface {
     List<Product> showAdvertsementByCategory( Long id);
     String CountAdDays(Long id) ;
     String DeleteIfEnded(Long id) ;
-   // List<Product> showAdvertsementByCategory2(Authentication auth) ;
+    Long frontAd(String username) ;
+   //List<Product> showAdvertsementByCategory2(Authentication auth) ;
 }
