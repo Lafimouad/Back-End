@@ -88,6 +88,11 @@ public class DelivererManager implements DelivererManagerInterface{
 	}
 
 	@Override
+	public long getNbNotAvailableDeliveres() {
+		return dr.getNbNotAvailableDeliveres();
+	}
+
+	@Override
 	public long getNbDeliverer() {
 		return dr.getNbDeliverer();
 	}

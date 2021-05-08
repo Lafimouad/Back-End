@@ -23,7 +23,10 @@ public interface DelivererRepository extends CrudRepository<Deliverer, Long> {
 
 	@Query("SELECT COUNT(d) FROM Deliverer d WHERE d.availableDeliverer = TRUE" )
 	long getNbAvailableDeliveres();
-	
+
+	@Query("SELECT COUNT(d) FROM Deliverer d WHERE d.availableDeliverer = FALSE" )
+	long getNbNotAvailableDeliveres();
+
 	@Query("SELECT d FROM Deliverer d WHERE d.delivererOfTheMonthDeliverer = TRUE" )
 	Deliverer getDelivererOfTheMonth();
 

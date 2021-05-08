@@ -89,6 +89,16 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 		return ur.findByLastNameUser(lastname);
 	}
 
+	@Override
+	public long getNbManagers() {
+		return ur.getNbManagers(UserRole.MANAGER);
+	}
+	@Override
+	public String getClientOftheMonth(){
+		User c = ur.AccessClients(UserRole.CLIENT,ur.getMaxAccess(UserRole.CLIENT)).get(0);
+		return c.getFirstNameUser() + "   " + c.getLastNameUser() ;
+	}
+
 	//registration
 
 	private BCryptPasswordEncoder bCryptPasswordEncoder;

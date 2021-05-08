@@ -21,7 +21,8 @@ public interface UserManagerInterface {
 	List<User> findUserByLastNameAndFirstName(String firstname , String lastname);
 	List<User> findUserByFirstName(String firstname); 
 	List<User> findUserByLastName(String lastname);
-
+	long getNbManagers();
+	String  getClientOftheMonth();
     User SingUpManager(User user);
 	User getConnectedUser(Authentication auth);
 

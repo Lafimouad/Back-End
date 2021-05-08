@@ -6,6 +6,7 @@ import ConsomiTounsi.entities.User;
 import java.util.List;
 import java.util.Optional;
 
+import ConsomiTounsi.entities.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 
@@ -42,6 +43,14 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	//@Query("SELECT u FROM USER u WHERE u.username_user =: username ")
 	//User findByUsername_user (@Param("username")String username ) ;
 
-	
+	@Query("SELECT COUNT(m) FROM User m WHERE m.roleUser =:role" )
+	long getNbManagers(@Param("role") UserRole role );
+
+	@Query("SELECT MAX(m.nbaccessUser) FROM User m WHERE m.roleUser =:role ")
+	int getMaxAccess(@Param("role") UserRole role );
+
+	@Query("SELECT u FROM User u WHERE u.roleUser =:role AND u.nbaccessUser = :nb" )
+	List<User> AccessClients (@Param("role") UserRole role , @Param("nb") int nb);
+
 	
 }

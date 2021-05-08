@@ -19,7 +19,9 @@ public interface DelivererManagerInterface {
     Deliverer FindDelivererById(Long id);
     Deliverer FindDelivererById(String id);
     long getNbAvailableDeliveres();
-	long getNbDeliverer();
+    long getNbNotAvailableDeliveres();
+
+    long getNbDeliverer();
 	Deliverer getDelivererOfTheMonth();
     double SommeSaliareDeliverer();
     void resetBonus();
