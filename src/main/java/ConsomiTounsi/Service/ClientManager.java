@@ -2,11 +2,9 @@ package ConsomiTounsi.Service;
 
 
 import ConsomiTounsi.configuration.config.EmailSenderService;
-import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.UserRole;
+import ConsomiTounsi.entities.*;
 
 
-import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
 
 import ConsomiTounsi.repository.ClientRepository;
@@ -182,6 +180,11 @@ public class ClientManager implements ClientManagerInterface{
 	public Client addClient(Client Cl) {
 
 		return Clr.save(Cl);
+	}
+
+	@Override
+	public long getNbClientByWorkfield(WorkField field) {
+		return Clr.getnbclientbyfield(field);
 	}
 
 }

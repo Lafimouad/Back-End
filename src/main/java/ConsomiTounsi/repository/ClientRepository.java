@@ -3,6 +3,7 @@ package ConsomiTounsi.repository;
 import javax.transaction.Transactional;
 
 import ConsomiTounsi.entities.Role;
+import ConsomiTounsi.entities.WorkField;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -16,6 +17,9 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 	
 	@Query("SELECT COUNT(c) FROM Client c")
 	long getNombreClient();
+
+	@Query("SELECT COUNT(a) FROM Client a WHERE a.workfieldClient= :field" )
+	long getnbclientbyfield(@Param("field") WorkField field);
 
 	@Query("SELECT Count(c) FROM Client c WHERE c.subMonth=:Month")
 	long getClientsbysubmonth(@Param("Month") String Month);

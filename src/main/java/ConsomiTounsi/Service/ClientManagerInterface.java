@@ -2,6 +2,8 @@ package ConsomiTounsi.Service;
 
 
 import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.entities.Role;
+import ConsomiTounsi.entities.WorkField;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -19,4 +21,5 @@ public interface ClientManagerInterface {
     Client SignUpClient(Client user);
     long getNBClientsbysubmonth(String Month);
     Client addClient(Client Cl);
+    long getNbClientByWorkfield(WorkField field);
 }

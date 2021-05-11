@@ -4,10 +4,7 @@ import ConsomiTounsi.Service.AdminManagerInterface;
 import ConsomiTounsi.Service.ClientManagerInterface;
 import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.Service.UserManagerInterface;
-import ConsomiTounsi.entities.Deliverer;
-import ConsomiTounsi.entities.Role;
-import ConsomiTounsi.entities.User;
-import ConsomiTounsi.entities.UserRole;
+import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.AdminRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,5 +97,15 @@ public class UsersRessources {
     public long getAEvents()
     {return ar.getNbAdminByRole(Role.EVENT_MANAGER);}
 
+    @GetMapping("/nbCCos")
+    public long getCCos()
+    {return cs.getNbClientByWorkfield(WorkField.COSMETICS);}
 
+    @GetMapping("/nbCEdu")
+    public long getCEdu()
+    {return cs.getNbClientByWorkfield(WorkField.EDUCATION);}
+
+    @GetMapping("/nbCF")
+    public long getCF()
+    {return cs.getNbClientByWorkfield(WorkField.FARMING_FISHING_FORESTRY);}
 }
