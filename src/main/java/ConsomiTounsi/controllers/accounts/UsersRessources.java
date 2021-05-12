@@ -108,4 +108,28 @@ public class UsersRessources {
     @GetMapping("/nbCF")
     public long getCF()
     {return cs.getNbClientByWorkfield(WorkField.FARMING_FISHING_FORESTRY);}
+
+    @GetMapping("/JAN")
+    public long getJAN()
+    { return cs.getNBClientsbysubmonth("JAN");}
+
+    @GetMapping("/FEB")
+    public long getFEB()
+    { return cs.getNBClientsbysubmonth("FEB");}
+
+    @GetMapping("/MAR")
+    public long getMAR()
+    { return cs.getNBClientsbysubmonth("MAR");}
+
+    @GetMapping("/APR")
+    public long getAPR()
+    { return cs.getNBClientsbysubmonth("APR");}
+
+    @GetMapping("/MAY")
+    public long getMAY()
+    { return cs.getNBClientsbysubmonth("MAY");}
+
+    @GetMapping("/JUN")
+    public long getJUN()
+    { return cs.getNBClientsbysubmonth("JUN");}
 }
