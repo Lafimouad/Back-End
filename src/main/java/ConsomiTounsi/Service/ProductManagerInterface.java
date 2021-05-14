@@ -1,13 +1,11 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Product;
-import ConsomiTounsi.entities.TypeCategory;
-import ConsomiTounsi.entities.TypeCriteria;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.transaction.annotation.Transactional;
-import javax.persistence.EntityManager;
 
 
 public interface ProductManagerInterface {
@@ -15,7 +13,7 @@ public interface ProductManagerInterface {
     Product addProduct(Product P);
     void deleteProduct(Long id);
     void deleteProduct(String id);
-    Product updateProduct(Long id ,Product P);
+    Product updateProduct(Product P);
     Optional<Product> FindProduct(Long id);
     Optional<Product> FindProduct(String id);
     int addProductQuantity(long id , int nb);

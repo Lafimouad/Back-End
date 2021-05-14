@@ -7,14 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -22,6 +17,19 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product implements Serializable {
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Product product = (Product) o;
+		return quantityProduct == product.quantityProduct && productofthemonth == product.productofthemonth && Double.compare(product.price, price) == 0 && Float.compare(product.rating, rating) == 0 && available == product.available && Double.compare(product.weight, weight) == 0 && Objects.equals(id, product.id) && Objects.equals(code, product.code) && Objects.equals(name, product.name) && Objects.equals(category, product.category) && Objects.equals(description, product.description) && Objects.equals(imagePath, product.imagePath) && Objects.equals(image_URL, product.image_URL) && categoryProduct == product.categoryProduct && Objects.equals(supplier, product.supplier) && Objects.equals(orders, product.orders) && Objects.equals(shelf, product.shelf) && Objects.equals(feedback, product.feedback) && Objects.equals(promotion, product.promotion);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, quantityProduct, productofthemonth, code, name, category, price, rating, available, description, weight, imagePath, image_URL, categoryProduct, supplier, orders, shelf, feedback, promotion);
+	}
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -47,6 +55,7 @@ public class Product implements Serializable {
 	private String description;
 	private double weight;
 	private String imagePath ;
+	private String image_URL;
 
 	@Enumerated(EnumType.STRING)
 	private TypeCategory categoryProduct;
