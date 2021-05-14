@@ -13,8 +13,8 @@ public class DelivererController {
     DelivererManagerInterface delivererS;
 
     @PutMapping("/update")
-    public void updateDeliverer(@RequestBody Deliverer a , @RequestParam("password") String password){
-         delivererS.updateDeliverer(a , password);
+    public void updateDeliverer(@RequestBody Deliverer a){
+         delivererS.updateDeliverer(a);
     }
 
 }

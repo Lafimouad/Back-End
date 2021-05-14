@@ -51,11 +51,6 @@ public class DeliverersControllers {
 		 
 		return DevlivererManI.addDeliverer(D) ;	}
 	
-	@PutMapping("/modify")
-	public Deliverer modifyDeliverer(@RequestBody Deliverer D) {
-	return DevlivererManI.updateDeliverer(D);
-	}
-	
 	@GetMapping("/MaxScore")
 	public long getMaxOfScore() {
 		return DevlivererManI.FindMaxScore();
