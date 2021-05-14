@@ -1,31 +1,16 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.configuration.config.EmailSenderService;
-import ConsomiTounsi.entities.Admin;
-import ConsomiTounsi.entities.Product;
-import ConsomiTounsi.entities.Role;
-import ConsomiTounsi.entities.Claim;
-import ConsomiTounsi.entities.Feedback;
-import ConsomiTounsi.entities.Product;
+import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.FeedbackRepository;
-
-import ConsomiTounsi.entities.Feedback;
-import ConsomiTounsi.entities.Product;
-import ConsomiTounsi.entities.TypeCategory;
-import ConsomiTounsi.entities.TypeCriteria;
-import ConsomiTounsi.entities.TypeCriteriaValue1;
-import ConsomiTounsi.repository.ClientRepository;
 import ConsomiTounsi.repository.ProductRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-
-import javax.persistence.EntityManager;
 
 
 @Service
@@ -84,11 +69,8 @@ import javax.persistence.EntityManager;
     }
 
     @Override
-    public Product updateProduct(Long id, Product P) {
-        Optional<Product> optionalProduct = Pr.findById(id);
-        if (!optionalProduct.isPresent()) {
-            throw new IllegalStateException("Product id Not Found");
-        }
+    public Product updateProduct( Product P) {
+
         return Pr.save(P);
     }
 

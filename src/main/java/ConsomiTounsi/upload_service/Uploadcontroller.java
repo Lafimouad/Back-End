@@ -16,10 +16,13 @@ import java.net.MalformedURLException;
 
 @RestController
 @RequestMapping( "/image")
+@CrossOrigin("*")
 public class Uploadcontroller {
 
     @Autowired
     UploadService uploadService;
+    @Autowired
+    uploadService1 uploadService1;
 
     @GetMapping(
             value = "/{picture}",
@@ -34,11 +37,16 @@ public class Uploadcontroller {
 
 
     }
+    @PutMapping  ("/upload")
+    public ResponseEntity<?> uploadFil(@RequestParam MultipartFile file ) throws IOException {
+        return uploadService1.uploadFil(file);
+    }
 
 
 
 
- @PostMapping
+
+    @PostMapping
  public ResponseEntity<?> uploadFile(@RequestParam MultipartFile file) throws IOException, FormatException, ChecksumException, NotFoundException {
 
         return uploadService.uploadeFile(file  );

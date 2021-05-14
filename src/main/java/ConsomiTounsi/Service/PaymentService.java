@@ -126,9 +126,9 @@ public class PaymentService {
 
         //
         helper.setTo(payment.getEmail());
-        helper.setSubject("Requestiong simulation /");
+        helper.setSubject("thank you very much for your shopping with us /");
         //helper.setText(messaage);
-        helper.setText("hello "+payment.getCustomerId()+" here is your Payment information");
+        helper.setText("hello "+payment.getEmail()+" here is your Payment information");
 
         //
 

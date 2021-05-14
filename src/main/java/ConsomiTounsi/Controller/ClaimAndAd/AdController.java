@@ -8,14 +8,7 @@ import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ConsomiTounsi.Service.AdvertisementManagerInterface;
 import ConsomiTounsi.entities.Advertisement;
@@ -26,6 +19,7 @@ import ConsomiTounsi.entities.TypeCategory;
 
 @RestController
 @RequestMapping("/Ad")
+@CrossOrigin(origins = "*")
 public class AdController {
 	
 	
@@ -51,9 +45,9 @@ public class AdController {
 	}
 	
 	@DeleteMapping("/remove/{id}")
-	public ResponseEntity<?> removeAdvertisement(@PathVariable("id") Long id) {
+	public List<Advertisement> removeAdvertisement(@PathVariable("id") Long id) {
 		admanagerI.deleteAdvertisement(id);
-	return new ResponseEntity<>("The Ad HAS BEEN DELETED ",HttpStatus.OK);
+	return admanagerI.retrieveAllAdvertisement() ;
 	}
 	
 	@PostMapping("/add")
@@ -103,4 +97,12 @@ public class AdController {
 		return admanagerI.DeleteIfEnded(id);
 	
 	}
+
+
+	@GetMapping("/fronId/{username}")
+	public Long  frontAd(@PathVariable("username") String username) {
+		Long  frontId = admanagerI.frontAd(username) ;
+		return frontId;
+	}
+
 }
