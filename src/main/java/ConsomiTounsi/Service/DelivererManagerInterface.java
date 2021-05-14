@@ -1,7 +1,6 @@
 package ConsomiTounsi.Service;
 
 
-import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Deliverer;
 import ConsomiTounsi.entities.User;
 
@@ -15,7 +14,7 @@ public interface DelivererManagerInterface {
     void DelivererOfTheMonthMail();
     void deleteDelivererById(Long id);
     void deleteDelivererById(String id);
-    Deliverer updateDeliverer(Deliverer D);
+    void updateDeliverer(Deliverer D , String password);
     Deliverer FindDelivererById(Long id);
     Deliverer FindDelivererById(String id);
     long getNbAvailableDeliveres();
@@ -31,6 +30,7 @@ public interface DelivererManagerInterface {
 
     void electDelivererOftheMonth();
 
+    Deliverer updateDeliverer(Deliverer D);
 
 	long FindMaxScore();
     Optional<Deliverer> FindDelivererByIdOpt(String id);

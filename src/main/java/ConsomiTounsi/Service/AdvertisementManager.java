@@ -1,13 +1,18 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.*;
+import ConsomiTounsi.entities.Advertisement;
+import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.entities.Gender;
+
+import ConsomiTounsi.entities.WorkField;
+import ConsomiTounsi.entities.Product;
 
 import ConsomiTounsi.repository.ProductRepository;
 import ConsomiTounsi.repository.UserRepository;
 import ConsomiTounsi.repository.AdvertisementRepository;
 import ConsomiTounsi.repository.ClientRepository;
 //import org.springframework.security.core.Authentication;
-import org.springframework.security.core.Authentication;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +38,6 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	 
 	@Autowired
 	UserRepository Ur;
-
-	@Autowired
-	UserManager UMA ;
 	
 	 
 	////////////////////////////Simple CRUD 
@@ -100,7 +102,6 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	@Override
 	public List<Product> showAdvertsementByCategory(Long id) {
 		Advertisement theAd = Adr.findById(id).orElse(new Advertisement()) ;
-
 		Client theclient = theAd.getClient() ;
 		List<Product> F = Pr.findByCategoryProduct();
 		List<Product> M = Pr.findByCategoryProduct2();
@@ -189,15 +190,6 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 		
 		
 	}
-
-
-	@Override
-	public Long frontAd(String username){
-    	User target=UMA.findUserByUsername(username) ;
-    	Long id = target.getIdUser();
-    	return id;
-
-	}
 }
 	
 	
@@ -221,9 +213,10 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	// This function uses the id of the connected client
 	
 	
-		/*@Override
+	/*	@Override
 		public List<Product> showAdvertsementByCategory2(Authentication auth) {
-			Client theclient = UMA.getConnectedUser(Authentication auth);
+			Long theId = this.Target(auth) ;
+			Client theclient = Clr.findById(theId).orElse(new Client ());
 			List<Product> F = Pr.findByCategoryProduct();
 			List<Product> M = Pr.findByCategoryProduct2();
 			List<Product> H = Pr.findByCategoryProduct5();
@@ -233,9 +226,7 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 			List<Product> c = new ArrayList<>() ;
 			
 				 LocalDateTime date = LocalDateTime.now() ;
-				 LocalDateTime BirthDate = theclient.getDateBirthUser().toInstant()
-						 .atZone(ZoneId.systemDefault())
-						 .toLocalDateTime();
+				 LocalDateTime BirthDate = theclient.getDateBirth_user() ;
 				 long age = ChronoUnit.YEARS.between(date, BirthDate);
 				
 	            Gender genderClient = theclient.getGenderClient();
@@ -259,8 +250,7 @@ public class AdvertisementManager implements AdvertisementManagerInterface{
 	            		
 			
 			return c ;
-		}*/
-
+		} */
 
 	
 

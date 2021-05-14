@@ -157,12 +157,15 @@ public class ClientManager implements ClientManagerInterface{
 
 	@Override
 	public Client SignUpClient(@Valid Client user) {
+		/*boolean isValidEmail = emailValidator.test(user.getEmailAddressUser());
+		if (!isValidEmail) {
+			throw new IllegalStateException("Email not valid");
+		}*/
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		user.setSubscriptionDate(now);
 		user.setSubMonth(now.getMonth().toString());
 		user.setNbaccessUser(0);
-		user.setUpdatedPassword(true);
 		String password = user.getPasswordUser();
 		String encodedPassword = bCryptPasswordEncoder.encode(password);
 		user.setPasswordUser(encodedPassword);

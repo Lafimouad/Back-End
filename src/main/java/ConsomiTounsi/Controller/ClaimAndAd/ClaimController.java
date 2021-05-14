@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.*;
 
 
 import ConsomiTounsi.Service.ClaimManagerInterface;
@@ -29,7 +28,6 @@ import ConsomiTounsi.entities.ClaimType;
 
 @RestController
 @RequestMapping("/Claim")
-@CrossOrigin(origins = "*")
 public class ClaimController {
 	
 	@Autowired
@@ -95,9 +93,9 @@ public class ClaimController {
 	}
 	
 	@DeleteMapping("/remove/{id}")
-	public List<Claim>  removeClaim(@PathVariable("id") Long id) {
+	public ResponseEntity<?> removeClaim(@PathVariable("id") Long id) {
 	claimManagerI.deleteClaim(id);
-	return claimManagerI.retrieveAllClaim();
+	return new ResponseEntity<>("Claim Deleted",HttpStatus.OK);
 	}
 	
 	@PostMapping("/add")

@@ -86,7 +86,7 @@ public class ManagerDashboardController {
 	@PutMapping("elect-deliv")
 	public void electdeliv(){
 		delivererS.electDelivererOftheMonth();
-	} //dans authenticate
+	}
 
 }
 

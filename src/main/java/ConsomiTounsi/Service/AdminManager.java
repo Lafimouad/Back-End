@@ -39,12 +39,12 @@ public class AdminManager implements AdminManagerInterface{
 
     @Transactional
     @Override
-    public Admin updateAdmin(Admin A) {
+    public void updateAdmin(Admin A) {
         if (!bCryptPasswordEncoder.matches(A.getUsernameUser() + "#619", A.getPasswordUser()))
         {A.setUpdatedPassword(true); }
         String encodedPassword = bCryptPasswordEncoder.encode(A.getPasswordUser());
         A.setPasswordUser(encodedPassword);
-        return Ar.save(A);}
+    Ar.save(A);}
 
     @Override
     public Admin FindAdminById(Long id) {
@@ -101,7 +101,7 @@ public class AdminManager implements AdminManagerInterface{
         user.setPasswordUser(encodedPassword);
         user.setRoleUser(UserRole.ADMIN);
         String subject = "Account Activated";
-        //emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
+        emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
         return Ar.save(user);
     }
 

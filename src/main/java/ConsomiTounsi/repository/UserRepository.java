@@ -36,6 +36,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	@Query("Update User u SET u.nbaccessUser=:nb WHERE u.usernameUser= :fn")
 	int updateNbaccess(@Param("nb") int nb , @Param("fn") String fn );
 
+
 	@Query("SELECT u FROM User u WHERE u.firstNameUser= :fn AND u.lastNameUser = :ln" )
 	List<User> RetiveUserByFirstAndLastNameJPQL(@Param("fn") String fn , @Param("ln") String ln);
 

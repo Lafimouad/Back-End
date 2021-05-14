@@ -1,10 +1,7 @@
 package ConsomiTounsi.controllers.accounts;
 
 import ConsomiTounsi.Service.ClientManagerInterface;
-import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.User;
-import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,19 +16,10 @@ public class ClientRessources {
     @Autowired
     ClientManagerInterface cs;
 
-    @Autowired
-    UserRepository ur;
-
     @GetMapping("/all")
     public ResponseEntity<List<Client>> getAllEmployees () {
         List<Client> employees = cs.retrieveAllClient();
         return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
-
-    @PostMapping("/add")
-    public ResponseEntity<Client> addEmployee(@RequestBody Client employee) {
-        Client newEmployee = cs.addClient(employee);
-        return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
     @GetMapping("/find/{id}")
@@ -51,9 +39,5 @@ public class ClientRessources {
         cs.deleteClientById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/getbyusername/{username}")
-    public Client getByID(@PathVariable("username") String  username){
-        User u = ur.findByUsernameUser(username).orElse(new User());
-        return cs.FindClientById(u.getIdUser());}
 
 }
