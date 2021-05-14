@@ -29,6 +29,7 @@ public class Shelf implements Serializable {
 	//@Enumerated(EnumType.STRING)
     private String typeShelf;
     private String description;
+	private String image_URL;
 
 
 	@ManyToOne
