@@ -1,6 +1,7 @@
 package ConsomiTounsi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class Product implements Serializable {
 	private String category;
 	private double price;
 	private float rating;
-
+    private String image_URL;
 	public String getName() {
 		return name;
 	}
@@ -75,7 +76,7 @@ public class Product implements Serializable {
 	@ManyToMany(mappedBy="products",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
 	private List<Order> orders;
 
-
+	@JsonIgnore
 	@ManyToOne
 	private Shelf shelf;
 

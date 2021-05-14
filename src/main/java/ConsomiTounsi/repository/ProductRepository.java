@@ -48,11 +48,11 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     int getNbProductsByshelf(long idshelf);
 
     @Modifying
-    @Query (value="UPDATE Product p SET p.quantity_product=:qn WHERE p.id_product=:id",nativeQuery = true)
+    @Query (value="UPDATE Product p SET p.quantity_product=:qn WHERE p.id=:id",nativeQuery = true)
     int AddQuantity(@Param("qn") long qn, @Param("id") long id);
 
     @Modifying
-    @Query(value="UPDATE Product P SET P.quantity_product=0 WHERE p.id_product=:id" ,nativeQuery= true )
+    @Query(value="UPDATE Product P SET P.quantity_product=0 WHERE p.id=:id" ,nativeQuery= true )
     int resetQuantity(@Param("id") long id);
 	
 

@@ -1,5 +1,7 @@
 package ConsomiTounsi.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,17 +26,17 @@ public class Shelf implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private long idShelf;
 	
-	@Enumerated(EnumType.STRING)
-    private typeShelf typeShelf;
-
+	//@Enumerated(EnumType.STRING)
+    private String typeShelf;
+    private String description;
 
 
 	@ManyToOne
 	Store store;
 
-
+	@JsonIgnore
 	@OneToMany(mappedBy="shelf",
-			cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+			cascade = CascadeType.ALL,
 			fetch= FetchType.EAGER)
 	private List<Product> product = new ArrayList<>();
 
