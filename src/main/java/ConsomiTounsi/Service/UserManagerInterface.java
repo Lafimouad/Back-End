@@ -16,7 +16,7 @@ public interface UserManagerInterface {
     void deleteUserById(String id);
     User updateUser(User U);*/
 
-    
+    User findUserById(long id);
 	User findUserByUsername(String username);
 	List<User> findUserByLastNameAndFirstName(String firstname , String lastname);
 	List<User> findUserByFirstName(String firstname); 

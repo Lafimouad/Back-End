@@ -34,37 +34,43 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
     public List<User> retrieveAllUser() {
         return (List<User>) ur.findAll();
     }
-/*
-	@Override
-	public User addUser(User U) {
-		return ur.save(U);
-	}
 
 	@Override
-	public void deleteUserById(Long id) {
-		 ur.findById(id);
-	}
-
-	@Override
-	public void deleteUserById(String id) {
-		ur.deleteById(Long.parseLong(id));
-	}
-
-	@Override
-	public User updateUser(User U) {
-		return ur.save(U);
-	}
-
-	@Override
-	public User FindUserById(Long id) {
+	public User findUserById(long id) {
 		return ur.findById(id).orElse(new User());
 	}
 
-	@Override
-	public User FindUserById(String id) {
-		return ur.findById(Long.parseLong(id)).orElse(new User());
-	}
-*/
+	/*
+        @Override
+        public User addUser(User U) {
+            return ur.save(U);
+        }
+
+        @Override
+        public void deleteUserById(Long id) {
+             ur.findById(id);
+        }
+
+        @Override
+        public void deleteUserById(String id) {
+            ur.deleteById(Long.parseLong(id));
+        }
+
+        @Override
+        public User updateUser(User U) {
+            return ur.save(U);
+        }
+
+        @Override
+        public User FindUserById(Long id) {
+            return ur.findById(id).orElse(new User());
+        }
+
+        @Override
+        public User FindUserById(String id) {
+            return ur.findById(Long.parseLong(id)).orElse(new User());
+        }
+    */
 	@Override
 	public User findUserByUsername(String username) {
 		return ur.findByUsernameUser(username).orElse(new User());
@@ -97,13 +103,10 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 
 	@Override
 	public User SingUpManager(User user) {
-		boolean isValidEmail = emailValidator.test(user.getEmailAddressUser());
-		if (!isValidEmail) {
-			throw new IllegalStateException("Email not valid");
-		}
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPasswordUser());
 		user.setPasswordUser(encodedPassword);
 		user.setRoleUser(UserRole.MANAGER);
+		user.setUpdatedPassword(true);
 		return ur.save(user);
 	}
 

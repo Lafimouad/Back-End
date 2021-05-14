@@ -1,6 +1,6 @@
 package ConsomiTounsi.controllers.accounts;
 
-import ConsomiTounsi.Service.ClientManagerInterface;
+import ConsomiTounsi.Service.AdminManagerInterface;
 import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.User;
@@ -12,48 +12,52 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/ressources/client")
+@RequestMapping("/ressources/admin")
 @CrossOrigin(origins = "*")
 @RestController
-public class ClientRessources {
+public class AdminRessources {
     @Autowired
-    ClientManagerInterface cs;
+    AdminManagerInterface cs;
 
     @Autowired
     UserRepository ur;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Client>> getAllEmployees () {
-        List<Client> employees = cs.retrieveAllClient();
+    public ResponseEntity<List<Admin>> getAllEmployees () {
+        List<Admin> employees = cs.retrieveAllAdmin();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
-
     @PostMapping("/add")
-    public ResponseEntity<Client> addEmployee(@RequestBody Client employee) {
-        Client newEmployee = cs.addClient(employee);
+    public ResponseEntity<Admin> addEmployee(@RequestBody Admin employee) {
+        Admin newEmployee = cs.AddAdmin(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
-
     @GetMapping("/find/{id}")
-    public ResponseEntity<Client> getEmployeeById (@PathVariable("id") Long id) {
-        Client employee = cs.FindClientById(id);
+    public ResponseEntity<Admin> getEmployeeById (@PathVariable("id") Long id) {
+        Admin employee = cs.FindAdminById(id);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Client> updateEmployee(@RequestBody Client employee) {
-        Client updateEmployee = cs.updateClient(employee);
+    public ResponseEntity<Admin> updateEmployee(@RequestBody Admin employee) {
+        Admin updateEmployee = cs.updateAdmin(employee);
         return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
-        cs.deleteClientById(id);
+        cs.deleteAdminById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/getbyusername/{username}")
-    public Client getByID(@PathVariable("username") String  username){
-        User u = ur.findByUsernameUser(username).orElse(new User());
-        return cs.FindClientById(u.getIdUser());}
 
+    @PutMapping("/absent/{id}")
+    public void addAbsence(@PathVariable("id") Long  id){cs.addAbsence(id);}
+
+    @GetMapping("getbyid/{id}")
+    public Admin getByID(@PathVariable("id") Long  id){return cs.FindAdminById(id);}
+
+    @GetMapping("/getbyusername/{username}")
+    public Admin getByID(@PathVariable("username") String  username){
+        User u = ur.findByUsernameUser(username).orElse(new User());
+        return cs.FindAdminById(u.getIdUser());}
 }

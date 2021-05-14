@@ -1,8 +1,8 @@
 package ConsomiTounsi.controllers.accounts;
 
-import ConsomiTounsi.Service.ClientManagerInterface;
-import ConsomiTounsi.entities.Admin;
+import ConsomiTounsi.Service.DelivererManagerInterface;
 import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.entities.Deliverer;
 import ConsomiTounsi.entities.User;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,48 +12,48 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/ressources/client")
+@RequestMapping("/ressources/deliverer")
 @CrossOrigin(origins = "*")
 @RestController
-public class ClientRessources {
+public class DelivererRessources {
+
     @Autowired
-    ClientManagerInterface cs;
+    DelivererManagerInterface cs;
 
     @Autowired
     UserRepository ur;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Client>> getAllEmployees () {
-        List<Client> employees = cs.retrieveAllClient();
+    public ResponseEntity<List<Deliverer>> getAllEmployees () {
+        List<Deliverer> employees = cs.retrieveAllDeliverer();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Client> addEmployee(@RequestBody Client employee) {
-        Client newEmployee = cs.addClient(employee);
-        return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
-    }
-
     @GetMapping("/find/{id}")
-    public ResponseEntity<Client> getEmployeeById (@PathVariable("id") Long id) {
-        Client employee = cs.FindClientById(id);
+    public ResponseEntity<Deliverer> getEmployeeById (@PathVariable("id") Long id) {
+        Deliverer employee = cs.FindDelivererById(id);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Client> updateEmployee(@RequestBody Client employee) {
-        Client updateEmployee = cs.updateClient(employee);
+    public ResponseEntity<Deliverer> updateEmployee(@RequestBody Deliverer employee) {
+        Deliverer updateEmployee = cs.updateDeliverer(employee);
         return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
     }
-
+    @PostMapping("/add")
+    public ResponseEntity<Deliverer> addEmployee(@RequestBody Deliverer employee) {
+        Deliverer newEmployee = cs.addDeliverer(employee);
+        return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
+    }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
-        cs.deleteClientById(id);
+        cs.deleteDelivererById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @GetMapping("/getbyusername/{username}")
-    public Client getByID(@PathVariable("username") String  username){
+    public Deliverer getByID(@PathVariable("username") String  username){
         User u = ur.findByUsernameUser(username).orElse(new User());
-        return cs.FindClientById(u.getIdUser());}
+        return cs.FindDelivererById(u.getIdUser());}
 
 }
