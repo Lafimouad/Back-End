@@ -3,10 +3,8 @@ package ConsomiTounsi.controllers.EventPoolDonation;
 import ConsomiTounsi.Service.EventManager;
 import ConsomiTounsi.Service.EventManagerInterface;
 import ConsomiTounsi.Service.ProductManagerInterface;
-import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.Event;
-import ConsomiTounsi.entities.Pool;
-import ConsomiTounsi.entities.Product;
+import ConsomiTounsi.entities.*;
+import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,19 +12,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/event")
+@CrossOrigin("*")
+
 public class EventController {
     @Autowired
     EventManagerInterface eventmanager ;
     @Autowired
     EventManager manager;
+    @Autowired
+    UserRepository Ur;
 
 
     //@PostMapping("/add")
    //ublic void addEvent(@RequestBody Event e){ eventmanager.addEvent1(e);}
 
 
-    @PostMapping("/add-id/{id}")
-    public void addEvent(@RequestBody Event e, @PathVariable("id") long id){ eventmanager.addEvent(e,id);}
+    @PostMapping("/add-id")
+    public void addEvent(@RequestBody Event e){ eventmanager.addEvent(e);}
 
     @GetMapping("/retrieve-all")
     public List<Event> getListEvents(){ return eventmanager.retrieveAllEvent(); }
@@ -39,9 +41,9 @@ public class EventController {
    // public void addclientstoevent(@RequestBody Client c,@PathVariable("id") Long id){
      //   manager.AddEventToClient(c,id);
    // }
-    @PutMapping ("/AddClienttoevent/{idclient}/{idevent}")
-    public void addclienttoevent(@PathVariable("idclient") long idclient , @PathVariable("idevent") long idevent){
-        manager.AddEventToClient(idclient,idevent);
+    @DeleteMapping ("/AddClienttoevent/{idclient}/{idevent}")
+    public void addclienttoevent(@PathVariable("idclient") long idClient , @PathVariable("idevent") long idevent){
+        manager.AddEventToClient(idClient,idevent);
     }
 
     @DeleteMapping("removeeventafteryear/{idevent}")
@@ -50,12 +52,18 @@ public class EventController {
 
     }
 
+    @DeleteMapping("removealleventafteryear")
+    public void DeleteAllEventAfterAYear (){
+        manager.DeleteAllEventAfterAYear();
+
+    }
+
     @DeleteMapping("remove-id/{id}")
     public void removeAdminByID(@PathVariable("id")long id){
         eventmanager.deleteEvent(id);
     }
 
-    @PutMapping("/RemoveClientFromEvent/{idclient}/{idevent}")
+    @DeleteMapping("/RemoveClientFromEvent/{idclient}/{idevent}")
     public void RemoveClientFromEvent (@PathVariable("idclient") long idclient , @PathVariable("idevent") long idevent){
         manager.RemoveClientFromEvent(idclient,idevent);
     }
@@ -66,7 +74,17 @@ public class EventController {
     @GetMapping("/getEventsByLevelorder2")
     public List<Event> getEventsByLevelorder2() { return eventmanager.getEventsByLevelorder2(); }
 
-
+    @PutMapping("/update")
+    public Event updateShelf(@RequestBody Event p){
+        return eventmanager.updateEvent(p);
     }
+
+    @GetMapping("/iduser/{username}")
+    public long retrieveIdClientByUsername(@PathVariable("username") String username) {
+        return  Ur.retrieveIdClientByUsername(username);
+    }
+
+
+}
 
 

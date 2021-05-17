@@ -1,5 +1,6 @@
 package ConsomiTounsi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,23 +23,26 @@ public class Event implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private long id_event;
+	private long idEvent;
 
 	private String eventName;
 	private double raisedAmount_event;
-	private String place_event;
-	private String target_event;
+	//private String place_event;
+	//private String target_event;
 	//@Temporal (TemporalType.DATE)
 	private LocalDateTime date_event;
+	private int duration;
 	private int nombreplace;
 	private int nombredeplaceinitiale;
+	private String description;
+	private String image_URL;
 
 
 
 
 	/*@OneToMany(cascade = CascadeType.PERSIST, mappedBy="event")
 	private List<Donation> donation;*/
-
+	@JsonIgnore
 	@OneToMany(mappedBy="event",
 			cascade = {CascadeType.ALL, CascadeType.REMOVE})
 	private List<Donation> donation = new ArrayList<>();
@@ -49,7 +53,7 @@ public class Event implements Serializable {
 
 	/*@ManyToMany(cascade = CascadeType.ALL, mappedBy="event")
 	private List<Client> clients;*/
-
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
 	/*@JoinTable(
 			name = "client_event",

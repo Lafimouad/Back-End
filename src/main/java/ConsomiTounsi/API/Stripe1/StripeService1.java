@@ -1,9 +1,13 @@
 package ConsomiTounsi.API.Stripe1;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import ConsomiTounsi.Service.PoolManager;
+import ConsomiTounsi.entities.Order;
+import ConsomiTounsi.entities.Payment;
+import ConsomiTounsi.entities.Payment_type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,9 @@ public class StripeService1 {
 
     @Value("${stripe.key.secret}")
     private String API_SECET_KEY;
+
+    @Autowired
+    PoolManager pl;
 
     public StripeService1() {
 
@@ -38,6 +45,9 @@ public class StripeService1 {
 
 
             chargeId = charge.getId();
+            this.pl.AddamountTopool(charge.getAmount());
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

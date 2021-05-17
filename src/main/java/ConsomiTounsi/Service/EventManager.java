@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ConsomiTounsi.repository.PoolRepository;
+import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +31,10 @@ public class EventManager implements EventManagerInterface {
     ClientRepository Clr;
     @Autowired
     AdminManagerInterface adminS;
+    @Autowired
+    EventManagerInterface ErI;
+    @Autowired
+    UserRepository Ur;
 
 
     @Override
@@ -53,14 +58,15 @@ public class EventManager implements EventManagerInterface {
     }
 
     @Override
-    public Event addEvent(Event E, long id) {
+    public Event addEvent(Event E) /*, long id*/
+        {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         E.setDate_event(now);
         int x = E.getNombreplace();
         E.setNombredeplaceinitiale(x);
         Event optionalEvent = new Event();
-        Pool p = Poor.findById(id).orElse(new Pool());
+        Pool p = Poor.findById(1L).orElse(new Pool());
         double amountPool = p.getAmount_pool();
         double amountEvent = E.getRaisedAmount_event();
         if (amountPool > amountEvent) {
@@ -127,9 +133,10 @@ public class EventManager implements EventManagerInterface {
     @Autowired
     EmailSenderService emailSenderService;
 
-    public void AddEventToClient(long idclient, long idevent) {
+    public void AddEventToClient(long idClient, long idevent) {
+       // long t = Ur.retrieveIdClientByUsername(username);
 
-        Optional<Client> optionalClient = Clr.findById(idclient);
+        Optional<Client> optionalClient = Clr.findById(idClient);
         Client client = optionalClient.get();
         Optional<Event> optionalEvent = Er.findById(idevent);
         Event event = optionalEvent.get();
@@ -244,6 +251,13 @@ public class EventManager implements EventManagerInterface {
             Er.deleteById(id);
 
         } }
+
+        public void DeleteAllEventAfterAYear() {
+         List<Event> list = ErI.retrieveAllEvent();
+         for (Event e: list){
+             DeleteEventAfterAYear(e.getIdEvent());
+         }
+        }
 
         public void RemoveClientFromEvent(long idclient, long idevent) {
 

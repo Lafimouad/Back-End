@@ -21,4 +21,9 @@ public class Uploadcontrollershelf {
     public ResponseEntity<?> uploadFil(@RequestParam MultipartFile file ) throws IOException {
         return uploadService.uploadFil(file);
     }
+
+    @PutMapping("/uploadevent")
+    public ResponseEntity<?> uploadFil2(@RequestParam MultipartFile file ) throws IOException {
+        return uploadService.uploadFilEvent(file);
+    }
 }

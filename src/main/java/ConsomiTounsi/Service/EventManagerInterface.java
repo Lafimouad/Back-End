@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface EventManagerInterface {
     List<Event> retrieveAllEvent();
-    Event addEvent(Event E,long id);
+    Event addEvent(Event E);
     Event addEvent1(Event E);
     void deleteEvent(long id);
     void deleteEvent(String id);

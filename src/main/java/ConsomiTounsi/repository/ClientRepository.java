@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import ConsomiTounsi.entities.Client;
 
+import java.util.List;
+
 @Transactional
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
@@ -19,5 +21,7 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 
 	@Query("SELECT Count(c) FROM Client c WHERE c.subMonth=:Month")
 	long getClientsbysubmonth(@Param("Month") String Month);
+
+;
 
 }
