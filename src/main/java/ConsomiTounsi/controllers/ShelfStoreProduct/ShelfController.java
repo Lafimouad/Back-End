@@ -1,6 +1,7 @@
 package ConsomiTounsi.controllers.ShelfStoreProduct;
 
 
+import ConsomiTounsi.Service.ShelfManager;
 import ConsomiTounsi.Service.ShelfManagerInterface;
 import ConsomiTounsi.entities.Comment;
 import ConsomiTounsi.entities.Shelf;
@@ -13,9 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/shelf")
+@CrossOrigin(origins = "*")
 public class ShelfController {
     @Autowired
     ShelfManagerInterface shelfmanager ;
+    ShelfManager S;
 
 
     @GetMapping("/home")
@@ -34,8 +37,8 @@ public class ShelfController {
         return shelfmanager.FindShelf(id);
     }
 
-    @DeleteMapping("/remove-id")
-    public void removeShelfByID(@RequestParam("id")long id){
+    @DeleteMapping("/remove-id/{id}")
+    public void removeShelfByID(@PathVariable("id")long id){
         shelfmanager.deleteShelf(id);
     }
 
@@ -45,10 +48,10 @@ public class ShelfController {
     }
 
     @PutMapping("/TypeShelf")
-    public void FindByTypeShelf(@RequestParam("typeShelf") typeShelf TypeShelf){shelfmanager.FindByTypeShelf(TypeShelf);}
+    public void FindByTypeShelf(@RequestParam("typeShelf") String TypeShelf){shelfmanager.FindByTypeShelf(TypeShelf);}
 
-    @PutMapping("/ProductToShelf")
-    public void AffectProductToShelf(@RequestParam("shelfId") long shelfId, @RequestParam("productId") long productId) {
+    @DeleteMapping("/ProductToShelf/{shelfId}/{productId}")
+    public void AffectProductToShelf(@PathVariable("shelfId") long shelfId, @PathVariable("productId") long productId) {
         shelfmanager.AffectProductAShelf(shelfId, productId);
     }
 
@@ -62,6 +65,12 @@ public class ShelfController {
     public List<String> getAllProductsNamesByShelf(@RequestParam("id") long shelfId){
         return shelfmanager.getAllProductsNamesByShelf(shelfId); }
 
+    @GetMapping("/findtypebyshelf/{typeshelf}")
+    public Long idshelf(@PathVariable("typeshelf") String typeshelf) { return S.idshelf(typeshelf);}
 
+    @GetMapping("/selectIdshelfbytype/{type}")
+    public long selectIdshelfbytype(@PathVariable("type") String type) {
+        return S.selectIdshelfbytype(type);
+    }
 
 }

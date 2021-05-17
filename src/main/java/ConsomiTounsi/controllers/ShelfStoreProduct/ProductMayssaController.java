@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+@CrossOrigin(origins = "*")
+@RequestMapping("/products")
 public class ProductMayssaController {
 
     @Autowired
@@ -23,8 +24,8 @@ public class ProductMayssaController {
     @PostMapping("/add")
     public void addProduct(@RequestBody Product p){ productmanager.addProduct(p);}
 
-    @PutMapping("/ProductQuantityadd")
-    public void addProductQuantity(@RequestParam("id") long id , @RequestParam("nb") int nb) {
+    @DeleteMapping("/ProductQuantityadd/{id}/{nb}")
+    public void addProductQuantity(@PathVariable("id") long id , @PathVariable("nb") int nb) {
         productmanager.addProductQuantity(id , nb);
     }
 
@@ -33,23 +34,23 @@ public class ProductMayssaController {
         return pr.findById(id).orElse(new Product());
     }
 
-    @PutMapping("/ProductQuantitydec")
-    public void decrementProductQuantity(@RequestParam("id") long id) {
+    @DeleteMapping("/ProductQuantitydec/{id}")
+    public void decrementProductQuantity(@PathVariable("id") long id) {
         productmanager.decrementProductQuantity(id);
     }
 
-    @PutMapping("/resetProduct")
-    public void resetQuantity(@RequestParam("id") long id) {
+    @DeleteMapping("/resetProduct/{id}")
+    public void resetQuantity(@PathVariable("id") long id) {
         productmanager.resetQuantity(id);
     }
 
-    @GetMapping("/nbProductByShelf")
-    public int getNbProductsByshelf(@RequestParam("id") int id){
+    @GetMapping("/nbProductByShelf/{id}")
+    public int getNbProductsByshelf(@PathVariable("id") int id){
         return productmanager.getNbProductsByshelf(id); }
 
 
-    @GetMapping("/ProductsByShelf")
-    public List<Product> FindProductByIdShelf(@RequestParam("id") long id){
+    @GetMapping("/ProductsByShelf/{id}")
+    public List<Product> FindProductByIdShelf(@PathVariable("id") long id){
         return productmanager.FindProductByIdShelf(id); }
 
 

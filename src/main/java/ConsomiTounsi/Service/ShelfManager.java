@@ -68,7 +68,7 @@ public class ShelfManager implements ShelfManagerInterface{
 	}*/
 
     @Override
-    public List<Shelf> FindByTypeShelf(typeShelf type) {
+    public Shelf FindByTypeShelf(String type) {
         return Shr.FindByTypeShelf(type);
     }
 
@@ -101,6 +101,19 @@ public class ShelfManager implements ShelfManagerInterface{
         p.setShelf(null); Pdr.save(p);
         s.getProduct().remove(p); Shr.save(s);
     }
+
+    @Override
+    public long selectIdshelfbytype(String type) {
+        return Shr.selectIdshelfbytype(type);
+    }
+
+    public Long idshelf(String typeshelf) {
+        Shelf s = Shr.FindByTypeShelf(typeshelf);
+        long x = s.getIdShelf();
+        return x;
+    }
+
+   
 
 
 

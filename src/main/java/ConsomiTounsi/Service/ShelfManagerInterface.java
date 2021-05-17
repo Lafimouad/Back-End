@@ -17,10 +17,11 @@ public interface ShelfManagerInterface {
     Shelf updateShelf(Shelf Sh);
     Shelf FindShelf(Long id);
     Shelf FindShelf(String id);
-    List<Shelf> FindByTypeShelf(typeShelf type);
+    Shelf FindByTypeShelf(String type);
     void AffectProductAShelf(long shelfId, long productId);
     List<String> getAllProductsNamesByShelf(long shelfId);
     void desaffecterProductFromShelf(long shelfId, long productId);
+    long selectIdshelfbytype(String type);
 
 
 

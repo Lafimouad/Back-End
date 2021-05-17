@@ -8,51 +8,45 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin("*")
+@RequestMapping(path = "/product/")
 
 @RestController
 public class ProductController {
     @Autowired
     ProductManager pm;
     // Add A new Product
-    @PostMapping("/product")
+    @PostMapping("/save-product")
     ResponseEntity<?> createNewProduct(@RequestBody Product p) {
 
         pm.addProduct(p);
         return new ResponseEntity<>(new MessageResponseModel("Product Added"), HttpStatus.CREATED);
     }
     // Show All Product
-    @GetMapping("/product")
+    @GetMapping("/products-list")
     ResponseEntity<?> getAllProduct() {
         List<Product> p = pm.retrieveAllProducts();
         GetAllProductResponse products = new GetAllProductResponse(p);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
     // show A specific product with by id
-    @GetMapping("/product/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<?> getProductById(@PathVariable Long id) {
         return new ResponseEntity<>(pm.FindProduct(id), HttpStatus.OK);
 
     }
 
-    /*
-    @GetMapping("/getproductsbyorder/{id}")
-    ResponseEntity<?> getProductByOrder(@PathVariable Long id){
-        return new ResponseEntity<>(pm.FindByOrder(id),HttpStatus.OK);
-    }
-
-     */
-
     // Delete A Product
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/delete-product/{id}")
     ResponseEntity<?> deleteProductById(@PathVariable Long id) {
         pm.deleteProduct(id);
         return new ResponseEntity<>(new MessageResponseModel("Product Deleted"), HttpStatus.OK);
 
     }
     // Update A Product
-    @PutMapping("/product/{id}")
-    ResponseEntity<?> updateProduct(@PathVariable Long id,@RequestBody Product p) {
-        pm.updateProduct(id,p);
+    @PutMapping("/update-product")
+    ResponseEntity<?> updateProduct(@RequestBody Product p) {
+        pm.updateProduct(p);
         return new ResponseEntity<>(new MessageResponseModel("Product Updated"), HttpStatus.CREATED);
     }
 
@@ -65,7 +59,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/products/{name}")
+    @GetMapping("/{name}")
     ResponseEntity<?> getProductByName(@PathVariable String name) {
         List<Product>p=pm.findByName(name);
         return new ResponseEntity<>(p, HttpStatus.OK);
@@ -98,5 +92,13 @@ public class ProductController {
         GetAllProductResponse products = new GetAllProductResponse(p);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
+
+     /*
+    @GetMapping("/getproductsbyorder/{id}")
+    ResponseEntity<?> getProductByOrder(@PathVariable Long id){
+        return new ResponseEntity<>(pm.FindByOrder(id),HttpStatus.OK);
+    }
+
+     */
 
 }
