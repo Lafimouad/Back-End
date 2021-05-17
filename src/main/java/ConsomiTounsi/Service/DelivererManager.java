@@ -59,7 +59,7 @@ public class DelivererManager implements DelivererManagerInterface{
 		D.setPasswordUser(encodedPassword);
 		D.setRoleUser(UserRole.DELIVERER);
 		String subject = "Account Activated";
-		//emailSenderService.sendEmail(D.getEmailAddressUser(), body(name , D.getUsernameUser(), password) ,subject );
+		emailSenderService.sendEmail(D.getEmailAddressUser(), body(name , D.getUsernameUser(), password) ,subject );
 		return dr.save(D);
 	}
 

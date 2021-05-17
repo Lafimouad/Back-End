@@ -101,7 +101,7 @@ public class AdminManager implements AdminManagerInterface{
         user.setPasswordUser(encodedPassword);
         user.setRoleUser(UserRole.ADMIN);
         String subject = "Account Activated";
-        //emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
+        emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
         return Ar.save(user);
     }
 
