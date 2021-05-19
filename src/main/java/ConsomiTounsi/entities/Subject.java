@@ -1,5 +1,6 @@
 package ConsomiTounsi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +26,12 @@ public class Subject implements Serializable {
 	private boolean featuredSubject;
 	private String descriptionSubject;
 	private int likesSubject;
+	private String author;
 
 	@ManyToOne
 	User user;
-	
+
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="subject")
 	private Set<Comment> comment;
 }

@@ -73,7 +73,7 @@ public class CommentManager implements CommentManagerInterface{
             if (c.isMostPertinentComment() == true) {
                  idC = c.getIdComment();}}
         Comment cc = FindComment(idC);
-        cc.setSubject(null);
+//        cc.setSubject(null);
         return cc; }
 
 
@@ -81,7 +81,7 @@ public class CommentManager implements CommentManagerInterface{
     public Set<Comment> retrieveSubjectComments(long id) {
         Subject s = subjectS.FindSubject(id);
         Set<Comment> com = s.getComment();
-        for (Comment c : com){ c.setSubject(null);}
+//        for (Comment c : com){ c.setSubject(null);}
         return com;
     }
 

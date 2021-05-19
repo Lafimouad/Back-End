@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/Forum/Subject")
 public class SubjectController {
 
@@ -23,16 +24,17 @@ public class SubjectController {
         subjectS.addSubject(a);}
 
     @GetMapping("/retrieve-all")
+    @CrossOrigin(origins = "*")
     public List<Subject> getListSubjects(){
         return subjectS.retrieveAllSubject(); }
 
-    @GetMapping("/retrieve-id")
-    public Subject getSubjectById(@RequestParam("id") long id){
+    @GetMapping("/retrieve-id/{id}")
+    public Subject getSubjectById(@PathVariable("id") long id){
         return subjectS.FindSubject(id);
     }
 
-    @DeleteMapping("remove-id")
-    public void removeSubjectByID(@RequestParam("id")long id){
+    @DeleteMapping("remove-id/{id}")
+    public void removeSubjectByID(@PathVariable("id")long id){
         subjectS.deleteSubject(id);
     }
 
@@ -41,11 +43,11 @@ public class SubjectController {
         return subjectS.updateSubject(a);
     }
 
-    @PutMapping("/likeSubject-id")
-    public void addLike(@RequestParam("id") long id){subjectS.addLike(id);}
+    @PutMapping("/likeSubject-id/{id}")
+    public void addLike(@PathVariable("id") long id){subjectS.addLike(id);}
 
-    @PutMapping("/dilikeSubject-id")
-    public void dislike(@RequestParam("id") long id){subjectS.dislike(id);}
+    @PutMapping("/dislikeSubject-id/{id}")
+    public void dislike(@PathVariable("id") long id){subjectS.dislike(id);}
 
     @PutMapping("/setFeauturedSubjects")
     public void FeatureSubjects(){
@@ -53,8 +55,8 @@ public class SubjectController {
     }
 
     @GetMapping("/getFeaturedSubjects")
-    public void ListFeauturedSubjects(){
-        subjectS.getFeaturedSubjects();
+    public List<Subject> ListFeaturedSubjects(){
+        return subjectS.getFeaturedSubjects();
     }
 
     @GetMapping("/getWordFilteredSubjects")
@@ -63,8 +65,8 @@ public class SubjectController {
         return subjectS.FilterByWords(word);
     }
 
-    @GetMapping("/getLikesFilteredSubjects")
-    public List<Subject> FilterByNbLikes(@RequestParam("minLikes")String minLikes, @RequestParam("maxLikes")String maxLikes){
+    @GetMapping("/getLikesFilteredSubjects/{minLikes}/{maxLikes}")
+    public List<Subject> FilterByNbLikes(@PathVariable("minLikes")String minLikes, @PathVariable("maxLikes")String maxLikes){
         return subjectS.FilterByNbLikes(minLikes, maxLikes);
     }
 

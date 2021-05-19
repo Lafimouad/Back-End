@@ -10,14 +10,15 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/Forum/Comment")
 public class CommentController {
 
     @Autowired
     CommentManagerInterface commentS;
 
-    @PutMapping("/add")
-    public void addComment(@RequestBody Comment a, @RequestParam("id") long  id){ commentS.addComment(a , id);}
+    @PutMapping("/add/{id}")
+    public void addComment(@RequestBody Comment a, @PathVariable("id") long  id){ commentS.addComment(a , id);}
 
     @GetMapping("/retrieve-all")
     public List<Comment> getListComments(){ return commentS.retrieveAllComment(); }
@@ -27,8 +28,8 @@ public class CommentController {
         return commentS.FindComment(id);
     }
 
-    @DeleteMapping("remove-id")
-    public void removeCommentByID(@RequestParam("id")long id){
+    @DeleteMapping("remove-id/{id}")
+    public void removeCommentByID(@PathVariable("id")long id){
         commentS.deleteComment(id);
     }
 
@@ -37,14 +38,14 @@ public class CommentController {
         return commentS.updateComment(a);
     }
 
-    @PutMapping("/likeComment-id")
-    public void addLike(@RequestParam("id") long id){commentS.addLike(id);}
+    @PutMapping("/likeComment-id/{id}")
+    public void addLike(@PathVariable("id") long id){commentS.addLike(id);}
 
-    @PutMapping("/dislikeComment-id")
-    public void dislike(@RequestParam("id") long id){commentS.dislike(id);}
+    @PutMapping("/dislikeComment-id/{id}")
+    public void dislike(@PathVariable("id") long id){commentS.dislike(id);}
 
-    @GetMapping("/mostPertinentComments")
-    public Comment GetPertinentCommentsBySubject(@RequestParam("id") long id){
+    @GetMapping("/mostPertinentComments/{id}")
+    public Comment GetPertinentCommentsBySubject(@PathVariable("id") long id){
         return commentS.retrieveCommentByPertinence(id); }
 
     @PutMapping("/pertinentComments")
@@ -52,8 +53,8 @@ public class CommentController {
         commentS.setPertinentComments();
     }
 
-    @GetMapping("/retrieveSubjectComments-idSubject")
-    public Set<Comment> retrieveSubjectComments(@RequestParam("id") long id){
+    @GetMapping("/retrieveSubjectComments-idSubject/{id}")
+    public Set<Comment> retrieveSubjectComments(@PathVariable("id") long id){
         return commentS.retrieveSubjectComments(id);
     }
 

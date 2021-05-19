@@ -25,6 +25,7 @@ public class Comment implements Serializable {
 	private int likesComment;
 	private boolean mostPertinentComment;
 	private String textComment;
+	private String author;
 
 	@ManyToOne
 	Subject subject;

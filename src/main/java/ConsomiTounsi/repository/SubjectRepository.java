@@ -27,7 +27,7 @@ public interface SubjectRepository extends CrudRepository<Subject,Long> {
     int NotFeatured(@Param("id") long id);
 
     @Modifying
-    @Query(value= "SELECT s FROM subject s WHERE s.featured_subject = TRUE",nativeQuery= true)
+    @Query("SELECT s FROM Subject s WHERE s.featuredSubject = TRUE ")
     List<Subject> getFeaturedSubjects();
 
 }
