@@ -167,7 +167,7 @@ public class ClientManager implements ClientManagerInterface{
 		user.setRoleUser(UserRole.CLIENT);
 		String name=user.getFirstNameUser();
 		String subject = "Consomi Tounsi Registration";
-		emailSenderService.sendEmail(user.getEmailAddressUser(),body(name) ,subject );
+		//emailSenderService.sendEmail(user.getEmailAddressUser(),body(name) ,subject );
 		return cr.save(user);
 	}
 
