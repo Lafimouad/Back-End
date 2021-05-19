@@ -17,6 +17,10 @@ public class DictionaryManager implements DictionaryManagerInterface{
     public List<String> retrieveAllBadWords() {
         return dr.retrieveBadWords();
     }
+    @Override
+    public List<Dictionary> retrieveAll() {
+        return (List<Dictionary>) dr.findAll();
+    }
 
     @Override
     public Dictionary addBadWord(Dictionary w ){

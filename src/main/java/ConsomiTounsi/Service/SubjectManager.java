@@ -48,6 +48,28 @@ public class SubjectManager implements SubjectManagerInterface{
         }
     }
 
+    public void prohibition(Subject Su) {
+        boolean redundant = false;
+        boolean prohibited = false;
+        List<Subject> allSubjects = retrieveAllSubject();
+        List<String> prohibitedDict = dictionaryS.retrieveAllBadWords();
+        prohibitedDict.replaceAll(String::toUpperCase);
+        List<String> List = new ArrayList<String>(Arrays.asList(Su.getDescriptionSubject().split("\\s+")));
+        for (String word : List ) {
+            if (prohibitedDict.contains(word.toUpperCase())){ prohibited = true ;}
+        }
+        for(Subject s : allSubjects){
+            if(Su.getDescriptionSubject().toUpperCase().equals(s.getDescriptionSubject().toUpperCase())){
+                redundant = true ;
+            }
+        }
+        if (prohibited == false && redundant==false )
+        { Su.setLikesSubject(0);
+          Su.setFeaturedSubject(false);
+            sr.save(Su);
+        }
+    }
+
 
     @Override
     public void deleteSubject(Long id) {

@@ -6,6 +6,7 @@ import ConsomiTounsi.entities.Dictionary;
 import java.util.List;
 
 public interface DictionaryManagerInterface {
+    List<Dictionary> retrieveAll();
     List<String> retrieveAllBadWords();
     Dictionary addBadWord(Dictionary w);
     void deleteBadWord(Long id);

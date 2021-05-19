@@ -15,13 +15,23 @@ public class DictionaryController {
     DictionaryManagerInterface dictionaryS;
 
     @PostMapping("/add")
-    public void addBadWord(@RequestBody Dictionary a){ dictionaryS.addBadWord(a);}
+    public void addBadWord(@RequestBody Dictionary a) {
+        dictionaryS.addBadWord(a);
+    }
 
     @GetMapping("/retrieve-all")
-    public List<String> getListDictionary(){ return dictionaryS.retrieveAllBadWords(); }
+    public List<Dictionary> getListDictionary() {
+        return dictionaryS.retrieveAll();
+    }
 
-    @DeleteMapping("remove-id")
-    public void removeBadWordByID(@RequestParam("id")long id){
+    @DeleteMapping("remove-id/{id}")
+    public void removeBadWordByID(@PathVariable("id") long id) {
         dictionaryS.deleteBadWord(id);
     }
+
+//    }@DeleteMapping("remove-id")
+//    public void removeBadWordByID(@RequestParam("id")long id){
+//        dictionaryS.deleteBadWord(id);
+//    }
+
 }
